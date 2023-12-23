@@ -7,14 +7,15 @@
 
 import UIKit
 import CoreData
-import SwipeCellKit
 
 class RecipeViewController: UIViewController {
     
     @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var recipeIngredientsTableView: UITableView!
     @IBOutlet weak var directionsTextView: UITextView!
-    
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var editRecipeButton: BrettButton!
+    @IBOutlet weak var deleteRecipeButton: BrettButton!
     
     var loadedRecipe: [Recipe] = []
     var recipeIngredients: [Ingredient] = []
@@ -24,23 +25,47 @@ class RecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        stackView.layer.borderWidth = 2
+        stackView.layer.borderColor = K.bakeShopMaroon.cgColor
+        editRecipeButton.tintColor = K.bakeShopMaroon
+        deleteRecipeButton.tintColor = K.bakeShopMaroon
         recipeNameLabel.text = loadedRecipe[0].name
         directionsTextView.text = loadedRecipe[0].directions
         recipeIngredients = loadedRecipe[0].ingredient!.allObjects as! [Ingredient]
         for i in recipeIngredients {
-            ingredientList.append("\(i.quantity) \(i.unitsType!) \(i.name!)")
+            let convertedQuantity = UnitsConverter().convertFloatToString(floatValue: i.quantity)
+            if i.units == "Whole" {
+                ingredientList.append("\(convertedQuantity) \(i.units!) \(i.name!)")
+            } else {
+                ingredientList.append("\(convertedQuantity) \(i.units!) of \(i.name!)")
+            }
         }
         recipeIngredientsTableView.delegate = self
         recipeIngredientsTableView.dataSource = self
         recipeIngredientsTableView.register(UINib(nibName: "IngredientTableViewCell", bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.segueIdentifierToEditRecipe {
+            let destinationVC = segue.destination as! EditRecipeViewController
+            destinationVC.loadedRecipe = loadedRecipe[0]
+            destinationVC.recipeIngredients = ingredientList
         }
-        
-        
+    }
     
-    
-    
-    
+    @IBAction func deleteRecipePressed(_ sender: BrettButton) {
+        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this recipe?", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { action in
+            //Dismiss alert
+        }
+        alert.addAction(dismissAction)
+        let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
+            K.context.delete(self.loadedRecipe[0])
+            self.navigationController?.popToViewController((self.navigationController?.viewControllers[1])!, animated: true)
+        }
+        alert.addAction(deleteAction)
+        present(alert, animated: true, completion: nil)
+    }
     
 }
 
@@ -54,8 +79,8 @@ extension RecipeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = recipeIngredientsTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
-        cell.delegate = self
         cell.ingredientCellLabel.text = "\(ingredientList[indexPath.row])"
+        cell.ingredientCellLabel.textColor = K.bakeShopMaroon
         
         return cell
     }
@@ -78,33 +103,3 @@ extension RecipeViewController: UITableViewDelegate {
         
     }
 }
-
-//MARK: Swipe Cell Kit Functionality
-
-extension RecipeViewController: SwipeTableViewCellDelegate {
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            K.context.delete(self.recipeIngredients[indexPath.row])
-            self.recipeIngredients.remove(at: indexPath.row)
-//            self.updateDataAndView()
-        }
-        
-        let editAction = SwipeAction(style: .default, title: "Edit\nIngredient") { action, indexPath in
-//            self.segueCollectedWisdom = [self.collectedWisdom[indexPath.row]]
-//            self.performSegue(withIdentifier: "editWisdomSegue", sender: self)
-        }
-        
-        // customize the action appearance
-        deleteAction.image = UIImage(named: "delete-icon")
-//        editAction.backgroundColor = K.fontColor.withAlphaComponent(1.0)
-//        editAction.textColor = K.fontColorWhite
-//        editAction.font = UIFont(name: "Times New Roman", size: 20.0)
-        
-        return [deleteAction, editAction]
-    }
-}
-
-

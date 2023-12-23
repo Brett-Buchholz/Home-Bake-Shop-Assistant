@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		57245B192B15560D0063A1DB /* CookbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57245B182B15560D0063A1DB /* CookbookViewController.swift */; };
 		57245B1B2B1699040063A1DB /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57245B1A2B1699040063A1DB /* RecipeViewController.swift */; };
+		572E727E2B180E2B0012B715 /* UnitsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E727D2B180E2B0012B715 /* UnitsConverter.swift */; };
+		572E72802B22CE820012B715 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E727F2B22CE820012B715 /* PaddingLabel.swift */; };
 		5734355A2AF1856F00BB3611 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573435592AF1856F00BB3611 /* AppDelegate.swift */; };
 		5734355C2AF1856F00BB3611 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5734355B2AF1856F00BB3611 /* SceneDelegate.swift */; };
 		5734355E2AF1856F00BB3611 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5734355D2AF1856F00BB3611 /* ViewController.swift */; };
@@ -29,6 +31,8 @@
 /* Begin PBXFileReference section */
 		57245B182B15560D0063A1DB /* CookbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookViewController.swift; sourceTree = "<group>"; };
 		57245B1A2B1699040063A1DB /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		572E727D2B180E2B0012B715 /* UnitsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsConverter.swift; sourceTree = "<group>"; };
+		572E727F2B22CE820012B715 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		573435562AF1856F00BB3611 /* Home Bake Shop Assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home Bake Shop Assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		573435592AF1856F00BB3611 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5734355B2AF1856F00BB3611 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 			children = (
 				573435752AF194A800BB3611 /* BrettButton.swift */,
 				57C95FD92AF6DBA0006130FB /* Constants.swift */,
+				572E727F2B22CE820012B715 /* PaddingLabel.swift */,
+				572E727D2B180E2B0012B715 /* UnitsConverter.swift */,
 				573435622AF1856F00BB3611 /* Home_Bake_Shop_Assistant.xcdatamodeld */,
 				57C95FE22AFC96C3006130FB /* IngredientTableViewCell.swift */,
 			);
@@ -214,6 +220,8 @@
 				57C95FDA2AF6DBA0006130FB /* Constants.swift in Sources */,
 				57C95FE12AFC9229006130FB /* AddIngredientViewController.swift in Sources */,
 				57C95FE42AFC96C3006130FB /* IngredientTableViewCell.swift in Sources */,
+				572E72802B22CE820012B715 /* PaddingLabel.swift in Sources */,
+				572E727E2B180E2B0012B715 /* UnitsConverter.swift in Sources */,
 				57245B192B15560D0063A1DB /* CookbookViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

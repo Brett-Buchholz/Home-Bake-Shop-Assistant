@@ -20,14 +20,21 @@ class EditRecipeViewController: UIViewController {
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var directionsTextView: UITextView!
+    @IBOutlet weak var saveButton: BrettButton!
+    @IBOutlet weak var addButton: BrettButton!
+    @IBOutlet weak var ingredientsView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var directionsView: UIView!
     
-    let newRecipe = Recipe(context: K.context)
-    var ingredientList: [Ingredient] = []
+    
+    var newRecipe: Recipe? = nil
+    var loadedRecipe: Recipe? = nil
+    var inventoryList: [Inventory] = []
+    var tempIngredientList: [Ingredient] = []
     var recipeIngredients: [String] = []
     var pickerValue: String = ""
     var selectedIndexPath: IndexPath? = nil
     var pickerAsFloat: Float = 0
-    var recipeSaved: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,20 +46,32 @@ class EditRecipeViewController: UIViewController {
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.register(UINib(nibName: "IngredientTableViewCell", bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        ingredientsTableView.rowHeight = 36.0
+        
+        saveButton.tintColor = K.bakeShopMaroon
+        addButton.tintColor = K.bakeShopMaroon
+        addTopBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
+        addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
+        addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: scrollView)
+        addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
+        addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
+        addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: scrollView)
+        addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
+        addBottomBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if loadedRecipe != nil {
+            newRecipe = loadedRecipe!
+            recipeNameTextField.text = loadedRecipe!.name
+            directionsTextView.text = loadedRecipe!.directions
+        }
         loadIngredients()
         setupIngredientButton()
         setupUnitsTypeButton()
-        
+        updateData()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if recipeSaved == false {
-            K.context.delete(newRecipe)
-        }
-    }
-    
     
     func setupIngredientButton() {
         var chirren: [UIMenuElement] = []
@@ -60,8 +79,8 @@ class EditRecipeViewController: UIViewController {
             //print(action)
         }
         chirren.append(UIAction(title: "", handler: closure))
-        for ingredient in ingredientList {
-            chirren.append(UIAction(title: "\(ingredient.name ?? "unknown name")", handler: closure))
+        for ingredient in inventoryList {
+            chirren.append(UIAction(title: "\(ingredient.item ?? "unknown name")", handler: closure))
         }
         ingredientPopUpButton.menu = UIMenu(children: chirren)
     }
@@ -77,10 +96,42 @@ class EditRecipeViewController: UIViewController {
         unitsPopUpButton.menu = UIMenu(children: chirren)
     }
     
+    func addTopBorder(with color: UIColor?, andWidth borderWidth: CGFloat, view: UIView) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        border.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: borderWidth)
+        view.addSubview(border)
+    }
+
+    func addBottomBorder(with color: UIColor?, andWidth borderWidth: CGFloat, view: UIView) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        border.frame = CGRect(x: 0, y: view.frame.size.height - borderWidth, width: view.frame.size.width, height: borderWidth)
+        view.addSubview(border)
+    }
+
+    func addLeftBorder(with color: UIColor?, andWidth borderWidth: CGFloat, view: UIView) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.frame = CGRect(x: 0, y: 0, width: borderWidth, height: view.frame.size.height)
+        border.autoresizingMask = [.flexibleHeight, .flexibleRightMargin]
+        view.addSubview(border)
+    }
+
+    func addRightBorder(with color: UIColor?, andWidth borderWidth: CGFloat, view: UIView) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleHeight, .flexibleLeftMargin]
+        border.frame = CGRect(x: view.frame.size.width - borderWidth, y: 0, width: borderWidth, height: view.frame.size.height)
+        view.addSubview(border)
+    }
+    
+    
     @IBAction func addButtonPressed(_ sender: BrettButton) {
         errorLabel.isHidden = true
         validData()
-        
     }
     
     func validData() {
@@ -95,7 +146,8 @@ class EditRecipeViewController: UIViewController {
         //Create quantity
         if quantityIntegerTextField.text == "" {
             quantityIntegerTextField.text = "0"
-        } else if Int(quantityIntegerTextField.text!) == nil {
+        }
+        if Int(quantityIntegerTextField.text!) == nil {
             errorLabel.isHidden = false
             errorLabel.text = "Invalid Quantity"
         } else if quantityIntegerTextField.text == "0" && pickerValue == "" {
@@ -114,8 +166,8 @@ class EditRecipeViewController: UIViewController {
         }
         
         //Create a float quantity
-        convertPickerToFloat()
-        floatQuantity = Float(quantityWhole) ?? 0 + pickerAsFloat
+        pickerAsFloat = UnitsConverter().convertStringToFloat(stringValue: quantityPicker)
+        floatQuantity = (Float(quantityWhole) ?? 0) + (pickerAsFloat)
         
         // Create Units of Measurment
         if unitsPopUpButton.titleLabel?.text == nil {
@@ -150,12 +202,16 @@ class EditRecipeViewController: UIViewController {
         if quantity != "" {
             if units != "" {
                 if ingredient != "" {
-                    let newIngredient = ingredientList.first { Ingredient in Ingredient.name == ingredientPopUpButton.titleLabel?.text}
-                    newIngredient!.name = ingredient
-                    newIngredient!.unitsType = units
-                    newIngredient!.quantity = floatQuantity
-                    newIngredient!.addToRecipe(newRecipe)
-                    recipeIngredients.append("\(quantity) \(units) \(ingredient)\(note)")
+                    let newIngredient = Ingredient(context: K.context)
+                    newIngredient.name = ingredient
+                    newIngredient.units = units
+                    newIngredient.quantity = floatQuantity
+                    tempIngredientList.append(newIngredient)
+                    if newIngredient.units == "Whole" {
+                        recipeIngredients.append("\(quantity) \(units) \(ingredient)\(note)")
+                    } else {
+                        recipeIngredients.append("\(quantity) \(units) of \(ingredient)\(note)")
+                    }
                     quantityIntegerTextField.text = ""
                     noteTextField.text = ""
                     setupIngredientButton()
@@ -170,34 +226,26 @@ class EditRecipeViewController: UIViewController {
         }
     }
     
-    func convertPickerToFloat() {
-        switch pickerValue {
-        case "1/8":
-            pickerAsFloat = 0.125
-        case "1/4":
-            pickerAsFloat = 0.25
-        case "3/8":
-            pickerAsFloat = 0.375
-        case "1/2":
-            pickerAsFloat = 0.5
-        case "5/8":
-            pickerAsFloat = 0.625
-        case "3/4":
-            pickerAsFloat = 0.75
-        case "7/8":
-            pickerAsFloat = 0.875
-        default:
-            pickerAsFloat = 0.0
-        }
-    }
-    
     @IBAction func saveRecipePressed(_ sender: BrettButton) {
-        
-        newRecipe.name = recipeNameTextField.text
-        newRecipe.directions = directionsTextView.text
-        saveRecipe()
-        recipeSaved = true
-        navigationController?.popViewController(animated: true)
+        errorLabel.isHidden = true
+        if recipeNameTextField.text == "" {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please add a Recipe Name"
+        } else if directionsTextView.text == "" {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please add directions to this recipe"
+        } else {
+            if newRecipe == nil {
+                newRecipe = Recipe(context: K.context)
+            }
+            newRecipe!.name = recipeNameTextField.text
+            newRecipe!.directions = directionsTextView.text
+            for ingredient in tempIngredientList {
+                ingredient.addToRecipe(newRecipe!)
+            }
+            saveRecipe()
+            navigationController?.popToViewController((navigationController?.viewControllers[1])!, animated: true)
+        }
     }
     
     //MARK: CoreData CRUD Methods
@@ -211,17 +259,15 @@ class EditRecipeViewController: UIViewController {
     }
     
     func loadIngredients() {
-        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
+        let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
         do {
-            ingredientList = try K.context.fetch(request)
+            inventoryList = try K.context.fetch(request)
         } catch {
             print("Error loading Ingredients: \(error)")
         }
     }
     
-    func updateDataAndView() {
-        //saveIngredients()
-        //loadIngredients()
+    func updateData() {
         DispatchQueue.main.async {
             self.ingredientsTableView.reloadData()
         }
@@ -241,6 +287,7 @@ extension EditRecipeViewController: UITableViewDataSource {
         let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
         cell.delegate = self
         cell.ingredientCellLabel.text = "\(recipeIngredients[indexPath.row])"
+        cell.ingredientCellLabel.textColor = K.bakeShopMaroon
         
         return cell
     }
@@ -271,24 +318,18 @@ extension EditRecipeViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            K.context.delete(self.ingredientList[indexPath.row])
+        let deleteAction = SwipeAction(style: .destructive, title:.none) { action, indexPath in
+            if self.newRecipe != nil {
+                K.context.delete(self.newRecipe!.ingredient?.allObjects[indexPath.row] as! NSManagedObject)
+            }
             self.recipeIngredients.remove(at: indexPath.row)
-            self.updateDataAndView()
-        }
-        
-        let editAction = SwipeAction(style: .default, title: "Edit\nIngredient") { action, indexPath in
-//            self.segueCollectedWisdom = [self.collectedWisdom[indexPath.row]]
-//            self.performSegue(withIdentifier: "editWisdomSegue", sender: self)
+            self.updateData()
         }
         
         // customize the action appearance
         deleteAction.image = UIImage(named: "delete-icon")
-//        editAction.backgroundColor = K.fontColor.withAlphaComponent(1.0)
-//        editAction.textColor = K.fontColorWhite
-//        editAction.font = UIFont(name: "Times New Roman", size: 20.0)
         
-        return [deleteAction, editAction]
+        return [deleteAction]
     }
 }
 

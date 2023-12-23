@@ -13,10 +13,10 @@ class AddIngredientViewController: UIViewController {
     
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var ingredientNameTextField: UITextField!
-    @IBOutlet weak var ingredientTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var unitsPopUpButton: UIButton!
     @IBOutlet weak var addIngredientButton: BrettButton!
     
-    var ingredientList: [Ingredient] = []
+    var ingredientList: [Inventory] = []
     var selectedIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
@@ -25,23 +25,46 @@ class AddIngredientViewController: UIViewController {
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.register(UINib(nibName: K.ingredientCellNibName, bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        setupUnitsTypeButton()
+        setupAddIngredientsButton()
         updateDataAndView()
     }
     
     
-    @IBAction func addIngredientPressed(_ sender: BrettButton) {
-        let newIngredient = Ingredient(context: K.context)
-        newIngredient.name = ingredientNameTextField.text
-        var type = ""
-        switch ingredientTypeSegmentedControl.selectedSegmentIndex {
-        case 1:
-            type = "Fluid"
-        case 2:
-            type = "Whole"
-        default:
-            type = "Dry"
+    func setupUnitsTypeButton() {
+        var chirren: [UIMenuElement] = []
+        let closure = { (action: UIAction) in
+            //print(action)
         }
-        newIngredient.unitsType = type
+        for unit in K.unitsOfMeasurement {
+            if unit == "" || unit == "Whole" {
+                chirren.append(UIAction(title: "\(unit)", handler: closure))
+            } else {
+                chirren.append(UIAction(title: "\(unit)s", handler: closure))
+            }
+        }
+        unitsPopUpButton.menu = UIMenu(children: chirren)
+    }
+    
+    func setupAddIngredientsButton() {
+        addIngredientButton.translatesAutoresizingMaskIntoConstraints = false
+        let myString = "Add\nIngredients"
+        let myStyle = NSMutableParagraphStyle()
+        myStyle.alignment = .center
+        myStyle.lineSpacing = 0.0
+        let myAttributes = [NSAttributedString.Key.font: UIFont(name: "Times New Roman", size: 26.0), NSAttributedString.Key.foregroundColor: K.bakeShopBlack, NSAttributedString.Key.paragraphStyle: myStyle]
+        let myAttrString = NSAttributedString(string: myString, attributes: myAttributes as [NSAttributedString.Key : Any])
+        addIngredientButton.setAttributedTitle(myAttrString, for: .normal)
+        addIngredientButton.configuration?.contentInsets.top = 5.0
+        addIngredientButton.configuration?.contentInsets.bottom = 5.0
+        addIngredientButton.configuration?.titlePadding = -5.0
+    }
+    
+    
+    @IBAction func addIngredientPressed(_ sender: BrettButton) {
+        let newIngredient = Inventory(context: K.ingedientContext)
+        newIngredient.item = ingredientNameTextField.text
+        newIngredient.baseUnit = unitsPopUpButton.titleLabel?.text
         updateDataAndView()
         ingredientNameTextField.text = ""
     }
@@ -50,16 +73,16 @@ class AddIngredientViewController: UIViewController {
     
     func saveIngredients() {
         do {
-            try K.context.save()
+            try K.ingedientContext.save()
         } catch {
             print("Error saving Prayer Rquests: \(error)")
         }
     }
     
     func loadIngredients() {
-        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
+        let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
         do {
-            ingredientList = try K.context.fetch(request)
+            ingredientList = try K.ingedientContext.fetch(request)
         } catch {
             print("Error loading Prayer Requests: \(error)")
         }
@@ -72,8 +95,6 @@ class AddIngredientViewController: UIViewController {
             self.ingredientsTableView.reloadData()
         }
     }
-    
-    
     
 }
 
@@ -88,7 +109,7 @@ extension AddIngredientViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
         cell.delegate = self
-        cell.ingredientCellLabel.text = "\(ingredientList[indexPath.row].name ?? "unknown name") (\(ingredientList[indexPath.row].unitsType ?? "unknown type"))"
+        cell.ingredientCellLabel.text = "\(ingredientList[indexPath.row].item ?? "unknown name") (\(ingredientList[indexPath.row].baseUnit ?? "unknown type"))"
         
         return cell
     }
@@ -120,7 +141,7 @@ extension AddIngredientViewController: SwipeTableViewCellDelegate {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            K.context.delete(self.ingredientList[indexPath.row])
+            K.ingedientContext.delete(self.ingredientList[indexPath.row])
             self.ingredientList.remove(at: indexPath.row)
             self.updateDataAndView()
         }
