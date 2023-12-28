@@ -20,6 +20,11 @@
 		573435692AF1857100BB3611 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 573435672AF1857100BB3611 /* LaunchScreen.storyboard */; };
 		573435712AF1860900BB3611 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 573435702AF1860900BB3611 /* Main_iPhone.storyboard */; };
 		573435762AF194A800BB3611 /* BrettButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573435752AF194A800BB3611 /* BrettButton.swift */; };
+		577F03F12B37748700ABE3EF /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F03F02B37748700ABE3EF /* OrdersViewController.swift */; };
+		577F03F32B3876F700ABE3EF /* EditOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F03F22B3876F700ABE3EF /* EditOrderViewController.swift */; };
+		577F03F52B3B46AE00ABE3EF /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F03F42B3B46AE00ABE3EF /* CurrencyTextField.swift */; };
+		577F03F72B3B7C5F00ABE3EF /* CompanyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F03F62B3B7C5F00ABE3EF /* CompanyInfoViewController.swift */; };
+		57C75D0F2B3E071100E8B32D /* EditCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C75D0E2B3E071100E8B32D /* EditCustomerViewController.swift */; };
 		57C95FDA2AF6DBA0006130FB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FD92AF6DBA0006130FB /* Constants.swift */; };
 		57C95FDF2AFC0A96006130FB /* EditRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FDE2AFC0A96006130FB /* EditRecipeViewController.swift */; };
 		57C95FE12AFC9229006130FB /* AddIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FE02AFC9229006130FB /* AddIngredientViewController.swift */; };
@@ -44,6 +49,11 @@
 		5734356A2AF1857100BB3611 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		573435702AF1860900BB3611 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		573435752AF194A800BB3611 /* BrettButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrettButton.swift; sourceTree = "<group>"; };
+		577F03F02B37748700ABE3EF /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		577F03F22B3876F700ABE3EF /* EditOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOrderViewController.swift; sourceTree = "<group>"; };
+		577F03F42B3B46AE00ABE3EF /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
+		577F03F62B3B7C5F00ABE3EF /* CompanyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfoViewController.swift; sourceTree = "<group>"; };
+		57C75D0E2B3E071100E8B32D /* EditCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomerViewController.swift; sourceTree = "<group>"; };
 		57C95FD92AF6DBA0006130FB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		57C95FDD2AFACB48006130FB /* Home Bake Shop Assistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Home Bake Shop Assistant.entitlements"; sourceTree = "<group>"; };
 		57C95FDE2AFC0A96006130FB /* EditRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipeViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +113,10 @@
 				57245B1A2B1699040063A1DB /* RecipeViewController.swift */,
 				57C95FDE2AFC0A96006130FB /* EditRecipeViewController.swift */,
 				57C95FE02AFC9229006130FB /* AddIngredientViewController.swift */,
+				577F03F02B37748700ABE3EF /* OrdersViewController.swift */,
+				577F03F22B3876F700ABE3EF /* EditOrderViewController.swift */,
+				577F03F62B3B7C5F00ABE3EF /* CompanyInfoViewController.swift */,
+				57C75D0E2B3E071100E8B32D /* EditCustomerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -122,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				573435752AF194A800BB3611 /* BrettButton.swift */,
+				577F03F42B3B46AE00ABE3EF /* CurrencyTextField.swift */,
 				57C95FD92AF6DBA0006130FB /* Constants.swift */,
 				572E727F2B22CE820012B715 /* PaddingLabel.swift */,
 				572E727D2B180E2B0012B715 /* UnitsConverter.swift */,
@@ -213,10 +228,15 @@
 				5734355E2AF1856F00BB3611 /* ViewController.swift in Sources */,
 				5734355A2AF1856F00BB3611 /* AppDelegate.swift in Sources */,
 				573435642AF1856F00BB3611 /* Home_Bake_Shop_Assistant.xcdatamodeld in Sources */,
+				577F03F12B37748700ABE3EF /* OrdersViewController.swift in Sources */,
+				577F03F72B3B7C5F00ABE3EF /* CompanyInfoViewController.swift in Sources */,
 				573435762AF194A800BB3611 /* BrettButton.swift in Sources */,
+				57C75D0F2B3E071100E8B32D /* EditCustomerViewController.swift in Sources */,
 				5734355C2AF1856F00BB3611 /* SceneDelegate.swift in Sources */,
+				577F03F52B3B46AE00ABE3EF /* CurrencyTextField.swift in Sources */,
 				57245B1B2B1699040063A1DB /* RecipeViewController.swift in Sources */,
 				57C95FDF2AFC0A96006130FB /* EditRecipeViewController.swift in Sources */,
+				577F03F32B3876F700ABE3EF /* EditOrderViewController.swift in Sources */,
 				57C95FDA2AF6DBA0006130FB /* Constants.swift in Sources */,
 				57C95FE12AFC9229006130FB /* AddIngredientViewController.swift in Sources */,
 				57C95FE42AFC96C3006130FB /* IngredientTableViewCell.swift in Sources */,

@@ -15,6 +15,7 @@ class K {
     static let bakeShopBlack = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 1.0)
     static let bakeShopMaroon = UIColor(red: 98/255, green: 55/255, blue: 57/255, alpha: 1.0)
     static let bakeShopTan = UIColor(red: 213/255, green: 203/255, blue: 176/255, alpha: 1.0)
+    static let bakeShopBlueberry = UIColor(red: 107/255, green: 137/255, blue: 154/255, alpha: 1.0)
     static let fontPadTitle = UIFont(name: "Marker Felt", size: 46.0)
     static let fontPadNormal = UIFont(name: "Marker Felt", size: 30.0)
     
@@ -29,6 +30,11 @@ class K {
         return managedContext
     }
     static var ingedientContext: NSManagedObjectContext {
+        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        managedContext.automaticallyMergesChangesFromParent = true
+        return managedContext
+    }
+    static var companyInfoContext: NSManagedObjectContext {
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         managedContext.automaticallyMergesChangesFromParent = true
         return managedContext
