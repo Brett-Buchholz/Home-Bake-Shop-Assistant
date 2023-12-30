@@ -12,6 +12,7 @@
     <entity name="Customer" representedClassName="Customer" syncable="YES" codeGenerationType="class">
         <attribute name="customerAddress" optional="YES" attributeType="String"/>
         <attribute name="customerCity" optional="YES" attributeType="String"/>
+        <attribute name="customerPhone" optional="YES" attributeType="String"/>
         <attribute name="customerState" optional="YES" attributeType="String"/>
         <attribute name="customerZipCode" optional="YES" attributeType="String"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>

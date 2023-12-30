@@ -6,22 +6,109 @@
 //
 
 import UIKit
+import CoreData
 
 class EditCustomerViewController: UIViewController {
     
-    @IBOutlet weak var customerTitleLabel: PaddingLabel!
+    @IBOutlet weak var customerInfoTitleLabel: PaddingLabel!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var stateTextField: UITextField!
+    @IBOutlet weak var zipTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var saveInfoButton: BrettButton!
+    @IBOutlet weak var deleteCustomerButton: BrettButton!
     
-    
-    
+    var loadedCustomer: Customer? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customerTitleLabel.layer.masksToBounds = true
-        customerTitleLabel.layer.borderColor = K.bakeShopBlueberry.cgColor
-        customerTitleLabel.layer.borderWidth = 2.0
+        customerInfoTitleLabel.layer.masksToBounds = true
+        customerInfoTitleLabel.layer.borderColor = K.bakeShopBlueberry.cgColor
+        customerInfoTitleLabel.layer.borderWidth = 2.0
+        saveInfoButton.tintColor = K.bakeShopBlueberry
+        deleteCustomerButton.tintColor = K.bakeShopDeleteRed
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.tintColor = .systemBackground
+        if loadedCustomer != nil {
+            firstNameTextField.text = loadedCustomer?.firstName
+            lastNameTextField.text = loadedCustomer?.lastName
+            addressTextField.text = loadedCustomer?.customerAddress
+            cityTextField.text = loadedCustomer?.customerCity
+            stateTextField.text = loadedCustomer?.customerState
+            zipTextField.text = loadedCustomer?.customerZipCode
+            phoneTextField.text = loadedCustomer?.customerPhone
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.tintColor = .bakeShopBlack
     }
     
     
+    @IBAction func saveInfoPressed(_ sender: BrettButton) {
+        let customer: Customer
+        if loadedCustomer != nil {
+            customer = loadedCustomer!
+        } else {
+            customer = Customer(context: K.customerInfoContext)
+        }
+        customer.firstName = firstNameTextField.text
+        customer.lastName = lastNameTextField.text
+        customer.customerAddress = addressTextField.text
+        customer.customerCity = cityTextField.text
+        customer.customerState = stateTextField.text
+        customer.customerZipCode = zipTextField.text
+        customer.customerPhone = phoneTextField.text
+        saveCustomerInfo()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    @IBAction func deleteCustomerPressed(_ sender: BrettButton) {
+        let alert = UIAlertController(title: "Delete Customer?", message: "Are you sure you want to delete this customer?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { action in
+            //what will happen once user clicks “Add Item” on our UIAlert
+        }
+        alert.addAction(cancelAction)
+        let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
+            if self.loadedCustomer != nil {
+                K.customerInfoContext.delete(self.loadedCustomer!)
+                self.saveCustomerInfo()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        alert.addAction(deleteAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    //MARK: CoreData CRUD Methods
+    
+    func saveCustomerInfo() {
+        do {
+            try K.customerInfoContext.save()
+        } catch {
+            print("Error saving Recipe: \(error)")
+        }
+    }
+    
+//    func loadCustomerInfo() {
+//        let request: NSFetchRequest<Customer> = Customer.fetchRequest()
+//        do {
+//            loadedCustomer = try K.customerInfoContext.fetch(request)[0]
+//        } catch {
+//            print("Error loading Recipe: \(error)")
+//        }
+//    }
     
 }

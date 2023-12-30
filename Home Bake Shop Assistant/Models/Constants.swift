@@ -16,6 +16,7 @@ class K {
     static let bakeShopMaroon = UIColor(red: 98/255, green: 55/255, blue: 57/255, alpha: 1.0)
     static let bakeShopTan = UIColor(red: 213/255, green: 203/255, blue: 176/255, alpha: 1.0)
     static let bakeShopBlueberry = UIColor(red: 107/255, green: 137/255, blue: 154/255, alpha: 1.0)
+    static let bakeShopDeleteRed = UIColor(named: "DeleteRed")
     static let fontPadTitle = UIFont(name: "Marker Felt", size: 46.0)
     static let fontPadNormal = UIFont(name: "Marker Felt", size: 30.0)
     
@@ -39,6 +40,11 @@ class K {
         managedContext.automaticallyMergesChangesFromParent = true
         return managedContext
     }
+    static var customerInfoContext: NSManagedObjectContext {
+        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        managedContext.automaticallyMergesChangesFromParent = true
+        return managedContext
+    }
     
     static let unitsOfMeasurement = ["", "Whole", "Teaspoon", "Tablespoon", "Cup", "Ounce", "Pound", "Fluid Ounce", "Pint", "Quart", "Gallon", "Gram", "Kilogram", "Liter", "Milliliter"]
     static let fractionalMeasurements = ["", "1/8", "1/4", "3/8", "1/2", "5/8", "3/4", "7/8"]
@@ -47,4 +53,5 @@ class K {
     static let segueIdentifierToViewRecipe = "viewReceipeSegue"
     static let segueIdentifierToEditRecipe = "editRecipeSegue"
     static let segueIdentifierToAddIngredient = "addIngredientSegue"
+    static let segueIdentifierToCustomerInfo = "ToCustomerInfo"
 }

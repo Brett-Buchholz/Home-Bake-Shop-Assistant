@@ -24,6 +24,7 @@ class EditOrderViewController: UIViewController {
     @IBOutlet weak var customerCityLabel: PaddingLabel!
     @IBOutlet weak var customerStateLabel: PaddingLabel!
     @IBOutlet weak var customerZipLabel: PaddingLabel!
+    @IBOutlet weak var customerPhoneLabel: PaddingLabel!
     
     @IBOutlet weak var orderDatePicker: UIDatePicker!
     @IBOutlet weak var orderNumberTextField: UITextField!
@@ -45,6 +46,8 @@ class EditOrderViewController: UIViewController {
     
     
     var loadedCompany: [Company] = []
+    var customerList: [Customer] = []
+    var selectedCustomer: Customer? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,13 +57,16 @@ class EditOrderViewController: UIViewController {
         
         topBackgroundView.layer.borderWidth = 2.0
         topBackgroundView.layer.borderColor = K.bakeShopBlueberry.cgColor
-        
+        loadCustomerList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        loadCustomerList()
         loadTextFields()
+        setupSelectCustomerButton()
+        
     }
     
     func loadTextFields() {
@@ -81,8 +87,43 @@ class EditOrderViewController: UIViewController {
                 salesTaxStackView.isHidden = true
             }
         }
+        self.customerAddressLabel.text = " "
+        self.customerCityLabel.text = " "
+        self.customerStateLabel.text = " "
+        self.customerZipLabel.text = " "
+        self.customerPhoneLabel.text = " "
     }
     
+    func setupSelectCustomerButton() {
+        var chirren: [UIMenuElement] = []
+        let closure = { (action: UIAction) in
+            let menuName = "\(self.selectCustomerPopup.menu?.selectedElements.first?.title ?? "")"
+            for customer in self.customerList {
+                let listName = "\(customer.lastName ?? "unknown name"), \(customer.firstName ?? "unknown name")"
+                if menuName == listName {
+                    self.selectedCustomer = customer
+                }
+            }
+            self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
+            self.customerCityLabel.text = self.selectedCustomer?.customerCity
+            self.customerStateLabel.text = self.selectedCustomer?.customerState
+            self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+            self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
+        }
+        chirren.append(UIAction(title: "", handler: { action in
+            self.customerAddressLabel.text = " "
+            self.customerCityLabel.text = " "
+            self.customerStateLabel.text = " "
+            self.customerZipLabel.text = " "
+            self.customerPhoneLabel.text = " "
+        }))
+        for customer in customerList {
+            chirren.append(UIAction(title: "\(customer.lastName ?? "unknown name"), \(customer.firstName ?? "unknown name")", handler: closure))
+        }
+        selectCustomerPopup.menu = UIMenu(children: chirren)
+    }
+    
+
     
     
     @IBAction func companyInfoPressed(_ sender: BrettButton) {
@@ -112,6 +153,19 @@ class EditOrderViewController: UIViewController {
             print("Error loading Recipe: \(error)")
         }
     }
+    
+    func loadCustomerList() {
+        let request: NSFetchRequest<Customer> = Customer.fetchRequest()
+        let lastNameSort = NSSortDescriptor(key:"lastName", ascending:true)
+        let firstNameSort = NSSortDescriptor(key:"firstName", ascending:true)
+        request.sortDescriptors = [lastNameSort, firstNameSort]
+        do {
+            customerList = try K.customerInfoContext.fetch(request)
+        } catch {
+            print("Error loading Recipe: \(error)")
+        }
+    }
+    
     
 //    func loadIngredients() {
 //        let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()

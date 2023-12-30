@@ -793,19 +793,19 @@ Ingredient</string>
             </objects>
             <point key="canvasLocation" x="-1715" y="-736"/>
         </scene>
-        <!--Edit Customer View Controller-->
+        <!--Customer View Controller-->
         <scene sceneID="D06-L7-XSh">
             <objects>
-                <viewController id="KBQ-E9-2nJ" userLabel="Edit Customer View Controller" customClass="EditCustomerViewController" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KBQ-E9-2nJ" userLabel="Customer View Controller" customClass="CustomerListViewController" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6lM-FV-4db">
-                        <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="muffins-1329679" translatesAutoresizingMaskIntoConstraints="NO" id="vpI-bF-d5R">
-                                <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="to-bake-1706051" translatesAutoresizingMaskIntoConstraints="NO" id="vpI-bF-d5R">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jad-7d-WmQ" userLabel="Customer Info Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="142.5" y="5" width="419.5" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jad-7d-WmQ" userLabel="Customer List Title Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="281.5" y="74" width="257.5" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NwY-dF-xkB"/>
@@ -831,20 +831,57 @@ Ingredient</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjM-wq-YfS" userLabel="Create Customer View">
+                                <rect key="frame" x="50" y="149" width="720" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fv3-X0-NOp" userLabel="Create New Customer Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="3.5" width="302" height="43"/>
+                                        <color key="tintColor" name="BakeShopBlueberry"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plus.square" catalog="system" title=" Create New Customer">
+                                            <fontDescription key="titleFontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="26"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="tc3-fK-onr" kind="show" identifier="" id="gR3-yA-ZTQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5eW-Wr-ZIO"/>
+                                    <constraint firstItem="Fv3-X0-NOp" firstAttribute="leading" secondItem="hjM-wq-YfS" secondAttribute="leading" id="Zbr-Qj-29L"/>
+                                    <constraint firstItem="Fv3-X0-NOp" firstAttribute="centerY" secondItem="hjM-wq-YfS" secondAttribute="centerY" id="vp5-UT-0RQ"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="77v-G3-EGC" userLabel="Customer List Table View">
+                                <rect key="frame" x="50" y="199" width="720" height="911"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OCq-RC-Jii"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jad-7d-WmQ" firstAttribute="centerX" secondItem="6lM-FV-4db" secondAttribute="centerX" id="8hv-nC-Jy1"/>
-                            <constraint firstItem="OCq-RC-Jii" firstAttribute="bottom" secondItem="vpI-bF-d5R" secondAttribute="bottom" id="GHh-73-6ZB"/>
-                            <constraint firstItem="vpI-bF-d5R" firstAttribute="leading" secondItem="OCq-RC-Jii" secondAttribute="leading" id="JWc-xn-RYZ"/>
-                            <constraint firstItem="OCq-RC-Jii" firstAttribute="trailing" secondItem="vpI-bF-d5R" secondAttribute="trailing" id="Tvr-KS-xis"/>
-                            <constraint firstItem="vpI-bF-d5R" firstAttribute="top" secondItem="OCq-RC-Jii" secondAttribute="top" id="tSK-EQ-idt"/>
-                            <constraint firstItem="jad-7d-WmQ" firstAttribute="top" secondItem="OCq-RC-Jii" secondAttribute="top" constant="5" id="vf8-DU-0MI"/>
+                            <constraint firstItem="77v-G3-EGC" firstAttribute="top" secondItem="hjM-wq-YfS" secondAttribute="bottom" id="AeG-fz-xOm"/>
+                            <constraint firstItem="jad-7d-WmQ" firstAttribute="top" secondItem="OCq-RC-Jii" secondAttribute="top" id="Cib-1Y-nUz"/>
+                            <constraint firstItem="OCq-RC-Jii" firstAttribute="bottom" secondItem="77v-G3-EGC" secondAttribute="bottom" constant="50" id="Cyo-Jf-crt"/>
+                            <constraint firstItem="vpI-bF-d5R" firstAttribute="bottom" secondItem="6lM-FV-4db" secondAttribute="bottom" id="GHh-73-6ZB"/>
+                            <constraint firstItem="OCq-RC-Jii" firstAttribute="trailing" secondItem="hjM-wq-YfS" secondAttribute="trailing" constant="50" id="HoY-W4-BHY"/>
+                            <constraint firstItem="vpI-bF-d5R" firstAttribute="leading" secondItem="6lM-FV-4db" secondAttribute="leading" id="JWc-xn-RYZ"/>
+                            <constraint firstItem="77v-G3-EGC" firstAttribute="leading" secondItem="OCq-RC-Jii" secondAttribute="leading" constant="50" id="LjS-ha-KgI"/>
+                            <constraint firstItem="vpI-bF-d5R" firstAttribute="trailing" secondItem="6lM-FV-4db" secondAttribute="trailing" id="Tvr-KS-xis"/>
+                            <constraint firstItem="hjM-wq-YfS" firstAttribute="leading" secondItem="OCq-RC-Jii" secondAttribute="leading" constant="50" id="YvK-ny-NLN"/>
+                            <constraint firstItem="hjM-wq-YfS" firstAttribute="top" secondItem="jad-7d-WmQ" secondAttribute="bottom" constant="25" id="c0h-lg-wTn"/>
+                            <constraint firstItem="OCq-RC-Jii" firstAttribute="trailing" secondItem="77v-G3-EGC" secondAttribute="trailing" constant="50" id="oWc-pz-8oA"/>
+                            <constraint firstItem="vpI-bF-d5R" firstAttribute="top" secondItem="6lM-FV-4db" secondAttribute="top" id="tSK-EQ-idt"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1lq-tA-04x"/>
                     <connections>
-                        <outlet property="customerTitleLabel" destination="jad-7d-WmQ" id="8vx-tu-uKd"/>
+                        <outlet property="createCustomerView" destination="hjM-wq-YfS" id="BX5-RL-bWj"/>
+                        <outlet property="customerListTableView" destination="77v-G3-EGC" id="VlP-2C-4Lv"/>
+                        <outlet property="customerListTitleLabel" destination="jad-7d-WmQ" id="U4a-na-c6R"/>
+                        <segue destination="tc3-fK-onr" kind="show" identifier="ToCustomerInfo" id="M0N-3I-mtB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3E0-N9-jYy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1337,50 +1374,50 @@ Ingredient</string>
                                     <color key="titleColor" name="BakeShopBlack"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnQ-eJ-ez5" userLabel="Customer Address Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="55" y="309.5" width="221" height="33.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnQ-eJ-ez5" userLabel="Customer Address Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="55" y="309.5" width="7.5" height="33.5"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
                                 <color key="textColor" name="BakeShopBlack"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4fo-Ye-9o5" userLabel="Customer Stack View">
-                                <rect key="frame" x="55" y="343" width="244.5" height="33.5"/>
+                                <rect key="frame" x="55" y="343" width="42.5" height="33.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v46-Sn-KZZ" userLabel="Customer City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="52" height="33.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v46-Sn-KZZ" userLabel="Customer City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="7.5" height="33.5"/>
                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
                                         <color key="textColor" name="BakeShopBlack"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eG-Dq-3bB" userLabel="Customer State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                        <rect key="frame" x="62" y="0.0" width="60" height="33.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eG-Dq-3bB" userLabel="Customer State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                        <rect key="frame" x="17.5" y="0.0" width="7.5" height="33.5"/>
                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
                                         <color key="textColor" name="BakeShopBlack"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsJ-8p-cXL" userLabel="Customer Zip Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                        <rect key="frame" x="132" y="0.0" width="112.5" height="33.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsJ-8p-cXL" userLabel="Customer Zip Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                        <rect key="frame" x="35" y="0.0" width="7.5" height="33.5"/>
                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
                                         <color key="textColor" name="BakeShopBlack"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEu-c3-h7l" userLabel="Customer Phone Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="55" y="376.5" width="199.5" height="33.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEu-c3-h7l" userLabel="Customer Phone Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="55" y="376.5" width="7.5" height="33.5"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
                                 <color key="textColor" name="BakeShopBlack"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38p-Q6-W6E" userLabel="Add/Edit Customer Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="50" y="196" width="252" height="43"/>
+                                <rect key="frame" x="50" y="196" width="268" height="43"/>
                                 <color key="tintColor" name="BakeShopBlueberry"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus.square" catalog="system" title="Add/Edit Customer">
-                                    <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                    <fontDescription key="titleFontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="26"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="KBQ-E9-2nJ" kind="presentation" id="dXM-N6-A8C"/>
+                                    <segue destination="KBQ-E9-2nJ" kind="show" id="SyY-vg-RA8"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcn-4K-B3h" userLabel="Order Date Stack View">
@@ -1445,16 +1482,16 @@ Ingredient</string>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z1C-Vj-J1T" userLabel="Quantity Ordered Stack View">
-                                <rect key="frame" x="405" y="425" width="126.5" height="90"/>
+                                <rect key="frame" x="405" y="425" width="105" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GET-Kh-JfZ" userLabel="Quantity Ordered Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                        <rect key="frame" x="21.5" y="0.0" width="83.5" height="45"/>
+                                        <rect key="frame" x="11" y="0.0" width="83.5" height="45"/>
                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udM-iV-Yn4" userLabel="Quantity Picker View">
-                                        <rect key="frame" x="0.0" y="45" width="126.5" height="45"/>
+                                        <rect key="frame" x="0.0" y="45" width="105" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Scf-pD-0Yu"/>
                                         </constraints>
@@ -1462,7 +1499,7 @@ Ingredient</string>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wyh-U2-80V" userLabel="Price Stack View">
-                                <rect key="frame" x="531.5" y="425" width="100" height="90"/>
+                                <rect key="frame" x="510" y="425" width="100" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoA-a8-6hg" userLabel="Price Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="45"/>
@@ -1482,9 +1519,12 @@ Ingredient</string>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8D-rx-aBw" userLabel="Add To Order Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="639.5" y="480.5" width="125.5" height="34.5"/>
+                                <rect key="frame" x="618" y="476.5" width="147" height="38.5"/>
+                                <color key="tintColor" name="BakeShopBlueberry"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Add To Order"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Add To Order">
+                                    <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="addToOrderPressed:" destination="31H-gJ-76A" eventType="touchUpInside" id="reR-CH-eMh"/>
                                 </connections>
@@ -1546,6 +1586,7 @@ Ingredient</string>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blp-rZ-Wem" userLabel="Save Order Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                 <rect key="frame" x="661" y="1095.5" width="109" height="34.5"/>
+                                <color key="tintColor" name="BakeShopBlueberry"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save Order"/>
                                 <connections>
@@ -1631,6 +1672,7 @@ Ingredient</string>
                         <outlet property="companyZipLabel" destination="nDD-95-z20" id="GIx-YU-YVY"/>
                         <outlet property="customerAddressLabel" destination="FnQ-eJ-ez5" id="Hkj-uG-Gat"/>
                         <outlet property="customerCityLabel" destination="v46-Sn-KZZ" id="Fas-5Z-D4c"/>
+                        <outlet property="customerPhoneLabel" destination="xEu-c3-h7l" id="1Mn-5J-X8F"/>
                         <outlet property="customerStateLabel" destination="3eG-Dq-3bB" id="voF-ez-dvH"/>
                         <outlet property="customerZipLabel" destination="bsJ-8p-cXL" id="xjz-Fn-6xM"/>
                         <outlet property="itemOrderdPopUp" destination="clY-qq-kyp" id="pUZ-Wa-7Im"/>
@@ -1798,8 +1840,11 @@ Ingredient</string>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sc-jp-hxo" userLabel="Add To Order Button">
                                         <rect key="frame" x="568" y="421" width="126" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" name="BakeShopBlueberry"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Add To Order"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Add To Order">
+                                            <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="18"/>
+                                        </buttonConfiguration>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity Ordered:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgi-he-Vzm" userLabel="Quantity Ordered Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                         <rect key="frame" x="267" y="381" width="161" height="25"/>
@@ -1998,7 +2043,7 @@ Ingredient</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vgl-iD-Dbb">
                         <rect key="frame" x="0.0" y="24" width="820" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="tintColor" name="BakeShopBlack"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -2009,8 +2054,307 @@ Ingredient</string>
             </objects>
             <point key="canvasLocation" x="888" y="-736"/>
         </scene>
+        <!--Edit Customer View Controller-->
+        <scene sceneID="cvl-w6-kxe">
+            <objects>
+                <viewController id="tc3-fK-onr" userLabel="Edit Customer View Controller" customClass="EditCustomerViewController" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RYG-QD-hMm">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="to-bake-1706051" translatesAutoresizingMaskIntoConstraints="NO" id="933-K9-6ZO">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmC-C5-V2C">
+                                <rect key="frame" x="0.0" y="74" width="820" height="1086"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNU-Ef-Ioi" userLabel="Inner Scroll View">
+                                        <rect key="frame" x="0.0" y="0.0" width="820" height="1050"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l58-Hb-efh" userLabel="Customer Info Title Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="200.5" y="99.5" width="419.5" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="qb1-0a-ZsZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="46"/>
+                                                <color key="textColor" name="BakeShopBlueberry"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingTop">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingBottom">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vQP-7L-KVg" userLabel="First Name Stack View">
+                                                <rect key="frame" x="50" y="199.5" width="459.5" height="45"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJf-ac-1my" userLabel="First Name Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="LgC-Ld-BBl"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBlueberry"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-8q-16T" userLabel="First Name Text Field">
+                                                        <rect key="frame" x="159.5" y="0.0" width="300" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="bvL-lJ-uBE"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iRs-xd-H8y" userLabel="Last Name Stack View">
+                                                <rect key="frame" x="50" y="294.5" width="454.5" height="45"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hht-KP-cGa" userLabel="Last Name Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="149.5" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="FMA-js-jzl"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBlueberry"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W5G-BQ-Co1" userLabel="Last Name Text Field">
+                                                        <rect key="frame" x="154.5" y="0.0" width="300" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Nog-SW-reS"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eCv-wH-Y6E" userLabel="Address Stack View">
+                                                <rect key="frame" x="50" y="389.5" width="469.5" height="45"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pj8-3m-i4m" userLabel="Address Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="Ces-yr-eNe"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBlueberry"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WRN-0c-lOX" userLabel="Address Text Field">
+                                                        <rect key="frame" x="119.5" y="0.0" width="350" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="350" id="ZrD-wo-MtE"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="street-address"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sVW-df-e4w" userLabel="City Stack View">
+                                                <rect key="frame" x="50" y="484.5" width="270" height="45"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M05-MN-hg7" userLabel="City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="GnW-5d-mQH"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBlueberry"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uxq-sZ-ouA" userLabel="City Text Field">
+                                                        <rect key="frame" x="70" y="0.0" width="200" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="mcA-0J-LIP"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="address-level2"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uNy-HL-D9i" userLabel="State Stack View">
+                                                <rect key="frame" x="50" y="579.5" width="230" height="45"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTS-5v-cMt" userLabel="State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="4Z1-jG-cqp"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBlueberry"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qRZ-ud-vY7" userLabel="State Text Field">
+                                                        <rect key="frame" x="80" y="0.0" width="150" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="0il-eu-Sit"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="address-level1"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YrC-L1-YSD" userLabel="Zip Stack View">
+                                                <rect key="frame" x="50" y="674.5" width="234.5" height="45"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jx1-3x-eDZ" userLabel="Zip Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="129.5" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="QO0-5x-6Cw"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBlueberry"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vy9-wm-S5D" userLabel="Zip Text Field">
+                                                        <rect key="frame" x="134.5" y="0.0" width="100" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ghV-lt-ufn"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="postal-code"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="egF-A7-gjc" userLabel="Phone Stack View">
+                                                <rect key="frame" x="50" y="769.5" width="345" height="45"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhz-WX-yDP" userLabel="Phone Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="6JM-if-Era"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBlueberry"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fi0-gn-9zW" userLabel="Phone Text Field">
+                                                        <rect key="frame" x="95" y="0.0" width="250" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="hr6-mX-VQi"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stc-f0-Z3v" userLabel="Save Info Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="231.5" y="864.5" width="357.5" height="47.5"/>
+                                                <color key="tintColor" name="BakeShopBlueberry"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Save Customer Information">
+                                                    <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="saveInfoPressed:" destination="DHP-Qr-KrE" eventType="touchUpInside" id="KnX-Ae-u7T"/>
+                                                    <action selector="saveInfoPressed:" destination="tc3-fK-onr" eventType="touchUpInside" id="a9J-ZQ-rRp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyq-3M-6xM" userLabel="Delete Customer Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="297" y="962" width="226.5" height="47.5"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Delete Customer">
+                                                    <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="deleteCustomerPressed:" destination="tc3-fK-onr" eventType="touchUpInside" id="QZy-m5-h4G"/>
+                                                    <action selector="saveInfoPressed:" destination="DHP-Qr-KrE" eventType="touchUpInside" id="iL8-Mw-TFQ"/>
+                                                    <action selector="saveInfoPressed:" destination="tc3-fK-onr" eventType="touchUpInside" id="kdv-gV-zWX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="stc-f0-Z3v" secondAttribute="bottom" constant="138" id="1eK-q2-7Au"/>
+                                            <constraint firstItem="zyq-3M-6xM" firstAttribute="top" secondItem="stc-f0-Z3v" secondAttribute="bottom" constant="50" id="5q8-XZ-Qij"/>
+                                            <constraint firstItem="egF-A7-gjc" firstAttribute="top" secondItem="YrC-L1-YSD" secondAttribute="bottom" constant="50" id="6Ai-Ym-ovX"/>
+                                            <constraint firstItem="sVW-df-e4w" firstAttribute="leading" secondItem="tNU-Ef-Ioi" secondAttribute="leading" constant="50" id="9f7-cT-9JM"/>
+                                            <constraint firstItem="YrC-L1-YSD" firstAttribute="top" secondItem="uNy-HL-D9i" secondAttribute="bottom" constant="50" id="BIL-Ut-qvh"/>
+                                            <constraint firstItem="iRs-xd-H8y" firstAttribute="top" secondItem="vQP-7L-KVg" secondAttribute="bottom" constant="50" id="IcN-up-dtB"/>
+                                            <constraint firstItem="vQP-7L-KVg" firstAttribute="leading" secondItem="tNU-Ef-Ioi" secondAttribute="leading" constant="50" id="JIs-nF-R9w"/>
+                                            <constraint firstItem="l58-Hb-efh" firstAttribute="centerX" secondItem="tNU-Ef-Ioi" secondAttribute="centerX" id="Lhu-8e-ZTr"/>
+                                            <constraint firstItem="sVW-df-e4w" firstAttribute="top" secondItem="eCv-wH-Y6E" secondAttribute="bottom" constant="50" id="Pit-0k-G0w"/>
+                                            <constraint firstItem="stc-f0-Z3v" firstAttribute="top" secondItem="egF-A7-gjc" secondAttribute="bottom" constant="50" id="V8H-qH-QLV"/>
+                                            <constraint firstItem="uNy-HL-D9i" firstAttribute="leading" secondItem="tNU-Ef-Ioi" secondAttribute="leading" constant="50" id="WF3-Bh-r9y"/>
+                                            <constraint firstItem="egF-A7-gjc" firstAttribute="leading" secondItem="tNU-Ef-Ioi" secondAttribute="leading" constant="50" id="XZv-Wn-QHc"/>
+                                            <constraint firstItem="eCv-wH-Y6E" firstAttribute="leading" secondItem="tNU-Ef-Ioi" secondAttribute="leading" constant="50" id="YE7-ct-t6u"/>
+                                            <constraint firstItem="stc-f0-Z3v" firstAttribute="centerX" secondItem="tNU-Ef-Ioi" secondAttribute="centerX" id="asu-Bn-S4w"/>
+                                            <constraint firstItem="uNy-HL-D9i" firstAttribute="top" secondItem="sVW-df-e4w" secondAttribute="bottom" constant="50" id="hfV-lk-utX"/>
+                                            <constraint firstItem="eCv-wH-Y6E" firstAttribute="top" secondItem="iRs-xd-H8y" secondAttribute="bottom" constant="50" id="mw0-bl-DgC"/>
+                                            <constraint firstItem="YrC-L1-YSD" firstAttribute="leading" secondItem="tNU-Ef-Ioi" secondAttribute="leading" constant="50" id="nL4-V7-8Aa"/>
+                                            <constraint firstItem="iRs-xd-H8y" firstAttribute="leading" secondItem="tNU-Ef-Ioi" secondAttribute="leading" constant="50" id="tzL-ue-TrG"/>
+                                            <constraint firstItem="vQP-7L-KVg" firstAttribute="top" secondItem="l58-Hb-efh" secondAttribute="bottom" constant="50" id="uNr-dw-Cps"/>
+                                            <constraint firstAttribute="height" constant="1050" id="wkr-x6-mEd"/>
+                                            <constraint firstItem="zyq-3M-6xM" firstAttribute="centerX" secondItem="tNU-Ef-Ioi" secondAttribute="centerX" id="xMo-3I-hul"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tNU-Ef-Ioi" firstAttribute="bottom" secondItem="ubL-0A-L3Q" secondAttribute="bottom" id="1MO-JL-AkZ"/>
+                                    <constraint firstItem="tNU-Ef-Ioi" firstAttribute="leading" secondItem="ubL-0A-L3Q" secondAttribute="leading" id="eFR-7l-47H"/>
+                                    <constraint firstItem="tNU-Ef-Ioi" firstAttribute="top" secondItem="ubL-0A-L3Q" secondAttribute="top" id="mIN-39-K27"/>
+                                    <constraint firstItem="tNU-Ef-Ioi" firstAttribute="trailing" secondItem="ubL-0A-L3Q" secondAttribute="trailing" id="qkk-1K-Pjt"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="ubL-0A-L3Q"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="9II-ce-dwa"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ARa-vi-bwu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tNU-Ef-Ioi" firstAttribute="width" secondItem="ARa-vi-bwu" secondAttribute="width" id="2ZA-1S-oJS"/>
+                            <constraint firstItem="933-K9-6ZO" firstAttribute="leading" secondItem="RYG-QD-hMm" secondAttribute="leading" id="5Jt-Zz-0nJ"/>
+                            <constraint firstItem="933-K9-6ZO" firstAttribute="top" secondItem="RYG-QD-hMm" secondAttribute="top" id="8Kt-kF-rx5"/>
+                            <constraint firstItem="qmC-C5-V2C" firstAttribute="trailing" secondItem="ARa-vi-bwu" secondAttribute="trailing" id="Hig-Gv-Fk5"/>
+                            <constraint firstItem="qmC-C5-V2C" firstAttribute="top" secondItem="ARa-vi-bwu" secondAttribute="top" id="Tlt-5L-2dV"/>
+                            <constraint firstItem="933-K9-6ZO" firstAttribute="trailing" secondItem="RYG-QD-hMm" secondAttribute="trailing" id="UMx-Nx-3YX"/>
+                            <constraint firstItem="933-K9-6ZO" firstAttribute="bottom" secondItem="RYG-QD-hMm" secondAttribute="bottom" id="abo-gn-SRe"/>
+                            <constraint firstItem="qmC-C5-V2C" firstAttribute="leading" secondItem="ARa-vi-bwu" secondAttribute="leading" id="vB4-CC-ogg"/>
+                            <constraint firstItem="qmC-C5-V2C" firstAttribute="bottom" secondItem="ARa-vi-bwu" secondAttribute="bottom" id="vCH-yG-VKE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="NfP-v2-4SJ"/>
+                    <connections>
+                        <outlet property="addressTextField" destination="WRN-0c-lOX" id="YC9-OL-XBy"/>
+                        <outlet property="cityTextField" destination="Uxq-sZ-ouA" id="PVW-BI-Xqg"/>
+                        <outlet property="customerInfoTitleLabel" destination="l58-Hb-efh" id="5jH-5e-ZKT"/>
+                        <outlet property="deleteCustomerButton" destination="zyq-3M-6xM" id="lLa-5K-qaL"/>
+                        <outlet property="firstNameTextField" destination="xbk-8q-16T" id="4SH-I0-PvZ"/>
+                        <outlet property="lastNameTextField" destination="W5G-BQ-Co1" id="tVW-mf-3dP"/>
+                        <outlet property="phoneTextField" destination="fi0-gn-9zW" id="lOw-xx-lvq"/>
+                        <outlet property="saveInfoButton" destination="stc-f0-Z3v" id="WWA-jF-rjp"/>
+                        <outlet property="stateTextField" destination="qRZ-ud-vY7" id="nLs-Yr-Tot"/>
+                        <outlet property="zipTextField" destination="Vy9-wm-S5D" id="sZR-2N-O5T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iqB-IT-72H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1730.4878048780488" y="1431.8644067796611"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="gR3-yA-ZTQ"/>
         <segue reference="xjg-cQ-06Z"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -2022,6 +2366,7 @@ Ingredient</string>
         <image name="plus.square" catalog="system" width="128" height="114"/>
         <image name="recipe-5570289" width="4526" height="2546"/>
         <image name="spoon-2918612" width="6000" height="4000"/>
+        <image name="to-bake-1706051" width="3657" height="1948"/>
         <namedColor name="BakeShopBlack">
             <color red="0.086000002920627594" green="0.086000002920627594" blue="0.086000002920627594" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -2034,9 +2379,6 @@ Ingredient</string>
         <namedColor name="BakeShopPink">
             <color red="1" green="0.70599997043609619" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
