@@ -22,6 +22,7 @@ class EditCustomerViewController: UIViewController {
     @IBOutlet weak var deleteCustomerButton: BrettButton!
     
     var loadedCustomer: Customer? = nil
+    var customerList: [Customer] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,22 @@ class EditCustomerViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .bakeShopBlack
     }
     
+    func createUniqueCustomerID() -> Int32 {
+        loadCustomers()
+        var idSet: Set<Int> = []
+        var possibleID: Int
+        var newID: Int32 = 0
+        for customer in customerList {
+            idSet.insert(Int(customer.customerID))
+        }
+        possibleID = Int.random(in: 10000000...19999999)
+        while idSet.contains(possibleID) == true {
+            possibleID = Int.random(in: 10000000...19999999)
+        }
+        newID = Int32(possibleID)
+
+        return newID
+    }
     
     @IBAction func saveInfoPressed(_ sender: BrettButton) {
         let customer: Customer
@@ -60,6 +77,7 @@ class EditCustomerViewController: UIViewController {
             customer = loadedCustomer!
         } else {
             customer = Customer(context: K.customerInfoContext)
+            customer.customerID = createUniqueCustomerID()
         }
         customer.firstName = firstNameTextField.text
         customer.lastName = lastNameTextField.text
@@ -76,7 +94,7 @@ class EditCustomerViewController: UIViewController {
     @IBAction func deleteCustomerPressed(_ sender: BrettButton) {
         let alert = UIAlertController(title: "Delete Customer?", message: "Are you sure you want to delete this customer?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { action in
-            //what will happen once user clicks “Add Item” on our UIAlert
+            //alert is dismissed
         }
         alert.addAction(cancelAction)
         let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
@@ -102,13 +120,13 @@ class EditCustomerViewController: UIViewController {
         }
     }
     
-//    func loadCustomerInfo() {
-//        let request: NSFetchRequest<Customer> = Customer.fetchRequest()
-//        do {
-//            loadedCustomer = try K.customerInfoContext.fetch(request)[0]
-//        } catch {
-//            print("Error loading Recipe: \(error)")
-//        }
-//    }
+    func loadCustomers() {
+        let request: NSFetchRequest<Customer> = Customer.fetchRequest()
+        do {
+            customerList = try K.customerInfoContext.fetch(request)
+        } catch {
+            print("Error loading Recipe: \(error)")
+        }
+    }
     
 }

@@ -48,6 +48,7 @@ class K {
     
     static let unitsOfMeasurement = ["", "Whole", "Teaspoon", "Tablespoon", "Cup", "Ounce", "Pound", "Fluid Ounce", "Pint", "Quart", "Gallon", "Gram", "Kilogram", "Liter", "Milliliter"]
     static let fractionalMeasurements = ["", "1/8", "1/4", "3/8", "1/2", "5/8", "3/4", "7/8"]
+    static let orderQuantity = ["", "dozen", "half dzn", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
     
     
     static let segueIdentifierToViewRecipe = "viewReceipeSegue"

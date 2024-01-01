@@ -47,10 +47,15 @@ class EditOrderViewController: UIViewController {
     
     var loadedCompany: [Company] = []
     var customerList: [Customer] = []
+    var recipeList: [Recipe] = []
     var selectedCustomer: Customer? = nil
+    var pickerValue: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        quantityOrderedPicker.delegate = self
+        quantityOrderedPicker.dataSource = self
         
         orderTableView.layer.borderWidth = 2.0
         orderTableView.layer.borderColor = K.bakeShopBlueberry.cgColor
@@ -66,6 +71,7 @@ class EditOrderViewController: UIViewController {
         loadCustomerList()
         loadTextFields()
         setupSelectCustomerButton()
+        setupItemOrderedButton()
         
     }
     
@@ -96,20 +102,6 @@ class EditOrderViewController: UIViewController {
     
     func setupSelectCustomerButton() {
         var chirren: [UIMenuElement] = []
-        let closure = { (action: UIAction) in
-            let menuName = "\(self.selectCustomerPopup.menu?.selectedElements.first?.title ?? "")"
-            for customer in self.customerList {
-                let listName = "\(customer.lastName ?? "unknown name"), \(customer.firstName ?? "unknown name")"
-                if menuName == listName {
-                    self.selectedCustomer = customer
-                }
-            }
-            self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
-            self.customerCityLabel.text = self.selectedCustomer?.customerCity
-            self.customerStateLabel.text = self.selectedCustomer?.customerState
-            self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
-            self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
-        }
         chirren.append(UIAction(title: "", handler: { action in
             self.customerAddressLabel.text = " "
             self.customerCityLabel.text = " "
@@ -118,13 +110,37 @@ class EditOrderViewController: UIViewController {
             self.customerPhoneLabel.text = " "
         }))
         for customer in customerList {
-            chirren.append(UIAction(title: "\(customer.lastName ?? "unknown name"), \(customer.firstName ?? "unknown name")", handler: closure))
+            let chirrenID = customer.customerID
+            chirren.append(UIAction(title: "\(customer.lastName ?? "unknown name"), \(customer.firstName ?? "unknown name")", handler: { action in
+                for customer in self.customerList {
+                    let listName = "\(customer.customerID)"
+                    if "\(chirrenID)" == listName {
+                        self.selectedCustomer = customer
+                    }
+                }
+                self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
+                self.customerCityLabel.text = self.selectedCustomer?.customerCity
+                self.customerStateLabel.text = self.selectedCustomer?.customerState
+                self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+                self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
+            }))
         }
         selectCustomerPopup.menu = UIMenu(children: chirren)
     }
     
-
-    
+    func setupItemOrderedButton() {
+        loadRecipes()
+        var chirren: [UIMenuElement] = []
+        let closure = { (action: UIAction) in
+            //print(action)
+        }
+        chirren.append(UIAction(title: "", handler: closure))
+        for recipe in recipeList {
+            chirren.append(UIAction(title: "\(recipe.name!)", handler: closure))
+        }
+        itemOrderdPopUp.menu = UIMenu(children: chirren)
+        
+    }
     
     @IBAction func companyInfoPressed(_ sender: BrettButton) {
     }
@@ -137,13 +153,13 @@ class EditOrderViewController: UIViewController {
     
     //MARK: CoreData CRUD Methods
     
-    func saveRecipe() {
-        do {
-            try K.context.save()
-        } catch {
-            print("Error saving Ingredients: \(error)")
-        }
-    }
+//    func saveRecipe() {
+//        do {
+//            try K.context.save()
+//        } catch {
+//            print("Error saving Ingredients: \(error)")
+//        }
+//    }
     
     func loadCompanyInfo() {
         let request: NSFetchRequest<Company> = Company.fetchRequest()
@@ -166,6 +182,14 @@ class EditOrderViewController: UIViewController {
         }
     }
     
+    func loadRecipes() {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        do {
+            recipeList = try K.context.fetch(request)
+        } catch {
+            print("Error loading Recipe: \(error)")
+        }
+    }
     
 //    func loadIngredients() {
 //        let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
@@ -186,3 +210,24 @@ class EditOrderViewController: UIViewController {
     
     
 }
+
+//MARK: PickerView DataSource and Delegate Methods
+extension EditOrderViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return K.orderQuantity.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return K.orderQuantity[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerValue = K.orderQuantity[row]
+    }
+}
+
