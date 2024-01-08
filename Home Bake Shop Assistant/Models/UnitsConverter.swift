@@ -9,7 +9,7 @@ import Foundation
 
 struct UnitsConverter {
     
-    func convertStringToFloat(stringValue:String) -> Float {
+    func convertFractionStringToFloat(stringValue:String) -> Float {
         switch stringValue {
         case "1/8":
             return 0.125
@@ -30,7 +30,7 @@ struct UnitsConverter {
         }
     }
     
-    func convertFloatToString(floatValue:Float) -> String {
+    func convertFractionFloatToString(floatValue:Float) -> String {
         if floor(floatValue) == floatValue {
             return "\(Int(floatValue))"
         } else {
@@ -63,4 +63,45 @@ struct UnitsConverter {
         }
     }
     
+    func convertCurrencyFloatToString(floatCurrency:Float) -> String {
+        var newString = String(format: "$%.2f", floatCurrency)
+        var stringLength = newString.count
+        switch stringLength {
+        case 8:
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 2)
+            newString.insert(",", at: stringIndex)
+        case 9:
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 3)
+            newString.insert(",", at: stringIndex)
+        case 10:
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 4)
+            newString.insert(",", at: stringIndex)
+        case 11:
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 5)
+            newString.insert(",", at: stringIndex)
+            let stringIndex2 = newString.index(newString.startIndex, offsetBy: 2)
+            newString.insert(",", at: stringIndex2)
+        case 12:
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 6)
+            newString.insert(",", at: stringIndex)
+            let stringIndex2 = newString.index(newString.startIndex, offsetBy: 3)
+            newString.insert(",", at: stringIndex2)
+        case 13:
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 7)
+            newString.insert(",", at: stringIndex)
+            let stringIndex2 = newString.index(newString.startIndex, offsetBy: 4)
+            newString.insert(",", at: stringIndex2)
+        default:
+            newString
+        }
+        
+        return newString
+    }
+    
+    func convertCurrencyStringToFloat(stringCurrency: String) -> Float {
+        let string1 = stringCurrency.replacingOccurrences(of: "$", with: "")
+        let newString = string1.replacingOccurrences(of: ",", with: "")
+        let floatCurrency = (newString as NSString).floatValue
+        return floatCurrency
+    }
 }

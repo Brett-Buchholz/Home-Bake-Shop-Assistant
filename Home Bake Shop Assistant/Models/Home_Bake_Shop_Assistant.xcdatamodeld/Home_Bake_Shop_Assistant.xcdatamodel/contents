@@ -5,7 +5,7 @@
         <attribute name="city" optional="YES" attributeType="String" defaultValueString="City"/>
         <attribute name="name" optional="YES" attributeType="String" defaultValueString="Company Name"/>
         <attribute name="state" optional="YES" attributeType="String" defaultValueString="State"/>
-        <attribute name="taxRate" optional="YES" attributeType="String" defaultValueString="0.00"/>
+        <attribute name="taxRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="withholdTax" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="zipCode" optional="YES" attributeType="String" defaultValueString="Zip Code"/>
     </entity>
@@ -18,6 +18,7 @@
         <attribute name="customerZipCode" optional="YES" attributeType="String"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
+        <relationship name="toOrder" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="toCustomer" inverseEntity="Order"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -32,9 +33,34 @@
         <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="item" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Order" representedClassName="Order" syncable="YES" codeGenerationType="class">
+        <attribute name="batchPrice" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="batchSize" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="batchSubtotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="orderComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="orderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="orderNumber" optional="YES" attributeType="String"/>
+        <attribute name="orderSalesTax" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="orderSubtotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="orderTotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="quantityOrdered" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="toCustomer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="toOrder" inverseEntity="Customer"/>
+        <relationship name="toOrderedItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderedItem" inverseName="toOrder" inverseEntity="OrderedItem"/>
+    </entity>
+    <entity name="OrderedItem" representedClassName="OrderedItem" syncable="YES" codeGenerationType="class">
+        <attribute name="batchName" optional="YES" attributeType="String"/>
+        <attribute name="batchPrice" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="batchSize" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="batchSubtotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="itemNote" optional="YES" attributeType="String"/>
+        <attribute name="quantityOrdered" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="toOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="toOrderedItem" inverseEntity="Order"/>
+        <relationship name="toRecipe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="toOrderedItem" inverseEntity="Recipe"/>
+    </entity>
     <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
         <attribute name="directions" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="ingredient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient"/>
+        <relationship name="toOrderedItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderedItem" inverseName="toRecipe" inverseEntity="OrderedItem"/>
     </entity>
 </model>

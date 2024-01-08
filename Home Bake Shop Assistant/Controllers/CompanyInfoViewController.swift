@@ -19,14 +19,21 @@ class CompanyInfoViewController: UIViewController {
     @IBOutlet weak var chargeSalesTaxSwitch: UISwitch!
     @IBOutlet weak var taxRateTextField: UITextField!
     
+    var originVC: EditOrderViewController? = nil
     var loadedCompany: [Company] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Style The View
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: companyInfoTitleLabel)
         companyInfoTitleLabel.layer.masksToBounds = true
-        companyInfoTitleLabel.layer.borderColor = K.bakeShopBlueberry.cgColor
-        companyInfoTitleLabel.layer.borderWidth = 2.0
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         loadCompanyInfo()
         loadTextFields()
     }
@@ -44,7 +51,7 @@ class CompanyInfoViewController: UIViewController {
             } else {
                 chargeSalesTaxSwitch.isOn = false
             }
-            taxRateTextField.text = comp.taxRate
+            taxRateTextField.text = "\(comp.taxRate)%"
         }
     }
     
@@ -65,11 +72,14 @@ class CompanyInfoViewController: UIViewController {
         } else {
             companyInfo.withholdTax = false
         }
-        companyInfo.taxRate = taxRateTextField.text
+        let stringTaxRate = taxRateTextField.text?.replacingOccurrences(of: "%", with: "")
+        companyInfo.taxRate = (stringTaxRate! as NSString).floatValue
         saveCompanyInfo()
         loadCompanyInfo()
-        self.presentingViewController?.loadView()
-        self.dismiss(animated: true)
+        self.dismiss(animated: true) {
+            self.presentingViewController?.loadView()
+            self.originVC?.updateData()
+        }
         
     }
     

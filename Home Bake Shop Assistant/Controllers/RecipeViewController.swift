@@ -25,24 +25,21 @@ class RecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stackView.layer.borderWidth = 2
-        stackView.layer.borderColor = K.bakeShopMaroon.cgColor
+        //Style The View
+        AddBorders().addAllBorders(with: K.bakeShopMaroon, andWidth: 2.0, view: stackView)
         editRecipeButton.tintColor = K.bakeShopMaroon
         deleteRecipeButton.tintColor = K.bakeShopMaroon
-        recipeNameLabel.text = loadedRecipe[0].name
-        directionsTextView.text = loadedRecipe[0].directions
-        recipeIngredients = loadedRecipe[0].ingredient!.allObjects as! [Ingredient]
-        for i in recipeIngredients {
-            let convertedQuantity = UnitsConverter().convertFloatToString(floatValue: i.quantity)
-            if i.units == "Whole" {
-                ingredientList.append("\(convertedQuantity) \(i.units!) \(i.name!)")
-            } else {
-                ingredientList.append("\(convertedQuantity) \(i.units!) of \(i.name!)")
-            }
-        }
+        
+        //Register delegates, data sources and Nibs
         recipeIngredientsTableView.delegate = self
         recipeIngredientsTableView.dataSource = self
-        recipeIngredientsTableView.register(UINib(nibName: "IngredientTableViewCell", bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        recipeIngredientsTableView.register(UINib(nibName: K.ingredientCellNibName, bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadLabelData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,6 +47,20 @@ class RecipeViewController: UIViewController {
             let destinationVC = segue.destination as! EditRecipeViewController
             destinationVC.loadedRecipe = loadedRecipe[0]
             destinationVC.recipeIngredients = ingredientList
+        }
+    }
+    
+    func loadLabelData() {
+        recipeNameLabel.text = loadedRecipe[0].name
+        directionsTextView.text = loadedRecipe[0].directions
+        recipeIngredients = loadedRecipe[0].ingredient!.allObjects as! [Ingredient]
+        for i in recipeIngredients {
+            let convertedQuantity = UnitsConverter().convertFractionFloatToString(floatValue: i.quantity)
+            if i.units == "Whole" {
+                ingredientList.append("\(convertedQuantity) \(i.units!) \(i.name!)")
+            } else {
+                ingredientList.append("\(convertedQuantity) \(i.units!) of \(i.name!)")
+            }
         }
     }
     

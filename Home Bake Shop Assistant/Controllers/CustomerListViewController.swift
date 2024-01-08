@@ -20,19 +20,16 @@ class CustomerListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Style The View
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: createCustomerView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: customerListTableView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: customerListTitleLabel)
+        customerListTitleLabel.layer.masksToBounds = true
+        
+        //Register delegates, data sources and Nibs
         customerListTableView.dataSource = self
         customerListTableView.delegate = self
         customerListTableView.register(UINib(nibName: "IngredientTableViewCell", bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
-        
-        //Add Borders
-        customerListTitleLabel.layer.masksToBounds = true
-        customerListTitleLabel.layer.borderWidth = 2.0
-        customerListTitleLabel.layer.borderColor = K.bakeShopBlueberry.cgColor
-        createCustomerView.layer.borderWidth = 2.0
-        createCustomerView.layer.borderColor = K.bakeShopBlueberry.cgColor
-        customerListTableView.layer.borderWidth = 2.0
-        customerListTableView.layer.borderColor = K.bakeShopBlueberry.cgColor
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

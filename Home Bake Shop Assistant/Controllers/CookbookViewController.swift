@@ -19,12 +19,15 @@ class CookbookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Style The View
+        AddBorders().addAllBorders(with: K.bakeShopMaroon, andWidth: 3.0, view: recipeTableView)
+        recipeTableView.rowHeight = 50.0
+        
+        //Register delegates, data sources and Nibs
         recipeTableView.delegate = self
         recipeTableView.dataSource = self
-        recipeTableView.register(UINib(nibName: "IngredientTableViewCell", bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
-        recipeTableView.rowHeight = 50.0
-        recipeTableView.layer.borderWidth = 3.0
-        recipeTableView.layer.borderColor = K.bakeShopMaroon.cgColor
+        recipeTableView.register(UINib(nibName: K.ingredientCellNibName, bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        
         loadRecipes()
     }
     

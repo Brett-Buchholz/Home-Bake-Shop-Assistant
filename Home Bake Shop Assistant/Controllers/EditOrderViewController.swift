@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
 class EditOrderViewController: UIViewController {
     
@@ -30,52 +31,82 @@ class EditOrderViewController: UIViewController {
     @IBOutlet weak var orderNumberTextField: UITextField!
     
     @IBOutlet weak var itemOrderdPopUp: UIButton!
-    @IBOutlet weak var quantityOrderedPicker: UIPickerView!
+    @IBOutlet weak var itemNoteTextField: UITextField!
     @IBOutlet weak var priceTextField: CurrencyField!
     @IBOutlet weak var addToOrderButton: BrettButton!
+    @IBOutlet weak var errorLabel: PaddingLabel!
     
     @IBOutlet weak var orderTableView: UITableView!
     
     @IBOutlet weak var subTotalStackView: UIStackView!
     @IBOutlet weak var subTotalAmountLabel: PaddingLabel!
     @IBOutlet weak var salesTaxStackView: UIStackView!
+    @IBOutlet weak var salesTaxLabel: PaddingLabel!
     @IBOutlet weak var salesTaxAmountLabel: PaddingLabel!
     @IBOutlet weak var totalAmountLabel: PaddingLabel!
     
+    @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var batchSizeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var otherTextField: UITextField!
     @IBOutlet weak var saveOrderButton: BrettButton!
-    
+    @IBOutlet weak var headerStackView: UIStackView!
     
     var loadedCompany: [Company] = []
     var customerList: [Customer] = []
+    var ordersList: [Order] = []
     var recipeList: [Recipe] = []
     var selectedCustomer: Customer? = nil
     var pickerValue: String = ""
+    var batchSize: Int16 = 12
+    var tempItemsOrdered: [[String:Any]] = []
+    var selectedIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        quantityOrderedPicker.delegate = self
-        quantityOrderedPicker.dataSource = self
+        //Style The View
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: orderTableView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: topBackgroundView)
+        AddBorders().addTopBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
+        AddBorders().addLeftBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
+        AddBorders().addRightBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
+        addToOrderButton.tintColor = K.bakeShopBlueberry
+        saveOrderButton.tintColor = K.bakeShopBlueberry
         
-        orderTableView.layer.borderWidth = 2.0
-        orderTableView.layer.borderColor = K.bakeShopBlueberry.cgColor
+        //Register delegates, data sources and Nibs
+        orderTableView.dataSource = self
+        orderTableView.delegate = self
+        orderTableView.register(UINib(nibName: K.orderCellNibName, bundle: nil), forCellReuseIdentifier: K.orderReuseIdentifier)
         
-        topBackgroundView.layer.borderWidth = 2.0
-        topBackgroundView.layer.borderColor = K.bakeShopBlueberry.cgColor
         loadCustomerList()
+        createOrderNumber()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        otherTextField.isHidden = true
+        self.customerAddressLabel.text = " "
+        self.customerCityLabel.text = " "
+        self.customerStateLabel.text = " "
+        self.customerZipLabel.text = " "
+        self.customerPhoneLabel.text = " "
         loadCustomerList()
         loadTextFields()
         setupSelectCustomerButton()
         setupItemOrderedButton()
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.segueIdentifierToCompanyInfo {
+            let destinationVC = segue.destination as! CompanyInfoViewController
+            let originVC = segue.source as! EditOrderViewController
+            destinationVC.originVC = originVC
+        }
     }
     
     func loadTextFields() {
+        
         loadCompanyInfo()
         if loadedCompany != [] {
             let comp = loadedCompany[0]
@@ -87,20 +118,18 @@ class EditOrderViewController: UIViewController {
             if comp.withholdTax == true {
                 subTotalStackView.isHidden = false
                 salesTaxStackView.isHidden = false
-                salesTaxAmountLabel.text = comp.taxRate
+                salesTaxLabel.text = "Sales Tax (\(comp.taxRate)%):"
             } else {
                 subTotalStackView.isHidden = true
                 salesTaxStackView.isHidden = true
             }
         }
-        self.customerAddressLabel.text = " "
-        self.customerCityLabel.text = " "
-        self.customerStateLabel.text = " "
-        self.customerZipLabel.text = " "
-        self.customerPhoneLabel.text = " "
+        self.priceTextField.text = ""
+        self.errorLabel.isHidden = true
     }
     
     func setupSelectCustomerButton() {
+        
         var chirren: [UIMenuElement] = []
         chirren.append(UIAction(title: "", handler: { action in
             self.customerAddressLabel.text = " "
@@ -129,6 +158,7 @@ class EditOrderViewController: UIViewController {
     }
     
     func setupItemOrderedButton() {
+        
         loadRecipes()
         var chirren: [UIMenuElement] = []
         let closure = { (action: UIAction) in
@@ -142,24 +172,199 @@ class EditOrderViewController: UIViewController {
         
     }
     
-    @IBAction func companyInfoPressed(_ sender: BrettButton) {
+    func validateItemAddedData() -> Bool {
+        var dataValid = false
+        if itemOrderdPopUp.titleLabel?.text == nil {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please choose an item to order!"
+        } else if quantityTextField.text == "" {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please enter the quantity of items ordered!"
+        } else if batchSizeSegmentedControl.selectedSegmentIndex == 3 && otherTextField.text == "" {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please enter a batch size!"
+        } else if priceTextField.text == "" {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please enter a batch price!"
+        } else {
+            dataValid = true
+        }
+        return dataValid
+    }
+    
+    func validateOrderData() -> Bool {
+        var dataValid = false
+        if selectCustomerPopup.titleLabel?.text == nil {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please choose a customer!"
+        } else if tempItemsOrdered.count < 1 {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please add items to the order!"
+        } else {
+            dataValid = true
+        }
+        return dataValid
+    }
+    
+    func createOrderItem() {
+        var itemDict: Dictionary = [String:Any]()
+        var selectedRecipe: Recipe? = nil
+        for recipe in recipeList {
+            if itemOrderdPopUp.titleLabel?.text == recipe.name {
+                selectedRecipe = recipe
+            }
+        }
+        itemDict["ItemOrdered"] = selectedRecipe
+        itemDict["ItemNotes"] = itemNoteTextField.text
+        let quantity = Int16(quantityTextField.text ?? "0")!
+        itemDict["Quantity"] = quantity
+        var tempBatchSize:Int16 = 0
+        var batchName =  ""
+        switch batchSizeSegmentedControl.selectedSegmentIndex {
+        case 1:
+            batchName = "(half-dozen)"
+            tempBatchSize = batchSize
+        case 2:
+            batchName = ""
+            tempBatchSize = batchSize
+        case 3:
+            batchName = "(Batch of \(otherTextField.text ?? "0"))"
+            let intBatchSize = Int16(otherTextField.text ?? "0")
+            tempBatchSize = intBatchSize!
+        default:
+            batchName = "(dozen)"
+            tempBatchSize = batchSize
+        }
+        itemDict["BatchName"] = batchName
+        itemDict["BatchSize"] = tempBatchSize
+        let floatPrice = UnitsConverter().convertCurrencyStringToFloat(stringCurrency: priceTextField.text ?? "0")
+        itemDict["BatchPrice"] = floatPrice
+        itemDict["BatchSubtotal"] = Float(quantity) * floatPrice
+        tempItemsOrdered.append(itemDict)
+    }
+    
+    func createOrderNumber() {
+        loadOrders()
+        var orderNumberList: [String] = []
+        for order in ordersList {
+            orderNumberList.append(order.orderNumber!)
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYMMDD"
+        let stringDate = formatter.string(from: orderDatePicker.date)
+        var tempOrderNumber = "\(stringDate)\("001")"
+        var dailyOrders = 1
+        while orderNumberList.contains(tempOrderNumber) == true {
+            dailyOrders += 1
+            var orders = ""
+            if dailyOrders < 10 {
+                orders = "00\(dailyOrders)"
+            } else if dailyOrders < 100 {
+                orders = "0\(dailyOrders)"
+            } else {
+                orders = "\(dailyOrders)"
+            }
+            tempOrderNumber = "\(stringDate)\(orders)"
+        }
+        orderNumberTextField.text = tempOrderNumber
+    }
+    
+    func getSubtotal() -> Float {
+        var orderSubtotal: Float = 0.0
+        for item in tempItemsOrdered {
+            orderSubtotal += item["BatchSubtotal"] as! Float
+        }
+        return orderSubtotal
+    }
+    
+    func getSalesTax() -> Float {
+        var salesTax: Float = 0.0
+        if loadedCompany == [] {
+            salesTax = 0.0
+        } else if loadedCompany[0].withholdTax == true {
+            let subtotal = getSubtotal()
+            let rawTax = roundf(loadedCompany[0].taxRate * subtotal)
+            salesTax = rawTax/100
+        }
+        return salesTax
+    }
+    
+    func getTotal() -> Float {
+        let subTotal = getSubtotal()
+        let salesTax = getSalesTax()
+        let total = subTotal + salesTax
+        return total
+    }
+    
+    @IBAction func orderDateChanged(_ sender: UIDatePicker) {
+        createOrderNumber()
+    }
+    
+    @IBAction func batchSegmentedControlChanged(_ sender: UISegmentedControl) {
+        
+        otherTextField.isHidden = true
+        switch batchSizeSegmentedControl.selectedSegmentIndex {
+        case 1 :
+            batchSize = 6
+        case 2:
+            batchSize = 1
+        case 3:
+            otherTextField.isHidden = false
+        default:
+            batchSize = 12
+        }
     }
     
     @IBAction func addToOrderPressed(_ sender: BrettButton) {
+        errorLabel.isHidden = true
+        if validateItemAddedData() == true {
+            createOrderItem()
+            setupItemOrderedButton()
+            itemOrderdPopUp.titleLabel?.text = nil
+            quantityTextField.text = ""
+            batchSizeSegmentedControl.selectedSegmentIndex = 0
+            otherTextField.text = ""
+            otherTextField.isHidden = true
+            priceTextField.text = ""
+            itemNoteTextField.text = ""
+            updateData()
+        }
     }
     
     @IBAction func saveOrderPressed(_ sender: BrettButton) {
+        errorLabel.isHidden = true
+        if validateOrderData() == true {
+            let newOrder = Order(context: K.ordersContext)
+            selectedCustomer?.addToToOrder(newOrder)
+            newOrder.orderDate = orderDatePicker.date
+            newOrder.orderNumber = orderNumberTextField.text
+            newOrder.orderSubtotal = getSubtotal()
+            newOrder.orderSalesTax = getSalesTax()
+            newOrder.orderTotal = getTotal()
+            newOrder.orderComplete = false
+            for item in tempItemsOrdered {
+                let newItemOrdered = OrderedItem(context: K.ordersContext)
+                (item["ItemOrdered"] as! Recipe).addToToOrderedItem(newItemOrdered)
+                newItemOrdered.quantityOrdered = item["Quantity"] as! Int16
+                newItemOrdered.batchName = "\(item["BatchName"]!)"
+                newItemOrdered.batchSize = item["BatchSize"] as! Int16
+                newItemOrdered.batchPrice = item["BatchPrice"] as! Float
+                newItemOrdered.batchSubtotal = item["BatchSubtotal"] as! Float
+            }
+            saveOrder()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     //MARK: CoreData CRUD Methods
     
-//    func saveRecipe() {
-//        do {
-//            try K.context.save()
-//        } catch {
-//            print("Error saving Ingredients: \(error)")
-//        }
-//    }
+    func saveOrder() {
+        do {
+            try K.ordersContext.save()
+        } catch {
+            print("Error saving Ingredients: \(error)")
+        }
+    }
     
     func loadCompanyInfo() {
         let request: NSFetchRequest<Company> = Company.fetchRequest()
@@ -191,43 +396,94 @@ class EditOrderViewController: UIViewController {
         }
     }
     
-//    func loadIngredients() {
-//        let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
-//        do {
-//            inventoryList = try K.context.fetch(request)
-//        } catch {
-//            print("Error loading Ingredients: \(error)")
-//        }
-//    }
+    func loadOrders() {
+        let request: NSFetchRequest<Order> = Order.fetchRequest()
+        do {
+            ordersList = try K.ordersContext.fetch(request)
+        } catch {
+            print("Error loading Ingredients: \(error)")
+        }
+    }
     
-//    func updateData() {
-//        DispatchQueue.main.async {
-//            self.ingredientsTableView.reloadData()
-//        }
-//    }
-    
-    
-    
+    func updateData() {
+        DispatchQueue.main.async {
+            self.loadTextFields()
+            self.subTotalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSubtotal())
+            self.salesTaxAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSalesTax())
+            self.totalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getTotal())
+            self.orderTableView.reloadData()
+        }
+    }
     
 }
 
-//MARK: PickerView DataSource and Delegate Methods
-extension EditOrderViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+//MARK: TableView DataSource Methods
+
+extension EditOrderViewController: UITableViewDataSource {
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tempItemsOrdered.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return K.orderQuantity.count
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = orderTableView.dequeueReusableCell(withIdentifier: K.orderReuseIdentifier, for: indexPath) as! OrderTableViewCell
+        cell.delegate = self
+        cell.qtyLabel.text = "\(tempItemsOrdered[indexPath.row]["Quantity"]!)"
+        cell.qtyLabel.textColor = K.bakeShopBlueberry
+        let recipeName = (tempItemsOrdered[indexPath.row]["ItemOrdered"] as! Recipe).name
+        cell.itemOrderedLabel.text = "\(recipeName!) \(tempItemsOrdered[indexPath.row]["BatchName"]!)"
+        cell.itemOrderedLabel.textColor = K.bakeShopBlueberry
+        let floatPrice = tempItemsOrdered[indexPath.row]["BatchPrice"] as! Float
+        cell.batchPriceLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: floatPrice)
+        cell.batchPriceLabel.textColor = K.bakeShopBlueberry
+        let floatSubtotal = tempItemsOrdered[indexPath.row]["BatchSubtotal"] as! Float
+        cell.subtotalLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: floatSubtotal)
+        cell.subtotalLabel.textColor = K.bakeShopBlueberry
+        let itemNote = tempItemsOrdered[indexPath.row]["ItemNotes"]
+        if itemNote as! String == "" {
+            cell.bottomStackView.isHidden = true
+        } else {
+            cell.itemNoteLabel.text = "    Note: \(itemNote ?? "")"
+        }
+        cell.itemNoteLabel.textColor = K.bakeShopBlueberry
+        
+        return cell
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return K.orderQuantity[row]
-    }
+}
+
+extension EditOrderViewController: UITableViewDelegate {
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerValue = K.orderQuantity[row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        //Allowing the user to deselect a selected cell
+        if selectedIndexPath == indexPath {
+            // it was already selected
+            selectedIndexPath = nil
+            tableView.deselectRow(at: indexPath, animated: false)
+        } else {
+            // wasn't yet selected, so let's remember it
+            selectedIndexPath = indexPath
+        }
+        
     }
 }
 
+//MARK: Swipe Cell Kit Functionality
+
+extension EditOrderViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title:.none) { action, indexPath in
+            self.tempItemsOrdered.remove(at: indexPath.row)
+            self.updateData()
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+        
+        return [deleteAction]
+    }
+}

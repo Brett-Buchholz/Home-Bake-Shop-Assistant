@@ -27,6 +27,9 @@ class EditCustomerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Style The View
+        //Register delegates, data sources and Nibs
+        
         customerInfoTitleLabel.layer.masksToBounds = true
         customerInfoTitleLabel.layer.borderColor = K.bakeShopBlueberry.cgColor
         customerInfoTitleLabel.layer.borderWidth = 2.0
@@ -46,6 +49,9 @@ class EditCustomerViewController: UIViewController {
             stateTextField.text = loadedCustomer?.customerState
             zipTextField.text = loadedCustomer?.customerZipCode
             phoneTextField.text = loadedCustomer?.customerPhone
+            deleteCustomerButton.isHidden = false
+        } else {
+            deleteCustomerButton.isHidden = true
         }
     }
     

@@ -39,25 +39,26 @@ class EditRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fractionPickerView.dataSource = self
-        fractionPickerView.delegate = self
-        errorLabel.isHidden = true
-        
-        ingredientsTableView.dataSource = self
-        ingredientsTableView.delegate = self
-        ingredientsTableView.register(UINib(nibName: "IngredientTableViewCell", bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
-        ingredientsTableView.rowHeight = 36.0
-        
+        //Style The View
+        AddBorders().addTopBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
+        AddBorders().addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
+        AddBorders().addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
+        AddBorders().addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: scrollView)
+        AddBorders().addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: scrollView)
+        AddBorders().addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
+        AddBorders().addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
+        AddBorders().addBottomBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
         saveButton.tintColor = K.bakeShopMaroon
         addButton.tintColor = K.bakeShopMaroon
-        addTopBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
-        addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
-        addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: scrollView)
-        addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
-        addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
-        addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: scrollView)
-        addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
-        addBottomBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
+        errorLabel.isHidden = true
+        ingredientsTableView.rowHeight = 36.0
+        
+        //Register delegates, data sources and Nibs
+        fractionPickerView.dataSource = self
+        fractionPickerView.delegate = self
+        ingredientsTableView.dataSource = self
+        ingredientsTableView.delegate = self
+        ingredientsTableView.register(UINib(nibName: K.ingredientCellNibName, bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,7 +167,7 @@ class EditRecipeViewController: UIViewController {
         }
         
         //Create a float quantity
-        pickerAsFloat = UnitsConverter().convertStringToFloat(stringValue: quantityPicker)
+        pickerAsFloat = UnitsConverter().convertFractionStringToFloat(stringValue: quantityPicker)
         floatQuantity = (Float(quantityWhole) ?? 0) + (pickerAsFloat)
         
         // Create Units of Measurment

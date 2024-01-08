@@ -22,9 +22,15 @@ class AddIngredientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Style The View
+        
+        
+        //Register delegates, data sources and Nibs
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
         ingredientsTableView.register(UINib(nibName: K.ingredientCellNibName, bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        
+        
         setupUnitsTypeButton()
         setupAddIngredientsButton()
         updateDataAndView()
