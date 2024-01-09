@@ -17,6 +17,7 @@ class OrderListViewController: UIViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     
     var ordersList: [Order] = []
+    var segueOrder: Order? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,12 @@ class OrderListViewController: UIViewController {
         updateData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.segueIdentifierToViewOrder {
+            let destinationVC = segue.destination as! OrderViewController
+            destinationVC.loadedOrder = segueOrder
+        }
+    }
     
     //MARK: CoreData CRUD Methods
     
@@ -110,6 +117,7 @@ extension OrderListViewController: UITableViewDataSource {
 extension OrderListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        segueOrder = ordersList[indexPath.row]
         performSegue(withIdentifier: K.segueIdentifierToViewOrder, sender: self)
     }
 }

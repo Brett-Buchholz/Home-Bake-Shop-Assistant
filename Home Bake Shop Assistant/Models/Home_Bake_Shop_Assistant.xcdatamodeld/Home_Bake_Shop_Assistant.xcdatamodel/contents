@@ -34,16 +34,12 @@
         <attribute name="item" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES" codeGenerationType="class">
-        <attribute name="batchPrice" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="batchSize" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="batchSubtotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="orderComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="orderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="orderNumber" optional="YES" attributeType="String"/>
         <attribute name="orderSalesTax" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="orderSubtotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="orderTotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="quantityOrdered" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="toCustomer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="toOrder" inverseEntity="Customer"/>
         <relationship name="toOrderedItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderedItem" inverseName="toOrder" inverseEntity="OrderedItem"/>
     </entity>
@@ -54,8 +50,8 @@
         <attribute name="batchSubtotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="itemNote" optional="YES" attributeType="String"/>
         <attribute name="quantityOrdered" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="toOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="toOrderedItem" inverseEntity="Order"/>
-        <relationship name="toRecipe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="toOrderedItem" inverseEntity="Recipe"/>
+        <relationship name="toOrder" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="toOrderedItem" inverseEntity="Order"/>
+        <relationship name="toRecipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="toOrderedItem" inverseEntity="Recipe"/>
     </entity>
     <entity name="Recipe" representedClassName="Recipe" syncable="YES" codeGenerationType="class">
         <attribute name="directions" optional="YES" attributeType="String"/>

@@ -350,6 +350,8 @@ class EditOrderViewController: UIViewController {
                 newItemOrdered.batchSize = item["BatchSize"] as! Int16
                 newItemOrdered.batchPrice = item["BatchPrice"] as! Float
                 newItemOrdered.batchSubtotal = item["BatchSubtotal"] as! Float
+                newItemOrdered.itemNote = "\(item["ItemNotes"]!)"
+                newItemOrdered.addToToOrder(newOrder)
             }
             saveOrder()
             navigationController?.popViewController(animated: true)
