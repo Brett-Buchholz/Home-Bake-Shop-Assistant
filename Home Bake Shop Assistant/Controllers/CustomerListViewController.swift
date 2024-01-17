@@ -51,7 +51,6 @@ class CustomerListViewController: UIViewController {
         }
     }
     
-    
     //MARK: CoreData CRUD Methods
     
     func saveCustomerInfo() {

@@ -60,6 +60,8 @@ class EditOrderViewController: UIViewController {
     var batchSize: Int16 = 12
     var tempItemsOrdered: [[String:Any]] = []
     var selectedIndexPath: IndexPath? = nil
+    var segueOrder: Order? = nil
+    var segueVC: OrderViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,9 +94,9 @@ class EditOrderViewController: UIViewController {
         self.customerZipLabel.text = " "
         self.customerPhoneLabel.text = " "
         loadCustomerList()
-        loadTextFields()
         setupSelectCustomerButton()
         setupItemOrderedButton()
+        loadTextFields()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -124,6 +126,33 @@ class EditOrderViewController: UIViewController {
                 salesTaxStackView.isHidden = true
             }
         }
+        if segueOrder != nil {
+            selectedCustomer = segueOrder?.toCustomer
+            selectCustomerPopup.changesSelectionAsPrimaryAction = true
+            loadSelectCustomerButton()
+            self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
+            self.customerCityLabel.text = self.selectedCustomer?.customerCity
+            self.customerStateLabel.text = self.selectedCustomer?.customerState
+            self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+            self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
+            orderDatePicker.date = (segueOrder?.orderDate)!
+            orderNumberTextField.text = segueOrder?.orderNumber
+            let itemsOrdered = segueOrder?.toOrderedItem?.allObjects as! [OrderedItem]
+            var itemDict: Dictionary = [String:Any]()
+            for item in itemsOrdered {
+                itemDict["ItemOrdered"] = item.toRecipe
+                itemDict["ItemNotes"] = item.itemNote
+                itemDict["Quantity"] = item.quantityOrdered
+                itemDict["BatchName"] = item.batchName
+                itemDict["BatchSize"] = item.batchSize
+                itemDict["BatchPrice"] = item.batchPrice
+                itemDict["BatchSubtotal"] = item.batchSubtotal
+                tempItemsOrdered.append(itemDict)
+            }
+            self.subTotalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSubtotal())
+            self.salesTaxAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSalesTax())
+            self.totalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getTotal())
+        }
         self.priceTextField.text = ""
         self.errorLabel.isHidden = true
     }
@@ -142,8 +171,8 @@ class EditOrderViewController: UIViewController {
             let chirrenID = customer.customerID
             chirren.append(UIAction(title: "\(customer.lastName ?? "unknown name"), \(customer.firstName ?? "unknown name")", handler: { action in
                 for customer in self.customerList {
-                    let listName = "\(customer.customerID)"
-                    if "\(chirrenID)" == listName {
+                    let listID = "\(customer.customerID)"
+                    if "\(chirrenID)" == listID {
                         self.selectedCustomer = customer
                     }
                 }
@@ -155,6 +184,39 @@ class EditOrderViewController: UIViewController {
             }))
         }
         selectCustomerPopup.menu = UIMenu(children: chirren)
+    }
+    
+    //Called when editing an existing order
+    func loadSelectCustomerButton() {
+        
+        var chirren: [UIMenuElement] = []
+        chirren.append(UIAction(title: "\(selectedCustomer!.lastName ?? "unknown name"), \(selectedCustomer!.firstName ?? "unknown name")", handler: { action in
+            self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
+            self.customerCityLabel.text = self.selectedCustomer?.customerCity
+            self.customerStateLabel.text = self.selectedCustomer?.customerState
+            self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+            self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
+        }))
+        for customer in customerList {
+            let chirrenID = customer.customerID
+            if customer.customerID != selectedCustomer?.customerID {
+                chirren.append(UIAction(title: "\(customer.lastName ?? "unknown name"), \(customer.firstName ?? "unknown name")", handler: { action in
+                    for customer in self.customerList {
+                        let listID = "\(customer.customerID)"
+                        if "\(chirrenID)" == listID {
+                            self.selectedCustomer = customer
+                        }
+                    }
+                    self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
+                    self.customerCityLabel.text = self.selectedCustomer?.customerCity
+                    self.customerStateLabel.text = self.selectedCustomer?.customerState
+                    self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+                    self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
+                }))
+            }
+        }
+        selectCustomerPopup.menu = UIMenu(children: chirren)
+        
     }
     
     func setupItemOrderedButton() {
@@ -334,27 +396,54 @@ class EditOrderViewController: UIViewController {
     @IBAction func saveOrderPressed(_ sender: BrettButton) {
         errorLabel.isHidden = true
         if validateOrderData() == true {
-            let newOrder = Order(context: K.ordersContext)
-            selectedCustomer?.addToToOrder(newOrder)
-            newOrder.orderDate = orderDatePicker.date
-            newOrder.orderNumber = orderNumberTextField.text
-            newOrder.orderSubtotal = getSubtotal()
-            newOrder.orderSalesTax = getSalesTax()
-            newOrder.orderTotal = getTotal()
-            newOrder.orderComplete = false
-            for item in tempItemsOrdered {
-                let newItemOrdered = OrderedItem(context: K.ordersContext)
-                (item["ItemOrdered"] as! Recipe).addToToOrderedItem(newItemOrdered)
-                newItemOrdered.quantityOrdered = item["Quantity"] as! Int16
-                newItemOrdered.batchName = "\(item["BatchName"]!)"
-                newItemOrdered.batchSize = item["BatchSize"] as! Int16
-                newItemOrdered.batchPrice = item["BatchPrice"] as! Float
-                newItemOrdered.batchSubtotal = item["BatchSubtotal"] as! Float
-                newItemOrdered.itemNote = "\(item["ItemNotes"]!)"
-                newItemOrdered.addToToOrder(newOrder)
+            if segueOrder != nil {
+                let newOrder = segueOrder!
+                newOrder.toCustomer = selectedCustomer
+                newOrder.orderDate = orderDatePicker.date
+                newOrder.orderNumber = orderNumberTextField.text
+                newOrder.orderSubtotal = getSubtotal()
+                newOrder.orderSalesTax = getSalesTax()
+                newOrder.orderTotal = getTotal()
+                newOrder.orderComplete = false
+                newOrder.toOrderedItem = nil
+                for item in tempItemsOrdered {
+                    let newItemOrdered = OrderedItem(context: K.ordersContext)
+                    (item["ItemOrdered"] as! Recipe).addToToOrderedItem(newItemOrdered)
+                    newItemOrdered.quantityOrdered = item["Quantity"] as! Int16
+                    newItemOrdered.batchName = "\(item["BatchName"]!)"
+                    newItemOrdered.batchSize = item["BatchSize"] as! Int16
+                    newItemOrdered.batchPrice = item["BatchPrice"] as! Float
+                    newItemOrdered.batchSubtotal = item["BatchSubtotal"] as! Float
+                    newItemOrdered.itemNote = "\(item["ItemNotes"]!)"
+                    newItemOrdered.addToToOrder(newOrder)
+                }
+            } else {
+                let newOrder = Order(context: K.ordersContext)
+                selectedCustomer?.addToToOrder(newOrder)
+                newOrder.orderDate = orderDatePicker.date
+                newOrder.orderNumber = orderNumberTextField.text
+                newOrder.orderSubtotal = getSubtotal()
+                newOrder.orderSalesTax = getSalesTax()
+                newOrder.orderTotal = getTotal()
+                newOrder.orderComplete = false
+                for item in tempItemsOrdered {
+                    let newItemOrdered = OrderedItem(context: K.ordersContext)
+                    (item["ItemOrdered"] as! Recipe).addToToOrderedItem(newItemOrdered)
+                    newItemOrdered.quantityOrdered = item["Quantity"] as! Int16
+                    newItemOrdered.batchName = "\(item["BatchName"]!)"
+                    newItemOrdered.batchSize = item["BatchSize"] as! Int16
+                    newItemOrdered.batchPrice = item["BatchPrice"] as! Float
+                    newItemOrdered.batchSubtotal = item["BatchSubtotal"] as! Float
+                    newItemOrdered.itemNote = "\(item["ItemNotes"]!)"
+                    newItemOrdered.addToToOrder(newOrder)
+                }
             }
             saveOrder()
             navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async {
+                self.segueVC?.orderTableView.reloadData()
+            }
+            
         }
     }
     
@@ -409,7 +498,6 @@ class EditOrderViewController: UIViewController {
     
     func updateData() {
         DispatchQueue.main.async {
-            self.loadTextFields()
             self.subTotalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSubtotal())
             self.salesTaxAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSalesTax())
             self.totalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getTotal())

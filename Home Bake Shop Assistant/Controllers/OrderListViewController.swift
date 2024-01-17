@@ -17,6 +17,7 @@ class OrderListViewController: UIViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     
     var ordersList: [Order] = []
+    var segControlList: [Order] = []
     var segueOrder: Order? = nil
     
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ class OrderListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         loadOrders()
+        orderSegmentedControlUpdated(orderSegmentedControl)
         updateData()
     }
     
@@ -48,6 +50,22 @@ class OrderListViewController: UIViewController {
         if segue.identifier == K.segueIdentifierToViewOrder {
             let destinationVC = segue.destination as! OrderViewController
             destinationVC.loadedOrder = segueOrder
+        }
+    }
+    
+    @IBAction func orderSegmentedControlUpdated(_ sender: UISegmentedControl) {
+        
+        let pendingOrders = ordersList.filter({ $0.orderComplete == false })
+        let completeOrders = ordersList.filter({ $0.orderComplete == true })
+        
+        switch orderSegmentedControl.selectedSegmentIndex {
+        case 1:
+            segControlList = completeOrders.sorted {$0.orderNumber! > $1.orderNumber!}
+            updateData()
+        default:
+            segControlList = pendingOrders.sorted {$0.orderNumber! < $1.orderNumber!}
+
+            updateData()
         }
     }
     
@@ -84,13 +102,13 @@ class OrderListViewController: UIViewController {
 extension OrderListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        ordersList.count
+        segControlList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = orderTableView.dequeueReusableCell(withIdentifier: K.orderListReuseIdentifier, for: indexPath) as! OrderListTableViewCell
         cell.delegate = self
-        let order = ordersList[indexPath.row]
+        let order = segControlList[indexPath.row]
         let date = order.orderDate!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/DD/YY"
@@ -108,6 +126,7 @@ extension OrderListViewController: UITableViewDataSource {
         cell.label2.font =  UIFont(name: "Times New Roman", size: 30)
         cell.label3.font =  UIFont(name: "Times New Roman", size: 30)
         cell.label4.font =  UIFont(name: "Times New Roman", size: 30)
+        orderTableView.rowHeight = 65.0
         
         return cell
     }
@@ -117,7 +136,7 @@ extension OrderListViewController: UITableViewDataSource {
 extension OrderListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        segueOrder = ordersList[indexPath.row]
+        segueOrder = segControlList[indexPath.row]
         performSegue(withIdentifier: K.segueIdentifierToViewOrder, sender: self)
     }
 }
@@ -129,25 +148,31 @@ extension OrderListViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            K.ordersContext.delete(self.ordersList[indexPath.row])
-            self.ordersList.remove(at: indexPath.row)
+        let completeAction = SwipeAction(style: .default, title: "Order\nComplete") { action, indexPath in
+            self.segControlList[indexPath.row].orderComplete = true
             self.saveOrders()
-            self.loadOrders()
+            self.orderSegmentedControlUpdated(self.orderSegmentedControl)
             self.updateData()
         }
         
-        let editAction = SwipeAction(style: .default, title: "Edit\nIngredient") { action, indexPath in
-//            self.segueCollectedWisdom = [self.collectedWisdom[indexPath.row]]
-//            self.performSegue(withIdentifier: "editWisdomSegue", sender: self)
+        let pendingAction = SwipeAction(style: .default, title: "Order\nPending") { action, indexPath in
+            self.segControlList[indexPath.row].orderComplete = false
+            self.saveOrders()
+            self.orderSegmentedControlUpdated(self.orderSegmentedControl)
+            self.updateData()
         }
         
         // customize the action appearance
-        deleteAction.image = UIImage(named: "delete-icon")
-//        editAction.backgroundColor = K.fontColor.withAlphaComponent(1.0)
-//        editAction.textColor = K.fontColorWhite
-//        editAction.font = UIFont(name: "Times New Roman", size: 20.0)
+        completeAction.backgroundColor = K.bakeShopBlueberry
+        pendingAction.backgroundColor = K.bakeShopBlueberry
+        completeAction.font = UIFont(name: "Times New Roman", size: 20.0)
+        pendingAction.font = UIFont(name: "Times New Roman", size: 20.0)
         
-        return [deleteAction, editAction]
+        if orderSegmentedControl.selectedSegmentIndex == 1 {
+            return [pendingAction]
+        } else {
+            return [completeAction]
+        }
+        
     }
 }

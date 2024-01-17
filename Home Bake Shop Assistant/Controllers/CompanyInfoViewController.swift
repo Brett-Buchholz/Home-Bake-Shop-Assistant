@@ -28,7 +28,6 @@ class CompanyInfoViewController: UIViewController {
         //Style The View
         AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: companyInfoTitleLabel)
         companyInfoTitleLabel.layer.masksToBounds = true
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,11 +75,12 @@ class CompanyInfoViewController: UIViewController {
         companyInfo.taxRate = (stringTaxRate! as NSString).floatValue
         saveCompanyInfo()
         loadCompanyInfo()
-        self.dismiss(animated: true) {
-            self.presentingViewController?.loadView()
-            self.originVC?.updateData()
+        if originVC != nil {
+            DispatchQueue.main.async {
+                self.originVC?.viewWillAppear(true)
+            }
         }
-        
+        self.dismiss(animated: true)
     }
     
     //MARK: CoreData CRUD Methods

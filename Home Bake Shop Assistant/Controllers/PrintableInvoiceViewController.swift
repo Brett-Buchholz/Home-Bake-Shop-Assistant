@@ -1,26 +1,27 @@
 //
-//  OrderViewController.swift
+//  PrintableInvoiceViewController.swift
 //  Home Bake Shop Assistant
 //
-//  Created by Brett Buchholz on 1/8/24.
+//  Created by Brett Buchholz on 1/11/24.
 //
 
 import UIKit
 import CoreData
+import PDFKit
 
-class OrderViewController: UIViewController {
+class PrintableInvoiceViewController: UIViewController, PDFViewDelegate {
     
     @IBOutlet weak var companyNameLabel: PaddingLabel!
     @IBOutlet weak var companyAddressLabel: PaddingLabel!
     @IBOutlet weak var companyCityLabel: PaddingLabel!
     @IBOutlet weak var companyStateLabel: PaddingLabel!
-    @IBOutlet weak var companyZipCodeLabel: PaddingLabel!
+    @IBOutlet weak var companyZipLabel: PaddingLabel!
     
     @IBOutlet weak var customerNameLabel: PaddingLabel!
     @IBOutlet weak var customerAddressLabel: PaddingLabel!
     @IBOutlet weak var customerCityLabel: PaddingLabel!
     @IBOutlet weak var customerStateLabel: PaddingLabel!
-    @IBOutlet weak var customerZipCodeLabel: PaddingLabel!
+    @IBOutlet weak var customerZipLabel: PaddingLabel!
     @IBOutlet weak var customerPhoneLabel: PaddingLabel!
     
     @IBOutlet weak var orderDateValue: PaddingLabel!
@@ -33,14 +34,13 @@ class OrderViewController: UIViewController {
     
     @IBOutlet weak var topBackgroundView: UIView!
     @IBOutlet weak var headerStackView: UIStackView!
-    @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var subtotalStackView: UIStackView!
     @IBOutlet weak var salesTaxStackView: UIStackView!
+    @IBOutlet weak var innerScrollView: UIView!
+    @IBOutlet weak var orderTableView: UITableView!
     
-    @IBOutlet weak var editOrderButton: BrettButton!
-    @IBOutlet weak var deleteOrderButton: BrettButton!
-    @IBOutlet weak var printableInvoiceButton: BrettButton!
-    
+    let pdfView = PDFView()
+    let newDocument = PDFDocument()
     var loadedOrder: Order? = nil
     var orderedItems: [OrderedItem] = []
     var loadedCompany: [Company] = []
@@ -49,41 +49,43 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         
         //Style The View
-        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: topBackgroundView)
-        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: orderTableView)
-        AddBorders().addTopBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
-        AddBorders().addLeftBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
-        AddBorders().addRightBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
-        editOrderButton.tintColor = K.bakeShopBlueberry
-        printableInvoiceButton.tintColor = K.bakeShopBlueberry
-        deleteOrderButton.tintColor = K.bakeShopDeleteRed
+        AddBorders().addAllBorders(with: K.bakeShopBlack, andWidth: 2.0, view: topBackgroundView)
+        AddBorders().addAllBorders(with: K.bakeShopBlack, andWidth: 2.0, view: orderTableView)
+        AddBorders().addTopBorder(with: K.bakeShopBlack, andWidth: 2.0, view: headerStackView)
+        AddBorders().addLeftBorder(with: K.bakeShopBlack, andWidth: 2.0, view: headerStackView)
+        AddBorders().addRightBorder(with: K.bakeShopBlack, andWidth: 2.0, view: headerStackView)
         
         //Register delegates, data sources and Nibs
         orderTableView.dataSource = self
         orderTableView.register(UINib(nibName: K.orderCellNibName, bundle: nil), forCellReuseIdentifier: K.orderReuseIdentifier)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         orderedItems = loadedOrder?.toOrderedItem?.allObjects as! [OrderedItem]
         orderedItems = orderedItems.sorted {$0.toRecipe!.name! < $1.toRecipe!.name!}
         loadLabelData()
+        
+        //Create an image of the invoice from a view
+        let imageView = UIView(frame: CGRect(x: 0, y: 0, width: 850, height: 1100))
+        imageView.addSubview(innerScrollView)
+        innerScrollView.translatesAutoresizingMaskIntoConstraints = false
+        innerScrollView.leftAnchor.constraint(equalTo: imageView.leftAnchor).isActive = true
+        innerScrollView.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
+        innerScrollView.rightAnchor.constraint(equalTo: imageView.rightAnchor).isActive = true
+        innerScrollView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -25).isActive = true
+        imageView.layoutIfNeeded()
+        let image = imageView.asImage()
+        
+        //Use PDFKit to create a pdf invoice
+        view.addSubview(pdfView)
+        pdfView.document = newDocument
+        pdfView.delegate = self
+        let page = PDFPage(image: image)!
+        newDocument.insert(page, at: 0)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.segueIdentifierToEditOrder {
-            let destinationVC = segue.destination as! EditOrderViewController
-            let originVC = segue.source as! OrderViewController
-            destinationVC.segueOrder = loadedOrder
-            destinationVC.segueVC = originVC
-        }
-        if segue.identifier == K.segueIdentifierToPrintableInvoice {
-            let destinationVC = segue.destination as! PrintableInvoiceViewController
-            destinationVC.loadedOrder = loadedOrder
-        }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        pdfView.frame = view.bounds
     }
-    
     
     func loadLabelData() {
         loadCompanyInfo()
@@ -91,14 +93,14 @@ class OrderViewController: UIViewController {
         companyAddressLabel.text = loadedCompany[0].address
         companyCityLabel.text = loadedCompany[0].city
         companyStateLabel.text = loadedCompany[0].state
-        companyZipCodeLabel.text = loadedCompany[0].zipCode
+        companyZipLabel.text = loadedCompany[0].zipCode
         
         let customer = loadedOrder?.toCustomer
         customerNameLabel.text = "\(customer!.firstName ?? "unknown") \(customer!.lastName ?? "unknown")"
         customerAddressLabel.text = customer?.customerAddress
         customerCityLabel.text = customer?.customerCity
         customerStateLabel.text = customer?.customerState
-        customerZipCodeLabel.text = customer?.customerZipCode
+        customerZipLabel.text = customer?.customerZipCode
         
         let date = loadedOrder?.orderDate
         let dateFormatter = DateFormatter()
@@ -120,23 +122,16 @@ class OrderViewController: UIViewController {
         totalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: loadedOrder!.orderTotal)
     }
     
-    @IBAction func editOrderPressed(_ sender: BrettButton) {
-        performSegue(withIdentifier: K.segueIdentifierToEditOrder, sender: self)
-    }
-    
-    @IBAction func deleteOrderPressed(_ sender: BrettButton) {
-        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this order?", preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { action in
-            //Dismiss alert
-        }
-        alert.addAction(dismissAction)
-        let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
-            K.ordersContext.delete(self.loadedOrder!)
-            self.saveOrder()
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(deleteAction)
-        present(alert, animated: true, completion: nil)
+    @IBAction func shareInvoicePressed(_ sender: UIBarButtonItem) {
+        let shareDocument = newDocument.dataRepresentation()
+        let itemToShare = [shareDocument]
+        let activityViewController = UIActivityViewController(activityItems: itemToShare as [Any], applicationActivities: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+                if activityViewController.responds(to: #selector(getter: UIViewController.popoverPresentationController)) {
+                    activityViewController.popoverPresentationController?.barButtonItem = sender
+                }
+            }
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     //MARK: CoreData CRUD Methods
@@ -162,7 +157,7 @@ class OrderViewController: UIViewController {
 
 //MARK: TableView DataSource Methods
 
-extension OrderViewController: UITableViewDataSource {
+extension PrintableInvoiceViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         orderedItems.count
@@ -172,27 +167,37 @@ extension OrderViewController: UITableViewDataSource {
         let cell = orderTableView.dequeueReusableCell(withIdentifier: K.orderReuseIdentifier, for: indexPath) as! OrderTableViewCell
         let item = orderedItems[indexPath.row]
         cell.qtyLabel.text = "\(item.quantityOrdered)"
-        cell.qtyLabel.textColor = K.bakeShopBlueberry
+        cell.qtyLabel.textColor = K.bakeShopBlack
         let recipeName = (item.toRecipe!).name
         cell.itemOrderedLabel.text = "\(recipeName!) \(item.batchName!)"
-        cell.itemOrderedLabel.textColor = K.bakeShopBlueberry
+        cell.itemOrderedLabel.textColor = K.bakeShopBlack
         let floatPrice = item.batchPrice
         cell.batchPriceLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: floatPrice)
-        cell.batchPriceLabel.textColor = K.bakeShopBlueberry
+        cell.batchPriceLabel.textColor = K.bakeShopBlack
         let floatSubtotal = item.batchSubtotal
         cell.subtotalLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: floatSubtotal)
-        cell.subtotalLabel.textColor = K.bakeShopBlueberry
+        cell.subtotalLabel.textColor = K.bakeShopBlack
         let itemNote = item.itemNote
         if itemNote == "" {
             cell.bottomStackView.isHidden = true
         } else {
             cell.itemNoteLabel.text = "    Note: \(itemNote ?? "")"
         }
-        cell.itemNoteLabel.textColor = K.bakeShopBlueberry
+        cell.itemNoteLabel.textColor = K.bakeShopBlack
         
         return cell
     }
     
 }
 
+extension UIView {
 
+    // Using a function since `var image` might conflict with an existing variable
+    // (like on `UIImageView`)
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}

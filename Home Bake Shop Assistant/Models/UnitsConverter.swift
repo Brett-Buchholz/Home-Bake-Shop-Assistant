@@ -65,7 +65,7 @@ struct UnitsConverter {
     
     func convertCurrencyFloatToString(floatCurrency:Float) -> String {
         var newString = String(format: "$%.2f", floatCurrency)
-        var stringLength = newString.count
+        let stringLength = newString.count
         switch stringLength {
         case 8:
             let stringIndex = newString.index(newString.startIndex, offsetBy: 2)
@@ -92,7 +92,7 @@ struct UnitsConverter {
             let stringIndex2 = newString.index(newString.startIndex, offsetBy: 4)
             newString.insert(",", at: stringIndex2)
         default:
-            newString
+            newString = String(format: "$%.2f", floatCurrency)
         }
         
         return newString

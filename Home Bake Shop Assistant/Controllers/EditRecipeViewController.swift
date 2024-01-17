@@ -26,7 +26,6 @@ class EditRecipeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var directionsView: UIView!
     
-    
     var newRecipe: Recipe? = nil
     var loadedRecipe: Recipe? = nil
     var inventoryList: [Inventory] = []

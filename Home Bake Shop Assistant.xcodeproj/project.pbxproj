@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5705AD162B50F92B00525E37 /* PrintableInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD152B50F92B00525E37 /* PrintableInvoiceViewController.swift */; };
 		570749C52B45DDB600BD918B /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570749C32B45DDB600BD918B /* OrderTableViewCell.swift */; };
 		570749C62B45DDB600BD918B /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570749C42B45DDB600BD918B /* OrderTableViewCell.xib */; };
 		57245B192B15560D0063A1DB /* CookbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57245B182B15560D0063A1DB /* CookbookViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5705AD152B50F92B00525E37 /* PrintableInvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintableInvoiceViewController.swift; sourceTree = "<group>"; };
 		570749C32B45DDB600BD918B /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		570749C42B45DDB600BD918B /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		57245B182B15560D0063A1DB /* CookbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				577F03F02B37748700ABE3EF /* OrderListViewController.swift */,
 				5732A8072B4C7787007D5970 /* OrderViewController.swift */,
 				577F03F22B3876F700ABE3EF /* EditOrderViewController.swift */,
+				5705AD152B50F92B00525E37 /* PrintableInvoiceViewController.swift */,
 				577F03F62B3B7C5F00ABE3EF /* CompanyInfoViewController.swift */,
 				57C75D102B3E125500E8B32D /* CustomerListViewController.swift */,
 				57C75D0E2B3E071100E8B32D /* EditCustomerViewController.swift */,
@@ -269,6 +272,7 @@
 				577F03F32B3876F700ABE3EF /* EditOrderViewController.swift in Sources */,
 				57C95FDA2AF6DBA0006130FB /* Constants.swift in Sources */,
 				57C95FE12AFC9229006130FB /* AddIngredientViewController.swift in Sources */,
+				5705AD162B50F92B00525E37 /* PrintableInvoiceViewController.swift in Sources */,
 				57C75D112B3E125500E8B32D /* CustomerListViewController.swift in Sources */,
 				57C95FE42AFC96C3006130FB /* IngredientTableViewCell.swift in Sources */,
 				572E72802B22CE820012B715 /* PaddingLabel.swift in Sources */,

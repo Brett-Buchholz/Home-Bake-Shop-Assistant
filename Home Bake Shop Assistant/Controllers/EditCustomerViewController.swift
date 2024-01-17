@@ -28,8 +28,6 @@ class EditCustomerViewController: UIViewController {
         super.viewDidLoad()
         
         //Style The View
-        //Register delegates, data sources and Nibs
-        
         customerInfoTitleLabel.layer.masksToBounds = true
         customerInfoTitleLabel.layer.borderColor = K.bakeShopBlueberry.cgColor
         customerInfoTitleLabel.layer.borderWidth = 2.0
@@ -95,7 +93,6 @@ class EditCustomerViewController: UIViewController {
         saveCustomerInfo()
         navigationController?.popViewController(animated: true)
     }
-    
     
     @IBAction func deleteCustomerPressed(_ sender: BrettButton) {
         let alert = UIAlertController(title: "Delete Customer?", message: "Are you sure you want to delete this customer?", preferredStyle: .alert)

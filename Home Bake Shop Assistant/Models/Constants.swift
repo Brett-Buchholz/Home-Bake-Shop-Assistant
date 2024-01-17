@@ -17,7 +17,7 @@ class K {
     static let bakeShopMaroon = UIColor(red: 98/255, green: 55/255, blue: 57/255, alpha: 1.0)
     static let bakeShopTan = UIColor(red: 213/255, green: 203/255, blue: 176/255, alpha: 1.0)
     static let bakeShopBlueberry = UIColor(red: 107/255, green: 137/255, blue: 154/255, alpha: 1.0)
-    static let bakeShopDeleteRed = UIColor(named: "DeleteRed")
+    static let bakeShopDeleteRed = UIColor(red: 255/255, green: 38/255, blue: 0/255, alpha: 1.0)
     static let fontPadTitle = UIFont(name: "Marker Felt", size: 46.0)
     static let fontPadNormal = UIFont(name: "Marker Felt", size: 30.0)
     
@@ -33,6 +33,8 @@ class K {
     static let segueIdentifierToViewRecipe = "viewReceipeSegue"
     static let segueIdentifierToEditRecipe = "editRecipeSegue"
     static let segueIdentifierToViewOrder = "viewOrderSegue"
+    static let segueIdentifierToEditOrder = "ToEditOrderSegue"
+    static let segueIdentifierToPrintableInvoice = "ToPrintableInvoiceSegue"
     static let segueIdentifierToAddIngredient = "addIngredientSegue"
     static let segueIdentifierToCustomerInfo = "ToCustomerInfo"
     static let segueIdentifierToCompanyInfo = "ToCompanyInfo"
