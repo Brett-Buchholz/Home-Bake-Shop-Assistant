@@ -64,7 +64,6 @@ class OrderListViewController: UIViewController {
             updateData()
         default:
             segControlList = pendingOrders.sorted {$0.orderNumber! < $1.orderNumber!}
-
             updateData()
         }
     }

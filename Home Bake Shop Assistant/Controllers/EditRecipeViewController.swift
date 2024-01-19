@@ -29,8 +29,7 @@ class EditRecipeViewController: UIViewController {
     var newRecipe: Recipe? = nil
     var loadedRecipe: Recipe? = nil
     var inventoryList: [Inventory] = []
-    var tempIngredientList: [Ingredient] = []
-    var recipeIngredients: [String] = []
+    var tempIngredientList: [RecipeIngredient] = []
     var pickerValue: String = ""
     var selectedIndexPath: IndexPath? = nil
     var pickerAsFloat: Float = 0
@@ -57,7 +56,7 @@ class EditRecipeViewController: UIViewController {
         fractionPickerView.delegate = self
         ingredientsTableView.dataSource = self
         ingredientsTableView.delegate = self
-        ingredientsTableView.register(UINib(nibName: K.ingredientCellNibName, bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        ingredientsTableView.register(UINib(nibName: K.recipeCellNibName, bundle: nil), forCellReuseIdentifier: K.recipeReuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,8 +78,9 @@ class EditRecipeViewController: UIViewController {
             //print(action)
         }
         chirren.append(UIAction(title: "", handler: closure))
+        inventoryList = inventoryList.sorted {$0.ingredientName! < $1.ingredientName!}
         for ingredient in inventoryList {
-            chirren.append(UIAction(title: "\(ingredient.item ?? "unknown name")", handler: closure))
+            chirren.append(UIAction(title: "\(ingredient.ingredientName ?? "unknown name")", handler: closure))
         }
         ingredientPopUpButton.menu = UIMenu(children: chirren)
     }
@@ -135,7 +135,8 @@ class EditRecipeViewController: UIViewController {
     }
     
     func validData() {
-        var ingredient = ""
+        var recipeIngredient = ""
+        var inventoryIngredient: Inventory? = nil
         var units = ""
         var quantityWhole = ""
         var quantityPicker = ""
@@ -179,7 +180,14 @@ class EditRecipeViewController: UIViewController {
             units = "\(unitsPopUpButton.titleLabel!.text!)s"
         }
         
-        //Create base ingredient
+        //Create an inventory ingredient
+        for ingredient in inventoryList {
+            if ingredientPopUpButton.titleLabel?.text == ingredient.ingredientName {
+                inventoryIngredient = ingredient
+            }
+        }
+        
+        //Create a recipe ingredient
         if ingredientPopUpButton.titleLabel?.text == nil {
             errorLabel.isHidden = false
             errorLabel.text = "Please choose an ingredient"
@@ -187,10 +195,10 @@ class EditRecipeViewController: UIViewController {
             errorLabel.isHidden = false
             errorLabel.text = "Please choose units of measurment"
         } else if unitsPopUpButton.titleLabel!.text! == "Whole" && quantityIntegerTextField.text != "1" && quantityIntegerTextField.text != "0" {
-            ingredient = "\(ingredientPopUpButton.titleLabel!.text!)s"
+            recipeIngredient = "\(ingredientPopUpButton.titleLabel!.text!)s"
             units = unitsPopUpButton.titleLabel!.text!
         } else {
-            ingredient = ingredientPopUpButton.titleLabel!.text!
+            recipeIngredient = ingredientPopUpButton.titleLabel!.text!
         }
         
         //Create note
@@ -201,17 +209,18 @@ class EditRecipeViewController: UIViewController {
         //Add ingredient to recipe
         if quantity != "" {
             if units != "" {
-                if ingredient != "" {
-                    let newIngredient = Ingredient(context: K.context)
-                    newIngredient.name = ingredient
+                if recipeIngredient != "" {
+                    let newIngredient = RecipeIngredient(context: K.recipeContext)
+                    newIngredient.inventory = inventoryIngredient
+                    newIngredient.name = recipeIngredient
                     newIngredient.units = units
                     newIngredient.quantity = floatQuantity
-                    tempIngredientList.append(newIngredient)
                     if newIngredient.units == "Whole" {
-                        recipeIngredients.append("\(quantity) \(units) \(ingredient)\(note)")
+                        newIngredient.stringName = "\(quantity) \(units) \(recipeIngredient)\(note)"
                     } else {
-                        recipeIngredients.append("\(quantity) \(units) of \(ingredient)\(note)")
+                        newIngredient.stringName = "\(quantity) \(units) of \(recipeIngredient)\(note)"
                     }
+                    tempIngredientList.append(newIngredient)
                     quantityIntegerTextField.text = ""
                     noteTextField.text = ""
                     setupIngredientButton()
@@ -236,7 +245,7 @@ class EditRecipeViewController: UIViewController {
             errorLabel.text = "Please add directions to this recipe"
         } else {
             if newRecipe == nil {
-                newRecipe = Recipe(context: K.context)
+                newRecipe = Recipe(context: K.recipeContext)
             }
             newRecipe!.name = recipeNameTextField.text
             newRecipe!.directions = directionsTextView.text
@@ -252,7 +261,7 @@ class EditRecipeViewController: UIViewController {
     
     func saveRecipe() {
         do {
-            try K.context.save()
+            try K.recipeContext.save()
         } catch {
             print("Error saving Ingredients: \(error)")
         }
@@ -261,7 +270,7 @@ class EditRecipeViewController: UIViewController {
     func loadIngredients() {
         let request: NSFetchRequest<Inventory> = Inventory.fetchRequest()
         do {
-            inventoryList = try K.context.fetch(request)
+            inventoryList = try K.inventoryIngredientContext.fetch(request)
         } catch {
             print("Error loading Ingredients: \(error)")
         }
@@ -280,14 +289,14 @@ class EditRecipeViewController: UIViewController {
 extension EditRecipeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        recipeIngredients.count
+        tempIngredientList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
+        let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: K.recipeReuseIdentifier, for: indexPath) as! RecipeTableViewCell
         cell.delegate = self
-        cell.ingredientCellLabel.text = "\(recipeIngredients[indexPath.row])"
-        cell.ingredientCellLabel.textColor = K.bakeShopMaroon
+        cell.recipeIngredientLabel.text = "\(tempIngredientList[indexPath.row].stringName!)"
+        tempIngredientList = tempIngredientList.sorted {$0.name! < $1.name!}
         
         return cell
     }
@@ -320,9 +329,13 @@ extension EditRecipeViewController: SwipeTableViewCellDelegate {
         
         let deleteAction = SwipeAction(style: .destructive, title:.none) { action, indexPath in
             if self.newRecipe != nil {
-                K.context.delete(self.newRecipe!.ingredient?.allObjects[indexPath.row] as! NSManagedObject)
+                let mySet = self.newRecipe?.toRecipeIngredient as! Set<RecipeIngredient>
+                let mySelection = (self.tempIngredientList[indexPath.row])
+                if mySet.contains(mySelection) == true {
+                    K.recipeContext.delete(self.newRecipe?.toRecipeIngredient?.allObjects[indexPath.row] as! NSManagedObject)
+                }
             }
-            self.recipeIngredients.remove(at: indexPath.row)
+            self.tempIngredientList.remove(at: indexPath.row)
             self.updateData()
         }
         

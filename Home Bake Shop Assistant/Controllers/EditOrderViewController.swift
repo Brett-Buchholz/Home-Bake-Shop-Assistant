@@ -481,7 +481,7 @@ class EditOrderViewController: UIViewController {
     func loadRecipes() {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         do {
-            recipeList = try K.context.fetch(request)
+            recipeList = try K.recipeContext.fetch(request)
         } catch {
             print("Error loading Recipe: \(error)")
         }

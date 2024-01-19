@@ -26,7 +26,7 @@ class CookbookViewController: UIViewController {
         //Register delegates, data sources and Nibs
         recipeTableView.delegate = self
         recipeTableView.dataSource = self
-        recipeTableView.register(UINib(nibName: K.ingredientCellNibName, bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        recipeTableView.register(UINib(nibName: K.cookbookCellNibName, bundle: nil), forCellReuseIdentifier: K.cookbookReuseIdentifier)
         
         loadRecipes()
     }
@@ -35,6 +35,7 @@ class CookbookViewController: UIViewController {
         super.viewWillAppear(animated)
         
         updateDataAndView()
+        recipeList = recipeList.sorted {$0.name! < $1.name!}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,7 +49,7 @@ class CookbookViewController: UIViewController {
     
     func saveRecipe() {
         do {
-            try K.context.save()
+            try K.recipeContext.save()
         } catch {
             print("Error saving Recipe: \(error)")
         }
@@ -57,7 +58,7 @@ class CookbookViewController: UIViewController {
     func loadRecipes() {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         do {
-            recipeList = try K.context.fetch(request)
+            recipeList = try K.recipeContext.fetch(request)
         } catch {
             print("Error loading Recipe: \(error)")
         }
@@ -82,10 +83,9 @@ extension CookbookViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = recipeTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
-        cell.ingredientCellLabel.text = "\(recipeList[indexPath.row].name ?? "unknown name")"
-        cell.ingredientCellLabel.font = UIFont(name: "Times New Roman", size: 32)
-        cell.ingredientCellLabel.textColor = K.bakeShopMaroon
+        let cell = recipeTableView.dequeueReusableCell(withIdentifier: K.cookbookReuseIdentifier, for: indexPath) as! CookbookTableViewCell
+        
+        cell.cookbookLabel.text = "\(recipeList[indexPath.row].name ?? "unknown name")"
         
         return cell
     }

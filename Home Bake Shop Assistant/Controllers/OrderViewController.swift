@@ -87,11 +87,13 @@ class OrderViewController: UIViewController {
     
     func loadLabelData() {
         loadCompanyInfo()
-        companyNameLabel.text = loadedCompany[0].name
-        companyAddressLabel.text = loadedCompany[0].address
-        companyCityLabel.text = loadedCompany[0].city
-        companyStateLabel.text = loadedCompany[0].state
-        companyZipCodeLabel.text = loadedCompany[0].zipCode
+        if loadedCompany != [] {
+            companyNameLabel.text = loadedCompany[0].name
+            companyAddressLabel.text = loadedCompany[0].address
+            companyCityLabel.text = loadedCompany[0].city
+            companyStateLabel.text = loadedCompany[0].state
+            companyZipCodeLabel.text = loadedCompany[0].zipCode
+        }
         
         let customer = loadedOrder?.toCustomer
         customerNameLabel.text = "\(customer!.firstName ?? "unknown") \(customer!.lastName ?? "unknown")"
@@ -99,6 +101,7 @@ class OrderViewController: UIViewController {
         customerCityLabel.text = customer?.customerCity
         customerStateLabel.text = customer?.customerState
         customerZipCodeLabel.text = customer?.customerZipCode
+        customerPhoneLabel.text = customer?.customerPhone
         
         let date = loadedOrder?.orderDate
         let dateFormatter = DateFormatter()

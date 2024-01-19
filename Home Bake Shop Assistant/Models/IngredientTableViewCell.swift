@@ -10,10 +10,10 @@ import SwipeCellKit
 
 class IngredientTableViewCell: SwipeTableViewCell {
 
-    @IBOutlet weak var ingredientCellView: UIView!
-    @IBOutlet weak var ingredientCellLabel: UILabel!
-    
-    
+    @IBOutlet weak var ingredientLabel: PaddingLabel!
+    @IBOutlet weak var unitsLabel: PaddingLabel!
+    @IBOutlet weak var onHandLabel: PaddingLabel!
+    @IBOutlet weak var neededLabel: PaddingLabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -17,8 +17,6 @@ class OrderTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var itemNoteLabel: PaddingLabel!
     @IBOutlet weak var bottomStackView: UIStackView!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

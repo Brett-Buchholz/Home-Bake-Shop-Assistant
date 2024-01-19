@@ -18,8 +18,7 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var deleteRecipeButton: BrettButton!
     
     var loadedRecipe: [Recipe] = []
-    var recipeIngredients: [Ingredient] = []
-    var ingredientList: [String] = []
+    var recipeIngredients: [RecipeIngredient] = []
     var selectedIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
@@ -33,7 +32,7 @@ class RecipeViewController: UIViewController {
         //Register delegates, data sources and Nibs
         recipeIngredientsTableView.delegate = self
         recipeIngredientsTableView.dataSource = self
-        recipeIngredientsTableView.register(UINib(nibName: K.ingredientCellNibName, bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        recipeIngredientsTableView.register(UINib(nibName: K.recipeCellNibName, bundle: nil), forCellReuseIdentifier: K.recipeReuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,22 +45,15 @@ class RecipeViewController: UIViewController {
         if segue.identifier == K.segueIdentifierToEditRecipe {
             let destinationVC = segue.destination as! EditRecipeViewController
             destinationVC.loadedRecipe = loadedRecipe[0]
-            destinationVC.recipeIngredients = ingredientList
+            destinationVC.tempIngredientList = recipeIngredients
         }
     }
     
     func loadLabelData() {
         recipeNameLabel.text = loadedRecipe[0].name
         directionsTextView.text = loadedRecipe[0].directions
-        recipeIngredients = loadedRecipe[0].ingredient!.allObjects as! [Ingredient]
-        for i in recipeIngredients {
-            let convertedQuantity = UnitsConverter().convertFractionFloatToString(floatValue: i.quantity)
-            if i.units == "Whole" {
-                ingredientList.append("\(convertedQuantity) \(i.units!) \(i.name!)")
-            } else {
-                ingredientList.append("\(convertedQuantity) \(i.units!) of \(i.name!)")
-            }
-        }
+        recipeIngredients = loadedRecipe[0].toRecipeIngredient!.allObjects as! [RecipeIngredient]
+        recipeIngredients = recipeIngredients.sorted {$0.name! < $1.name!}
     }
     
     @IBAction func deleteRecipePressed(_ sender: BrettButton) {
@@ -71,7 +63,7 @@ class RecipeViewController: UIViewController {
         }
         alert.addAction(dismissAction)
         let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
-            K.context.delete(self.loadedRecipe[0])
+            K.recipeContext.delete(self.loadedRecipe[0])
             self.navigationController?.popToViewController((self.navigationController?.viewControllers[1])!, animated: true)
         }
         alert.addAction(deleteAction)
@@ -89,9 +81,9 @@ extension RecipeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = recipeIngredientsTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
-        cell.ingredientCellLabel.text = "\(ingredientList[indexPath.row])"
-        cell.ingredientCellLabel.textColor = K.bakeShopMaroon
+        let cell = recipeIngredientsTableView.dequeueReusableCell(withIdentifier: K.recipeReuseIdentifier, for: indexPath) as! RecipeTableViewCell
+        cell.recipeIngredientLabel.text = "\(recipeIngredients[indexPath.row].stringName!)"
+        recipeIngredients = recipeIngredients.sorted {$0.name! < $1.name!}
         
         return cell
     }

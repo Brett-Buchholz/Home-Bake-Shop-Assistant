@@ -25,11 +25,12 @@ class CustomerListViewController: UIViewController {
         AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: customerListTableView)
         AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: customerListTitleLabel)
         customerListTitleLabel.layer.masksToBounds = true
+        customerListTableView.rowHeight = 50
         
         //Register delegates, data sources and Nibs
         customerListTableView.dataSource = self
         customerListTableView.delegate = self
-        customerListTableView.register(UINib(nibName: "IngredientTableViewCell", bundle: nil), forCellReuseIdentifier: K.ingredientReuseIdentifier)
+        customerListTableView.register(UINib(nibName: K.customerCellNibName, bundle: nil), forCellReuseIdentifier: K.customerReuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,9 +91,8 @@ extension CustomerListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = customerListTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
-        cell.ingredientCellLabel.text = "\(customerList[indexPath.row].lastName ?? "last name"), \(customerList[indexPath.row].firstName ?? "first name")"
-        cell.ingredientCellLabel.textColor = K.bakeShopBlueberry
+        let cell = customerListTableView.dequeueReusableCell(withIdentifier: K.customerReuseIdentifier, for: indexPath) as! CustomerTableViewCell
+        cell.customerLabel.text = "\(customerList[indexPath.row].lastName ?? "last name"), \(customerList[indexPath.row].firstName ?? "first name")"
         
         return cell
     }

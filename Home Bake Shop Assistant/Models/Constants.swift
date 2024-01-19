@@ -16,6 +16,7 @@ class K {
     static let bakeShopBlack = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 1.0)
     static let bakeShopMaroon = UIColor(red: 98/255, green: 55/255, blue: 57/255, alpha: 1.0)
     static let bakeShopTan = UIColor(red: 213/255, green: 203/255, blue: 176/255, alpha: 1.0)
+    static let bakeShopBrown = UIColor(red: 194/255, green: 122/255, blue: 56/255, alpha: 1.0)
     static let bakeShopBlueberry = UIColor(red: 107/255, green: 137/255, blue: 154/255, alpha: 1.0)
     static let bakeShopDeleteRed = UIColor(red: 255/255, green: 38/255, blue: 0/255, alpha: 1.0)
     static let fontPadTitle = UIFont(name: "Marker Felt", size: 46.0)
@@ -28,6 +29,12 @@ class K {
     static let orderReuseIdentifier = "OrderReusableCell"
     static let orderListCellNibName = "OrderListTableViewCell"
     static let orderListReuseIdentifier = "OrderListReusableCell"
+    static let cookbookCellNibName = "CookbookTableViewCell"
+    static let cookbookReuseIdentifier = "CookbookReusableCell"
+    static let recipeCellNibName = "RecipeTableViewCell"
+    static let recipeReuseIdentifier = "RecipeReusableCell"
+    static let customerCellNibName = "CustomerTableViewCell"
+    static let customerReuseIdentifier = "CustomerReusableCell"
     
     //MARK: SegueIdentifiers
     static let segueIdentifierToViewRecipe = "viewReceipeSegue"
@@ -50,7 +57,7 @@ class K {
         managedContext.automaticallyMergesChangesFromParent = true
         return managedContext
     }
-    static var ingedientContext: NSManagedObjectContext {
+    static var inventoryIngredientContext: NSManagedObjectContext {
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         managedContext.automaticallyMergesChangesFromParent = true
         return managedContext
@@ -66,6 +73,11 @@ class K {
         return managedContext
     }
     static var ordersContext: NSManagedObjectContext {
+        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        managedContext.automaticallyMergesChangesFromParent = true
+        return managedContext
+    }
+    static var recipeContext: NSManagedObjectContext {
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         managedContext.automaticallyMergesChangesFromParent = true
         return managedContext

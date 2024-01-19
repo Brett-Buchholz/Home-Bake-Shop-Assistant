@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5705AD162B50F92B00525E37 /* PrintableInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD152B50F92B00525E37 /* PrintableInvoiceViewController.swift */; };
+		5705AD1A2B5893AD00525E37 /* EditInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD192B5893AD00525E37 /* EditInventoryViewController.swift */; };
+		5705AD1D2B5AF7FF00525E37 /* CookbookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD1B2B5AF7FF00525E37 /* CookbookTableViewCell.swift */; };
+		5705AD1E2B5AF7FF00525E37 /* CookbookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5705AD1C2B5AF7FF00525E37 /* CookbookTableViewCell.xib */; };
+		5705AD232B5AFD0D00525E37 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD212B5AFD0D00525E37 /* RecipeTableViewCell.swift */; };
+		5705AD242B5AFD0D00525E37 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5705AD222B5AFD0D00525E37 /* RecipeTableViewCell.xib */; };
+		5705AD272B5B032000525E37 /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD252B5B032000525E37 /* CustomerTableViewCell.swift */; };
+		5705AD282B5B032000525E37 /* CustomerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5705AD262B5B032000525E37 /* CustomerTableViewCell.xib */; };
 		570749C52B45DDB600BD918B /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570749C32B45DDB600BD918B /* OrderTableViewCell.swift */; };
 		570749C62B45DDB600BD918B /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 570749C42B45DDB600BD918B /* OrderTableViewCell.xib */; };
 		57245B192B15560D0063A1DB /* CookbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57245B182B15560D0063A1DB /* CookbookViewController.swift */; };
@@ -36,7 +43,7 @@
 		57C75D112B3E125500E8B32D /* CustomerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C75D102B3E125500E8B32D /* CustomerListViewController.swift */; };
 		57C95FDA2AF6DBA0006130FB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FD92AF6DBA0006130FB /* Constants.swift */; };
 		57C95FDF2AFC0A96006130FB /* EditRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FDE2AFC0A96006130FB /* EditRecipeViewController.swift */; };
-		57C95FE12AFC9229006130FB /* AddIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FE02AFC9229006130FB /* AddIngredientViewController.swift */; };
+		57C95FE12AFC9229006130FB /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FE02AFC9229006130FB /* InventoryViewController.swift */; };
 		57C95FE42AFC96C3006130FB /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FE22AFC96C3006130FB /* IngredientTableViewCell.swift */; };
 		57C95FE52AFC96C3006130FB /* IngredientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C95FE32AFC96C3006130FB /* IngredientTableViewCell.xib */; };
 		57C95FE82AFC9E80006130FB /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 57C95FE72AFC9E80006130FB /* SwipeCellKit */; };
@@ -44,6 +51,13 @@
 
 /* Begin PBXFileReference section */
 		5705AD152B50F92B00525E37 /* PrintableInvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintableInvoiceViewController.swift; sourceTree = "<group>"; };
+		5705AD192B5893AD00525E37 /* EditInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInventoryViewController.swift; sourceTree = "<group>"; };
+		5705AD1B2B5AF7FF00525E37 /* CookbookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookTableViewCell.swift; sourceTree = "<group>"; };
+		5705AD1C2B5AF7FF00525E37 /* CookbookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CookbookTableViewCell.xib; sourceTree = "<group>"; };
+		5705AD212B5AFD0D00525E37 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		5705AD222B5AFD0D00525E37 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeTableViewCell.xib; sourceTree = "<group>"; };
+		5705AD252B5B032000525E37 /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
+		5705AD262B5B032000525E37 /* CustomerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomerTableViewCell.xib; sourceTree = "<group>"; };
 		570749C32B45DDB600BD918B /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		570749C42B45DDB600BD918B /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		57245B182B15560D0063A1DB /* CookbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +89,7 @@
 		57C95FD92AF6DBA0006130FB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		57C95FDD2AFACB48006130FB /* Home Bake Shop Assistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Home Bake Shop Assistant.entitlements"; sourceTree = "<group>"; };
 		57C95FDE2AFC0A96006130FB /* EditRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipeViewController.swift; sourceTree = "<group>"; };
-		57C95FE02AFC9229006130FB /* AddIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientViewController.swift; sourceTree = "<group>"; };
+		57C95FE02AFC9229006130FB /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		57C95FE22AFC96C3006130FB /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		57C95FE32AFC96C3006130FB /* IngredientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,7 +144,8 @@
 				57245B182B15560D0063A1DB /* CookbookViewController.swift */,
 				57245B1A2B1699040063A1DB /* RecipeViewController.swift */,
 				57C95FDE2AFC0A96006130FB /* EditRecipeViewController.swift */,
-				57C95FE02AFC9229006130FB /* AddIngredientViewController.swift */,
+				57C95FE02AFC9229006130FB /* InventoryViewController.swift */,
+				5705AD192B5893AD00525E37 /* EditInventoryViewController.swift */,
 				577F03F02B37748700ABE3EF /* OrderListViewController.swift */,
 				5732A8072B4C7787007D5970 /* OrderViewController.swift */,
 				577F03F22B3876F700ABE3EF /* EditOrderViewController.swift */,
@@ -148,9 +163,12 @@
 				5734355F2AF1856F00BB3611 /* Main.storyboard */,
 				573435702AF1860900BB3611 /* Main_iPhone.storyboard */,
 				573435672AF1857100BB3611 /* LaunchScreen.storyboard */,
+				5705AD1C2B5AF7FF00525E37 /* CookbookTableViewCell.xib */,
+				5705AD262B5B032000525E37 /* CustomerTableViewCell.xib */,
 				57C95FE32AFC96C3006130FB /* IngredientTableViewCell.xib */,
-				570749C42B45DDB600BD918B /* OrderTableViewCell.xib */,
 				5732A8022B49FB83007D5970 /* OrderListTableViewCell.xib */,
+				570749C42B45DDB600BD918B /* OrderTableViewCell.xib */,
+				5705AD222B5AFD0D00525E37 /* RecipeTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,9 +184,12 @@
 				572E727D2B180E2B0012B715 /* UnitsConverter.swift */,
 				5732A8052B4A02A7007D5970 /* AddBorders.swift */,
 				573435622AF1856F00BB3611 /* Home_Bake_Shop_Assistant.xcdatamodeld */,
+				5705AD1B2B5AF7FF00525E37 /* CookbookTableViewCell.swift */,
+				5705AD252B5B032000525E37 /* CustomerTableViewCell.swift */,
 				57C95FE22AFC96C3006130FB /* IngredientTableViewCell.swift */,
-				570749C32B45DDB600BD918B /* OrderTableViewCell.swift */,
 				5732A8012B49FB83007D5970 /* OrderListTableViewCell.swift */,
+				570749C32B45DDB600BD918B /* OrderTableViewCell.swift */,
+				5705AD212B5AFD0D00525E37 /* RecipeTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,9 +262,12 @@
 				57C95FE52AFC96C3006130FB /* IngredientTableViewCell.xib in Resources */,
 				573435712AF1860900BB3611 /* Main_iPhone.storyboard in Resources */,
 				573435692AF1857100BB3611 /* LaunchScreen.storyboard in Resources */,
+				5705AD1E2B5AF7FF00525E37 /* CookbookTableViewCell.xib in Resources */,
+				5705AD282B5B032000525E37 /* CustomerTableViewCell.xib in Resources */,
 				573435662AF1857100BB3611 /* Assets.xcassets in Resources */,
 				5732A8042B49FB83007D5970 /* OrderListTableViewCell.xib in Resources */,
 				573435612AF1856F00BB3611 /* Main.storyboard in Resources */,
+				5705AD242B5AFD0D00525E37 /* RecipeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +281,7 @@
 				5734355E2AF1856F00BB3611 /* ViewController.swift in Sources */,
 				5734355A2AF1856F00BB3611 /* AppDelegate.swift in Sources */,
 				573435642AF1856F00BB3611 /* Home_Bake_Shop_Assistant.xcdatamodeld in Sources */,
+				5705AD232B5AFD0D00525E37 /* RecipeTableViewCell.swift in Sources */,
 				577F03F12B37748700ABE3EF /* OrderListViewController.swift in Sources */,
 				578127F12B462A690088CF8D /* PercentageField.swift in Sources */,
 				577F03F72B3B7C5F00ABE3EF /* CompanyInfoViewController.swift in Sources */,
@@ -267,11 +292,13 @@
 				5732A8032B49FB83007D5970 /* OrderListTableViewCell.swift in Sources */,
 				577F03F52B3B46AE00ABE3EF /* CurrencyTextField.swift in Sources */,
 				57245B1B2B1699040063A1DB /* RecipeViewController.swift in Sources */,
+				5705AD272B5B032000525E37 /* CustomerTableViewCell.swift in Sources */,
 				5732A8062B4A02A7007D5970 /* AddBorders.swift in Sources */,
 				57C95FDF2AFC0A96006130FB /* EditRecipeViewController.swift in Sources */,
 				577F03F32B3876F700ABE3EF /* EditOrderViewController.swift in Sources */,
 				57C95FDA2AF6DBA0006130FB /* Constants.swift in Sources */,
-				57C95FE12AFC9229006130FB /* AddIngredientViewController.swift in Sources */,
+				5705AD1A2B5893AD00525E37 /* EditInventoryViewController.swift in Sources */,
+				57C95FE12AFC9229006130FB /* InventoryViewController.swift in Sources */,
 				5705AD162B50F92B00525E37 /* PrintableInvoiceViewController.swift in Sources */,
 				57C75D112B3E125500E8B32D /* CustomerListViewController.swift in Sources */,
 				57C95FE42AFC96C3006130FB /* IngredientTableViewCell.swift in Sources */,
@@ -279,6 +306,7 @@
 				572E727E2B180E2B0012B715 /* UnitsConverter.swift in Sources */,
 				57245B192B15560D0063A1DB /* CookbookViewController.swift in Sources */,
 				5732A8082B4C7787007D5970 /* OrderViewController.swift in Sources */,
+				5705AD1D2B5AF7FF00525E37 /* CookbookTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
