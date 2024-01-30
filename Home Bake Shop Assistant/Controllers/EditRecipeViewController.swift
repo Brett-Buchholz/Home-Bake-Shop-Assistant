@@ -28,6 +28,7 @@ class EditRecipeViewController: UIViewController {
     
     var newRecipe: Recipe? = nil
     var loadedRecipe: Recipe? = nil
+    var selectedUnits: UnitsOfMeasurement.Units? = nil
     var inventoryList: [Inventory] = []
     var tempIngredientList: [RecipeIngredient] = []
     var pickerValue: String = ""
@@ -87,11 +88,18 @@ class EditRecipeViewController: UIViewController {
     
     func setupUnitsTypeButton() {
         var chirren: [UIMenuElement] = []
-        let closure = { (action: UIAction) in
-            //print(action)
-        }
-        for unit in K.unitsOfMeasurement {
-            chirren.append(UIAction(title: "\(unit)", handler: closure))
+        var myTitle = ""
+        for unit in UnitsOfMeasurement.Units.allCases {
+            if unit == .None {
+                myTitle = ""
+            } else if unit == .Whole {
+                myTitle = "\(unit)"
+            } else {
+                myTitle = "\(unit)s"
+            }
+            chirren.append(UIAction(title: myTitle) { (action: UIAction) in
+                self.selectedUnits = unit
+            })
         }
         unitsPopUpButton.menu = UIMenu(children: chirren)
     }
@@ -167,7 +175,7 @@ class EditRecipeViewController: UIViewController {
         }
         
         //Create a float quantity
-        pickerAsFloat = UnitsConverter().convertFractionStringToFloat(stringValue: quantityPicker)
+        pickerAsFloat = StringConverter().convertFractionStringToFloat(stringValue: quantityPicker)
         floatQuantity = (Float(quantityWhole) ?? 0) + (pickerAsFloat)
         
         // Create Units of Measurment
@@ -175,9 +183,9 @@ class EditRecipeViewController: UIViewController {
             errorLabel.isHidden = false
             errorLabel.text = "Please choose units of measurment"
         } else if quantityIntegerTextField.text! == "0" || quantityIntegerTextField.text! == "1" && pickerValue == ""{
-            units = unitsPopUpButton.titleLabel!.text!
+            units = UnitsOfMeasurement().convertUnitsToString(unit: selectedUnits!)
         } else {
-            units = "\(unitsPopUpButton.titleLabel!.text!)s"
+            units = "\(UnitsOfMeasurement().convertUnitsToString(unit: selectedUnits!))s"
         }
         
         //Create an inventory ingredient
@@ -216,7 +224,7 @@ class EditRecipeViewController: UIViewController {
                     newIngredient.units = units
                     newIngredient.quantity = floatQuantity
                     if newIngredient.units == "Whole" {
-                        newIngredient.stringName = "\(quantity) \(units) \(recipeIngredient)\(note)"
+                        newIngredient.stringName = "\(quantity) \(recipeIngredient) (\(units))\(note)"
                     } else {
                         newIngredient.stringName = "\(quantity) \(units) of \(recipeIngredient)\(note)"
                     }
@@ -229,7 +237,7 @@ class EditRecipeViewController: UIViewController {
                     unitsPopUpButton.titleLabel?.text = nil
                     pickerValue = ""
                     fractionPickerView.selectRow(0, inComponent: 0, animated: true)
-                    ingredientsTableView.reloadData()
+                    updateData()
                 }
             }
         }
@@ -278,6 +286,7 @@ class EditRecipeViewController: UIViewController {
     
     func updateData() {
         DispatchQueue.main.async {
+            self.tempIngredientList = self.tempIngredientList.sorted {$0.name! < $1.name!}
             self.ingredientsTableView.reloadData()
         }
     }
@@ -328,11 +337,12 @@ extension EditRecipeViewController: SwipeTableViewCellDelegate {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title:.none) { action, indexPath in
+            self.updateData()
             if self.newRecipe != nil {
                 let mySet = self.newRecipe?.toRecipeIngredient as! Set<RecipeIngredient>
                 let mySelection = (self.tempIngredientList[indexPath.row])
                 if mySet.contains(mySelection) == true {
-                    K.recipeContext.delete(self.newRecipe?.toRecipeIngredient?.allObjects[indexPath.row] as! NSManagedObject)
+                    K.recipeContext.delete(mySelection)
                 }
             }
             self.tempIngredientList.remove(at: indexPath.row)

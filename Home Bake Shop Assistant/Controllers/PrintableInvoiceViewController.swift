@@ -116,10 +116,10 @@ class PrintableInvoiceViewController: UIViewController, PDFViewDelegate {
             subtotalStackView.isHidden = false
             salesTaxStackView.isHidden = false
             salesTaxLabel.text = "Sales Tax (\(loadedCompany[0].taxRate)%)"
-            salesTaxAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: loadedOrder!.orderSalesTax)
-            subtotalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: loadedOrder!.orderSubtotal)
+            salesTaxAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedOrder!.orderSalesTax)
+            subtotalAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedOrder!.orderSubtotal)
         }
-        totalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: loadedOrder!.orderTotal)
+        totalAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedOrder!.orderTotal)
     }
     
     @IBAction func shareInvoicePressed(_ sender: UIBarButtonItem) {
@@ -172,10 +172,10 @@ extension PrintableInvoiceViewController: UITableViewDataSource {
         cell.itemOrderedLabel.text = "\(recipeName!) \(item.batchName!)"
         cell.itemOrderedLabel.textColor = K.bakeShopBlack
         let floatPrice = item.batchPrice
-        cell.batchPriceLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: floatPrice)
+        cell.batchPriceLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: floatPrice)
         cell.batchPriceLabel.textColor = K.bakeShopBlack
         let floatSubtotal = item.batchSubtotal
-        cell.subtotalLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: floatSubtotal)
+        cell.subtotalLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: floatSubtotal)
         cell.subtotalLabel.textColor = K.bakeShopBlack
         let itemNote = item.itemNote
         if itemNote == "" {

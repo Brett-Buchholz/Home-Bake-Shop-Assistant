@@ -21,6 +21,14 @@ class EditCustomerViewController: UIViewController {
     @IBOutlet weak var saveInfoButton: BrettButton!
     @IBOutlet weak var deleteCustomerButton: BrettButton!
     
+    @IBOutlet weak var firstNameStackView: UIStackView!
+    @IBOutlet weak var lastNameStackView: UIStackView!
+    @IBOutlet weak var addressStackView: UIStackView!
+    @IBOutlet weak var cityStackView: UIStackView!
+    @IBOutlet weak var stateStackView: UIStackView!
+    @IBOutlet weak var zipStackView: UIStackView!
+    @IBOutlet weak var phoneStackView: UIStackView!    
+    
     var loadedCustomer: Customer? = nil
     var customerList: [Customer] = []
     
@@ -29,8 +37,14 @@ class EditCustomerViewController: UIViewController {
         
         //Style The View
         customerInfoTitleLabel.layer.masksToBounds = true
-        customerInfoTitleLabel.layer.borderColor = K.bakeShopBlueberry.cgColor
-        customerInfoTitleLabel.layer.borderWidth = 2.0
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: customerInfoTitleLabel)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: firstNameStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: lastNameStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: addressStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: cityStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: stateStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: zipStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: phoneStackView)
         saveInfoButton.tintColor = K.bakeShopBlueberry
         deleteCustomerButton.tintColor = K.bakeShopDeleteRed
     }

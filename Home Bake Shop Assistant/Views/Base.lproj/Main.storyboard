@@ -241,51 +241,70 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ro9-PQ-TZQ" userLabel="Inner Scroll View">
                                 <rect key="frame" x="50" y="140" width="720" height="990"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QWQ-Ri-5yk" userLabel="Header Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="720" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QWQ-Ri-5yk" userLabel="Header Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="720" height="115"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Ingredient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQT-7v-n2c" userLabel="Ingredient">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                <color key="textColor" name="BakeShopBrown"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Units" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMu-Mk-roO">
-                                                <rect key="frame" x="320" y="0.0" width="150" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZi-Sy-5Yc" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="720" height="65"/>
+                                                <color key="tintColor" name="BakeShopBrown"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="plus.square" catalog="system" title="Quick Add Purchased Ingredients">
+                                                    <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="vLB-2G-E5e" kind="show" id="Kux-1C-dco"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9q5-fh-Ahl">
+                                                <rect key="frame" x="0.0" y="65" width="720" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Ingredient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQT-7v-n2c" userLabel="Ingredient">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Units" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMu-Mk-roO">
+                                                        <rect key="frame" x="320" y="0.0" width="150" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="SNT-uB-CJY"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On Hand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTe-7I-mCM">
+                                                        <rect key="frame" x="470" y="0.0" width="125" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="0Ff-bc-ELa"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Needed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SF-16-8h8" userLabel="Needed">
+                                                        <rect key="frame" x="595" y="0.0" width="125" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="ew9-IT-lvt"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="SNT-uB-CJY"/>
+                                                    <constraint firstAttribute="height" constant="50" id="KmB-Fu-UiC"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                <color key="textColor" name="BakeShopBrown"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On Hand" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTe-7I-mCM">
-                                                <rect key="frame" x="470" y="0.0" width="125" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="0Ff-bc-ELa"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                <color key="textColor" name="BakeShopBrown"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Needed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SF-16-8h8" userLabel="Needed">
-                                                <rect key="frame" x="595" y="0.0" width="125" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="ew9-IT-lvt"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                <color key="textColor" name="BakeShopBrown"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="huZ-w2-HAw"/>
+                                            <constraint firstAttribute="height" constant="115" id="huZ-w2-HAw"/>
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="M7J-pQ-f3b" userLabel="Ingredients Table View">
-                                        <rect key="frame" x="0.0" y="50" width="720" height="790"/>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="115" width="720" height="725"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9HS-et-KGF" userLabel="Bottom View">
                                         <rect key="frame" x="0.0" y="840" width="720" height="150"/>
@@ -487,7 +506,9 @@ Ingredient</string>
                         <outlet property="ingredientNameTextField" destination="miA-2p-YfP" id="zeG-yZ-Gi0"/>
                         <outlet property="ingredientTitleLabel" destination="hBy-Xk-xpj" id="Jme-tO-1lJ"/>
                         <outlet property="ingredientsTableView" destination="M7J-pQ-f3b" id="Sje-Lj-vQq"/>
+                        <outlet property="quickAddButton" destination="VZi-Sy-5Yc" id="H8P-cK-9RE"/>
                         <outlet property="unitsPopUpButton" destination="Afv-Hd-lcX" id="VqD-PZ-L0V"/>
+                        <segue destination="aOI-U8-kKX" kind="show" identifier="ToEditInventorySegue" id="34L-gl-f9a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edd-1y-yHA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1217,10 +1238,313 @@ Ingredient</string>
             </objects>
             <point key="canvasLocation" x="-1" y="1432"/>
         </scene>
+        <!--Quick Add View Controller-->
+        <scene sceneID="sE6-vA-5j8">
+            <objects>
+                <viewController id="vLB-2G-E5e" userLabel="Quick Add View Controller" customClass="QuickAddViewController" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HJ3-ox-Srg">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flour-5290444" translatesAutoresizingMaskIntoConstraints="NO" id="Vug-Xb-v81">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8IF-OG-PE6">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLo-Ln-juj" userLabel="Inner Scroll View">
+                                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Add Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzN-v5-76o" userLabel="Quick Add Title Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="190.5" y="50" width="439.5" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="46"/>
+                                                <color key="textColor" name="BakeShopBrown"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="BakeShopBrown"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingTop">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingBottom">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xV-0e-lPe" userLabel="Header Stack View">
+                                                <rect key="frame" x="50" y="160" width="720" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Ingredient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edh-6u-9qg" userLabel="Ingredient">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount Added" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dr9-HA-DY2">
+                                                        <rect key="frame" x="320" y="0.0" width="250" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="0Vp-VH-atq"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Cost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Eb-js-7M0">
+                                                        <rect key="frame" x="570" y="0.0" width="150" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Ze4-aD-prN"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="tZK-OR-gUL"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVH-4F-Ix4" userLabel="Bottom View">
+                                                <rect key="frame" x="50" y="680" width="720" height="400"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DY0-kF-jmS" userLabel="Ingredient Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="25" width="140.5" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="p41-0a-TYg"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hi8-3g-Nhg" userLabel="Ingredient Popup Button">
+                                                        <rect key="frame" x="160.5" y="25" width="250" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="KM1-ee-Ice"/>
+                                                            <constraint firstAttribute="height" constant="50" id="Pjm-bH-JXl"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                                        <menu key="menu" id="THH-sh-g8n">
+                                                            <children>
+                                                                <command title="Item 1" id="YCD-Fp-lbr"/>
+                                                                <command title="Item 2" id="wQR-QT-tRr"/>
+                                                            </children>
+                                                        </menu>
+                                                        <state key="normal" title="Add Ingredient">
+                                                            <color key="titleColor" name="BakeShopBrown"/>
+                                                        </state>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount Added:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vO-oF-QCe" userLabel="Amount Added Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="125" width="205.5" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="Tgo-Wn-OeJ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Cost Of Units Added:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sp-43-G1Q" userLabel="Cost Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="225" width="352" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="Hdz-q9-zX4"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="S5g-5w-kQF" userLabel="Error Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="280.5" y="285" width="159.5" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="jyp-Dr-3ed"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="DeleteRed"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZmW-B2-FHE" userLabel="Amount Text Field">
+                                                        <rect key="frame" x="225.5" y="125" width="150" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="AGg-Mx-N3h"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Reo-Xa-bD5"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A9F-w7-6Gw" userLabel="Units Popup Button">
+                                                        <rect key="frame" x="380.5" y="125" width="200" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="L8r-hq-Xf3"/>
+                                                            <constraint firstAttribute="height" constant="50" id="Mje-Yj-n3L"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <menu key="menu" id="tA1-Te-NLQ">
+                                                            <children>
+                                                                <command title="Item 1" id="U6s-es-6mC"/>
+                                                                <command title="Item 2" id="pJx-iO-htT"/>
+                                                            </children>
+                                                        </menu>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleColor" name="BakeShopBrown"/>
+                                                        </state>
+                                                    </button>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zQV-52-mF0" userLabel="Cost Currency Field" customClass="CurrencyField" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="372" y="225" width="100" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="TVu-jq-eGo"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t8L-59-CRy" userLabel="Add Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="250.5" y="325" width="219" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="Lsf-I6-laA"/>
+                                                            <constraint firstAttribute="height" constant="50" id="ghP-4U-OMO"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="BakeShopBrown"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Add Ingredient">
+                                                            <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="addButtonPressed:" destination="vLB-2G-E5e" eventType="touchUpInside" id="ch4-U3-6Vb"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="S5g-5w-kQF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bVH-4F-Ix4" secondAttribute="leading" constant="5" id="62T-de-mLh"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hi8-3g-Nhg" secondAttribute="trailing" constant="20" symbolic="YES" id="7UZ-tm-wzf"/>
+                                                    <constraint firstItem="ZmW-B2-FHE" firstAttribute="leading" secondItem="6vO-oF-QCe" secondAttribute="trailing" constant="5" id="7es-3b-jyh"/>
+                                                    <constraint firstAttribute="height" constant="400" id="Bwi-Wn-FPf"/>
+                                                    <constraint firstItem="ZmW-B2-FHE" firstAttribute="top" secondItem="hi8-3g-Nhg" secondAttribute="bottom" constant="50" id="G0V-DG-4tt"/>
+                                                    <constraint firstItem="6vO-oF-QCe" firstAttribute="leading" secondItem="bVH-4F-Ix4" secondAttribute="leading" constant="15" id="NPB-9y-hCz"/>
+                                                    <constraint firstItem="t8L-59-CRy" firstAttribute="centerX" secondItem="bVH-4F-Ix4" secondAttribute="centerX" id="Ok1-y9-Zit"/>
+                                                    <constraint firstItem="A9F-w7-6Gw" firstAttribute="top" secondItem="hi8-3g-Nhg" secondAttribute="bottom" constant="50" id="Pl4-Da-uCF"/>
+                                                    <constraint firstItem="zQV-52-mF0" firstAttribute="top" secondItem="A9F-w7-6Gw" secondAttribute="bottom" constant="50" id="T9e-sE-EBd"/>
+                                                    <constraint firstItem="S5g-5w-kQF" firstAttribute="centerX" secondItem="bVH-4F-Ix4" secondAttribute="centerX" id="XfR-Yd-h3w"/>
+                                                    <constraint firstItem="hi8-3g-Nhg" firstAttribute="top" secondItem="bVH-4F-Ix4" secondAttribute="top" constant="25" id="Xjd-FY-4AP"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zQV-52-mF0" secondAttribute="trailing" constant="20" symbolic="YES" id="Y1f-cE-7Fd"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="S5g-5w-kQF" secondAttribute="trailing" constant="5" id="aBu-v1-u7i"/>
+                                                    <constraint firstItem="t8L-59-CRy" firstAttribute="top" secondItem="S5g-5w-kQF" secondAttribute="bottom" constant="5" id="b5F-B6-sfE"/>
+                                                    <constraint firstItem="t8L-59-CRy" firstAttribute="top" secondItem="8sp-43-G1Q" secondAttribute="bottom" constant="50" id="cmW-3G-1DO"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="A9F-w7-6Gw" secondAttribute="trailing" constant="20" symbolic="YES" id="csi-Yz-Viv"/>
+                                                    <constraint firstItem="6vO-oF-QCe" firstAttribute="top" secondItem="DY0-kF-jmS" secondAttribute="bottom" constant="50" id="ctm-sx-z9c"/>
+                                                    <constraint firstItem="A9F-w7-6Gw" firstAttribute="leading" secondItem="ZmW-B2-FHE" secondAttribute="trailing" constant="5" id="iTg-PJ-L57"/>
+                                                    <constraint firstAttribute="bottom" secondItem="t8L-59-CRy" secondAttribute="bottom" constant="25" id="mxE-7D-lc2"/>
+                                                    <constraint firstItem="DY0-kF-jmS" firstAttribute="top" secondItem="bVH-4F-Ix4" secondAttribute="top" constant="25" id="nnq-RS-meu"/>
+                                                    <constraint firstItem="8sp-43-G1Q" firstAttribute="top" secondItem="6vO-oF-QCe" secondAttribute="bottom" constant="50" id="oGt-bv-BUz"/>
+                                                    <constraint firstItem="DY0-kF-jmS" firstAttribute="leading" secondItem="bVH-4F-Ix4" secondAttribute="leading" constant="15" id="scG-zb-ad2"/>
+                                                    <constraint firstItem="zQV-52-mF0" firstAttribute="leading" secondItem="8sp-43-G1Q" secondAttribute="trailing" constant="5" id="vWW-Nj-CWz"/>
+                                                    <constraint firstItem="8sp-43-G1Q" firstAttribute="leading" secondItem="bVH-4F-Ix4" secondAttribute="leading" constant="15" id="vzJ-kg-WnY"/>
+                                                    <constraint firstItem="hi8-3g-Nhg" firstAttribute="leading" secondItem="DY0-kF-jmS" secondAttribute="trailing" constant="5" id="woI-0O-mhm"/>
+                                                </constraints>
+                                            </view>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fBq-Q5-Inj" userLabel="Quick Add Table View">
+                                                <rect key="frame" x="50" y="210" width="720" height="470"/>
+                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </tableView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpt-Y8-yDv" userLabel="Save Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="551" y="1080" width="219" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="MVK-L5-CiR"/>
+                                                </constraints>
+                                                <color key="tintColor" name="BakeShopBrown"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Save Additions">
+                                                    <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="saveButtonPressed:" destination="vLB-2G-E5e" eventType="touchUpInside" id="5ZZ-xa-n2w"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1180" id="2By-BW-n8y"/>
+                                            <constraint firstItem="hzN-v5-76o" firstAttribute="centerX" secondItem="iLo-Ln-juj" secondAttribute="centerX" id="AVF-Il-c7X"/>
+                                            <constraint firstItem="bVH-4F-Ix4" firstAttribute="leading" secondItem="iLo-Ln-juj" secondAttribute="leading" constant="50" id="BD6-kZ-2XO"/>
+                                            <constraint firstItem="hzN-v5-76o" firstAttribute="top" secondItem="iLo-Ln-juj" secondAttribute="top" constant="50" id="FL5-5g-fer"/>
+                                            <constraint firstItem="fBq-Q5-Inj" firstAttribute="leading" secondItem="iLo-Ln-juj" secondAttribute="leading" constant="50" id="Gxr-xN-Jd5"/>
+                                            <constraint firstItem="bVH-4F-Ix4" firstAttribute="top" secondItem="fBq-Q5-Inj" secondAttribute="bottom" id="JXv-Kl-6lh"/>
+                                            <constraint firstItem="Lpt-Y8-yDv" firstAttribute="bottom" secondItem="iLo-Ln-juj" secondAttribute="bottom" constant="-50" id="MJP-eB-cg9"/>
+                                            <constraint firstItem="5xV-0e-lPe" firstAttribute="top" secondItem="hzN-v5-76o" secondAttribute="bottom" constant="50" id="Nxn-Zv-e98"/>
+                                            <constraint firstItem="bVH-4F-Ix4" firstAttribute="bottom" secondItem="Lpt-Y8-yDv" secondAttribute="top" id="OVw-AT-X6I"/>
+                                            <constraint firstItem="bVH-4F-Ix4" firstAttribute="trailing" secondItem="iLo-Ln-juj" secondAttribute="trailing" constant="-50" id="S1Y-7u-cq1"/>
+                                            <constraint firstItem="fBq-Q5-Inj" firstAttribute="trailing" secondItem="iLo-Ln-juj" secondAttribute="trailing" constant="-50" id="bAh-IC-KUd"/>
+                                            <constraint firstAttribute="trailing" secondItem="Lpt-Y8-yDv" secondAttribute="trailing" constant="50" id="bJF-RZ-qOi"/>
+                                            <constraint firstItem="fBq-Q5-Inj" firstAttribute="top" secondItem="5xV-0e-lPe" secondAttribute="bottom" id="cj9-aF-NXF"/>
+                                            <constraint firstItem="5xV-0e-lPe" firstAttribute="leading" secondItem="iLo-Ln-juj" secondAttribute="leading" constant="50" id="cot-9D-cRY"/>
+                                            <constraint firstItem="5xV-0e-lPe" firstAttribute="trailing" secondItem="iLo-Ln-juj" secondAttribute="trailing" constant="-50" id="dSR-38-vWK"/>
+                                            <constraint firstItem="Lpt-Y8-yDv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iLo-Ln-juj" secondAttribute="leading" constant="20" symbolic="YES" id="dTM-t4-0AU"/>
+                                            <constraint firstItem="hzN-v5-76o" firstAttribute="bottom" secondItem="iLo-Ln-juj" secondAttribute="top" constant="110" id="wpX-GW-qND"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="iLo-Ln-juj" firstAttribute="bottom" secondItem="wn2-5Q-EZg" secondAttribute="bottom" id="CFG-v7-DFn"/>
+                                    <constraint firstItem="iLo-Ln-juj" firstAttribute="leading" secondItem="wn2-5Q-EZg" secondAttribute="leading" id="h54-fP-JGi"/>
+                                    <constraint firstItem="iLo-Ln-juj" firstAttribute="trailing" secondItem="wn2-5Q-EZg" secondAttribute="trailing" id="o8U-RQ-zcu"/>
+                                    <constraint firstItem="iLo-Ln-juj" firstAttribute="top" secondItem="wn2-5Q-EZg" secondAttribute="top" id="oaA-Fb-hLY"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="wn2-5Q-EZg"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Q4n-JZ-nfH"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HcO-Yo-79h"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vug-Xb-v81" firstAttribute="trailing" secondItem="HJ3-ox-Srg" secondAttribute="trailing" id="0Rx-lV-Eag"/>
+                            <constraint firstItem="8IF-OG-PE6" firstAttribute="leading" secondItem="HJ3-ox-Srg" secondAttribute="leading" id="2Tw-MO-DRe"/>
+                            <constraint firstItem="Vug-Xb-v81" firstAttribute="bottom" secondItem="HJ3-ox-Srg" secondAttribute="bottom" id="7sS-qX-vfh"/>
+                            <constraint firstItem="iLo-Ln-juj" firstAttribute="width" secondItem="HJ3-ox-Srg" secondAttribute="width" id="THA-NJ-5j5"/>
+                            <constraint firstItem="Vug-Xb-v81" firstAttribute="top" secondItem="HJ3-ox-Srg" secondAttribute="top" id="X3p-QO-fAy"/>
+                            <constraint firstItem="Vug-Xb-v81" firstAttribute="leading" secondItem="HJ3-ox-Srg" secondAttribute="leading" id="YCb-Wp-OHO"/>
+                            <constraint firstItem="8IF-OG-PE6" firstAttribute="top" secondItem="HJ3-ox-Srg" secondAttribute="top" id="bM7-bK-WTO"/>
+                            <constraint firstAttribute="bottom" secondItem="8IF-OG-PE6" secondAttribute="bottom" id="cq0-EE-Wbp"/>
+                            <constraint firstAttribute="trailing" secondItem="8IF-OG-PE6" secondAttribute="trailing" id="gw5-v1-hqM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nVC-bs-NZj"/>
+                    <connections>
+                        <outlet property="addButton" destination="t8L-59-CRy" id="CLr-X7-slu"/>
+                        <outlet property="amountAddedTextField" destination="ZmW-B2-FHE" id="TlR-DN-8h5"/>
+                        <outlet property="bottomView" destination="bVH-4F-Ix4" id="wBc-fV-6zy"/>
+                        <outlet property="costCurrencyField" destination="zQV-52-mF0" id="ZCT-Ba-0LD"/>
+                        <outlet property="errorLabel" destination="S5g-5w-kQF" id="nBE-aN-jzu"/>
+                        <outlet property="headerStackView" destination="5xV-0e-lPe" id="Hkr-oc-ZvS"/>
+                        <outlet property="ingredientPopUpButton" destination="hi8-3g-Nhg" id="dGU-wY-UVV"/>
+                        <outlet property="quickAddTableView" destination="fBq-Q5-Inj" id="SWk-7W-hbq"/>
+                        <outlet property="saveButton" destination="Lpt-Y8-yDv" id="Nu4-c8-6dU"/>
+                        <outlet property="unitsAddedPopup" destination="A9F-w7-6Gw" id="ER6-Dt-pwb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ymi-P2-pGS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1715.1219512195121" y="-34.067796610169495"/>
+        </scene>
         <!--Edit Inventory View Controller-->
         <scene sceneID="FDs-VM-hiE">
             <objects>
-                <viewController id="aOI-U8-kKX" userLabel="Edit Inventory View Controller" sceneMemberID="viewController">
+                <viewController id="aOI-U8-kKX" userLabel="Edit Inventory View Controller" customClass="EditInventoryViewController" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K2f-27-Fa9">
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1228,100 +1552,369 @@ Ingredient</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flour-5290444" translatesAutoresizingMaskIntoConstraints="NO" id="WvH-33-o3C">
                                 <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Ingredient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiE-GX-yxc" userLabel="Inventory Title Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="220.5" y="50" width="379.5" height="60"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="46"/>
-                                <color key="textColor" name="BakeShopBrown"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" name="BakeShopBrown"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingTop">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingBottom">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="1wp-P4-IX2">
-                                <rect key="frame" x="112" y="156" width="230.5" height="35.5"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xz6-kj-5Yl">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZZ-p5-Yfd" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="35.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
-                                        <color key="textColor" name="BakeShopBrown"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Cy-FL-S7M" userLabel="Text Field">
-                                        <rect key="frame" x="198.5" y="0.0" width="32" height="35.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4L-4U-TOp" userLabel="Inner Scroll View">
+                                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Ingredient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiE-GX-yxc" userLabel="Inventory Title Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="220.5" y="50" width="379.5" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="46"/>
+                                                <color key="textColor" name="BakeShopBrown"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="BakeShopBrown"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingTop">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingBottom">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="1wp-P4-IX2" userLabel="Ingredient Stack View">
+                                                <rect key="frame" x="50" y="160" width="556.5" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZZ-p5-Yfd" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Cy-FL-S7M" userLabel="Ingredient Text Field">
+                                                        <rect key="frame" x="156.5" y="0.0" width="400" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="400" id="wiU-9d-XgN"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Cry-yn-SD0"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="M8X-YD-ueN" userLabel="Standard Units Stack View">
+                                                <rect key="frame" x="50" y="260" width="422" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standard Units:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kah-V1-oiH" userLabel="Standard Units:" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="220" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIR-Gj-mI2" userLabel="Units Popup Button">
+                                                        <rect key="frame" x="222" y="0.0" width="200" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="c9z-TN-r0h"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <menu key="menu" id="wiu-kL-6Eo">
+                                                            <children>
+                                                                <command title="Item 1" id="1MW-uO-GjX"/>
+                                                                <command title="Item 2" id="Er8-90-fOS"/>
+                                                            </children>
+                                                        </menu>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleColor" name="BakeShopBrown"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="YUa-X2-Qnz"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="r3g-Zf-aL6" userLabel="Cost Stack View">
+                                                <rect key="frame" x="50" y="360" width="447.5" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost per standard unit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNl-92-11y" userLabel="Cost per standard unit:" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320.5" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fg1-WQ-Bbj" userLabel="Cost Currency Field" customClass="CurrencyField" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="322.5" y="0.0" width="125" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="125" id="qO0-GR-SiJ"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="0kV-bz-jJr"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ueu-ke-YDs" userLabel="On Hand View">
+                                                <rect key="frame" x="50" y="460" width="720" height="475"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount On Hand:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4o-Za-3MF" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="231" y="5" width="258" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="YFc-qE-0rn"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="gCj-Ok-Mz6" userLabel="Current Amount Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="55" width="209" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="CMC-dR-lcM"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Current Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wde-jI-atl" userLabel="Edit Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="110" width="307" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="LMY-QQ-4Gv"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Amount:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjI-WW-0RY" userLabel="New Amount Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="71" y="165" width="189.5" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="LlN-om-dTu"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z6c-td-kZN" userLabel="Amount Text Field">
+                                                        <rect key="frame" x="275.5" y="165" width="150" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="Scp-yo-r2D"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="pPe-Ne-hGl"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measured In:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHx-hN-w8p" userLabel="Measured Units Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="75" y="240" width="185.5" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="ypU-nw-f5n"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PAI-VP-kK2" userLabel="Units Popup Button">
+                                                        <rect key="frame" x="275.5" y="240" width="200" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Fty-Kt-hfS"/>
+                                                            <constraint firstAttribute="height" constant="50" id="NQc-Fh-Pog"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                        <menu key="menu" id="7Nf-LZ-Jbb">
+                                                            <children>
+                                                                <command title="Item 1" id="UME-Y6-Uoz"/>
+                                                                <command title="Item 2" id="DdK-oL-MHX"/>
+                                                            </children>
+                                                        </menu>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleColor" name="BakeShopBrown"/>
+                                                        </state>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated Amount" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqk-Ry-330" userLabel="Updated Amount Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="380" width="220" height="80"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                        <color key="textColor" name="BakeShopBrown"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRM-kg-wpF" userLabel="Update Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="302" y="315" width="116.5" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="lLW-pj-6te"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="BakeShopBrown"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Update">
+                                                            <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="updateButtonPressed:" destination="aOI-U8-kKX" eventType="touchUpInside" id="vKd-ef-SMv"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="wHx-hN-w8p" firstAttribute="trailing" secondItem="PAI-VP-kK2" secondAttribute="leading" constant="-15" id="37R-21-Iqy"/>
+                                                    <constraint firstItem="gCj-Ok-Mz6" firstAttribute="bottom" secondItem="wde-jI-atl" secondAttribute="top" constant="-5" id="3Q1-lc-aPr"/>
+                                                    <constraint firstItem="YjI-WW-0RY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ueu-ke-YDs" secondAttribute="leading" id="40f-mJ-EMM"/>
+                                                    <constraint firstItem="PAI-VP-kK2" firstAttribute="top" secondItem="z6c-td-kZN" secondAttribute="bottom" constant="25" id="6th-Ld-vGX"/>
+                                                    <constraint firstItem="Qqk-Ry-330" firstAttribute="top" secondItem="iRM-kg-wpF" secondAttribute="bottom" constant="15" id="9MC-Rm-rV8"/>
+                                                    <constraint firstItem="gCj-Ok-Mz6" firstAttribute="leading" secondItem="ueu-ke-YDs" secondAttribute="leading" constant="15" id="AYK-NJ-nF0"/>
+                                                    <constraint firstItem="wHx-hN-w8p" firstAttribute="top" secondItem="YjI-WW-0RY" secondAttribute="bottom" constant="25" id="D4Q-p7-OzA"/>
+                                                    <constraint firstItem="iRM-kg-wpF" firstAttribute="centerX" secondItem="ueu-ke-YDs" secondAttribute="centerX" id="Kft-qn-Xzu"/>
+                                                    <constraint firstItem="iRM-kg-wpF" firstAttribute="top" secondItem="PAI-VP-kK2" secondAttribute="bottom" constant="25" id="MLp-tQ-4a4"/>
+                                                    <constraint firstItem="gCj-Ok-Mz6" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ueu-ke-YDs" secondAttribute="trailing" constant="-10" id="Oo5-4O-VCR"/>
+                                                    <constraint firstItem="PAI-VP-kK2" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ueu-ke-YDs" secondAttribute="trailing" id="V2G-QN-hab"/>
+                                                    <constraint firstItem="z6c-td-kZN" firstAttribute="leading" secondItem="YjI-WW-0RY" secondAttribute="trailing" constant="15" id="VWo-yJ-ebh"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="z6c-td-kZN" secondAttribute="trailing" constant="20" symbolic="YES" id="XDi-Xa-NWM"/>
+                                                    <constraint firstItem="v4o-Za-3MF" firstAttribute="centerX" secondItem="ueu-ke-YDs" secondAttribute="centerX" id="azd-gm-qhh"/>
+                                                    <constraint firstItem="wde-jI-atl" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ueu-ke-YDs" secondAttribute="trailing" id="bOy-ul-4Ro"/>
+                                                    <constraint firstAttribute="height" constant="475" id="dPk-gk-4iN"/>
+                                                    <constraint firstItem="v4o-Za-3MF" firstAttribute="top" secondItem="ueu-ke-YDs" secondAttribute="top" constant="5" id="g3z-TO-NT3"/>
+                                                    <constraint firstItem="z6c-td-kZN" firstAttribute="top" secondItem="wde-jI-atl" secondAttribute="bottom" constant="5" id="gCc-ko-Q9l"/>
+                                                    <constraint firstItem="YjI-WW-0RY" firstAttribute="top" secondItem="wde-jI-atl" secondAttribute="bottom" constant="5" id="iAj-vM-W0K"/>
+                                                    <constraint firstItem="Qqk-Ry-330" firstAttribute="bottom" secondItem="ueu-ke-YDs" secondAttribute="bottom" constant="-15" id="lNx-XG-JCT"/>
+                                                    <constraint firstItem="wde-jI-atl" firstAttribute="leading" secondItem="ueu-ke-YDs" secondAttribute="leading" constant="15" id="nN4-xy-xpU"/>
+                                                    <constraint firstItem="Qqk-Ry-330" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ueu-ke-YDs" secondAttribute="trailing" constant="-10" id="o7T-pg-m4n"/>
+                                                    <constraint firstItem="wHx-hN-w8p" firstAttribute="trailing" secondItem="YjI-WW-0RY" secondAttribute="trailing" id="pXV-yx-reg"/>
+                                                    <constraint firstItem="Qqk-Ry-330" firstAttribute="leading" secondItem="ueu-ke-YDs" secondAttribute="leading" constant="15" id="qnM-SV-0Jr"/>
+                                                    <constraint firstItem="wHx-hN-w8p" firstAttribute="leading" secondItem="ueu-ke-YDs" secondAttribute="leading" constant="75" id="upi-WF-eme"/>
+                                                    <constraint firstItem="gCj-Ok-Mz6" firstAttribute="top" secondItem="v4o-Za-3MF" secondAttribute="bottom" id="ycQ-TS-Qy6"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="P9J-HG-Eeg" userLabel="Button Stack View">
+                                                <rect key="frame" x="148" y="1010" width="524" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bd9-Vj-TwF" userLabel="Delete Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="247" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="TRf-SD-iOO"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="DeleteRed"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Delete Ingredient">
+                                                            <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="deleteButtonPressed:" destination="aOI-U8-kKX" eventType="touchUpInside" id="EKM-Qt-e8w"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8G-WV-aoB" userLabel="Save Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                        <rect key="frame" x="277" y="0.0" width="247" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="3Xj-jL-TYf"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="BakeShopBrown"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Save Ingredient">
+                                                            <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="saveButtonPressed:" destination="aOI-U8-kKX" eventType="touchUpInside" id="sCz-LH-IxL"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="r3g-Zf-aL6" firstAttribute="top" secondItem="M8X-YD-ueN" secondAttribute="bottom" constant="50" id="6DJ-na-SQW"/>
+                                            <constraint firstAttribute="height" constant="1180" id="7Va-Lf-NnS"/>
+                                            <constraint firstItem="r3g-Zf-aL6" firstAttribute="leading" secondItem="m4L-4U-TOp" secondAttribute="leading" constant="50" id="Au8-ue-yjR"/>
+                                            <constraint firstItem="M8X-YD-ueN" firstAttribute="top" secondItem="1wp-P4-IX2" secondAttribute="bottom" constant="50" id="T3G-2O-D7A"/>
+                                            <constraint firstItem="P9J-HG-Eeg" firstAttribute="top" secondItem="ueu-ke-YDs" secondAttribute="bottom" constant="75" id="TlD-Io-iBN"/>
+                                            <constraint firstItem="1wp-P4-IX2" firstAttribute="top" secondItem="YiE-GX-yxc" secondAttribute="bottom" constant="50" id="UYJ-OB-qca"/>
+                                            <constraint firstItem="ueu-ke-YDs" firstAttribute="top" secondItem="r3g-Zf-aL6" secondAttribute="bottom" constant="50" id="Vek-zz-7bI"/>
+                                            <constraint firstItem="YiE-GX-yxc" firstAttribute="centerX" secondItem="m4L-4U-TOp" secondAttribute="centerX" id="VgX-ew-TgH"/>
+                                            <constraint firstItem="P9J-HG-Eeg" firstAttribute="centerX" secondItem="m4L-4U-TOp" secondAttribute="centerX" id="cfA-2J-GYc"/>
+                                            <constraint firstItem="ueu-ke-YDs" firstAttribute="trailing" secondItem="m4L-4U-TOp" secondAttribute="trailing" constant="-50" id="mW6-yk-QgS"/>
+                                            <constraint firstItem="1wp-P4-IX2" firstAttribute="leading" secondItem="m4L-4U-TOp" secondAttribute="leading" constant="50" id="o9W-J6-QP9"/>
+                                            <constraint firstItem="YiE-GX-yxc" firstAttribute="top" secondItem="m4L-4U-TOp" secondAttribute="top" constant="50" id="t8f-Mm-lNe"/>
+                                            <constraint firstItem="ueu-ke-YDs" firstAttribute="leading" secondItem="m4L-4U-TOp" secondAttribute="leading" constant="50" id="teF-cv-iwh"/>
+                                            <constraint firstItem="M8X-YD-ueN" firstAttribute="leading" secondItem="m4L-4U-TOp" secondAttribute="leading" constant="50" id="u5q-rp-7Cs"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="r3g-Zf-aL6">
-                                <rect key="frame" x="294" y="572" width="230.5" height="35.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNl-92-11y" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="35.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
-                                        <color key="textColor" name="BakeShopBrown"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fg1-WQ-Bbj" userLabel="Text Field">
-                                        <rect key="frame" x="198.5" y="0.0" width="32" height="35.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="M8X-YD-ueN">
-                                <rect key="frame" x="278" y="398" width="230.5" height="35.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kah-V1-oiH" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="35.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
-                                        <color key="textColor" name="BakeShopBrown"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OPI-kp-mNz" userLabel="Text Field">
-                                        <rect key="frame" x="198.5" y="0.0" width="32" height="35.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="YCn-YV-dWK" firstAttribute="leading" secondItem="m4L-4U-TOp" secondAttribute="leading" id="04O-SK-CWp"/>
+                                    <constraint firstItem="YCn-YV-dWK" firstAttribute="trailing" secondItem="m4L-4U-TOp" secondAttribute="trailing" id="bKI-Sb-qLK"/>
+                                    <constraint firstItem="YCn-YV-dWK" firstAttribute="top" secondItem="m4L-4U-TOp" secondAttribute="top" id="lW9-0t-rPV"/>
+                                    <constraint firstItem="YCn-YV-dWK" firstAttribute="bottom" secondItem="m4L-4U-TOp" secondAttribute="bottom" id="q8X-1w-Oy3"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="YCn-YV-dWK"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="iPg-ZA-62Q"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XrT-6k-7vg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="YiE-GX-yxc" firstAttribute="top" secondItem="K2f-27-Fa9" secondAttribute="top" constant="50" id="1qF-9I-In9"/>
-                            <constraint firstItem="WvH-33-o3C" firstAttribute="top" secondItem="K2f-27-Fa9" secondAttribute="top" id="86D-XJ-Bsl"/>
-                            <constraint firstItem="YiE-GX-yxc" firstAttribute="centerX" secondItem="K2f-27-Fa9" secondAttribute="centerX" id="Ats-qT-wPS"/>
-                            <constraint firstItem="WvH-33-o3C" firstAttribute="bottom" secondItem="K2f-27-Fa9" secondAttribute="bottom" id="cfZ-rV-1kS"/>
-                            <constraint firstItem="WvH-33-o3C" firstAttribute="leading" secondItem="K2f-27-Fa9" secondAttribute="leading" id="jPD-Oo-Olz"/>
-                            <constraint firstItem="WvH-33-o3C" firstAttribute="trailing" secondItem="K2f-27-Fa9" secondAttribute="trailing" id="pTf-Ky-fXG"/>
+                            <constraint firstItem="xz6-kj-5Yl" firstAttribute="leading" secondItem="K2f-27-Fa9" secondAttribute="leading" id="4Jx-8o-bhy"/>
+                            <constraint firstAttribute="bottom" secondItem="WvH-33-o3C" secondAttribute="bottom" id="BfX-Wp-EN5"/>
+                            <constraint firstItem="m4L-4U-TOp" firstAttribute="width" secondItem="K2f-27-Fa9" secondAttribute="width" id="Hdg-EU-cHQ"/>
+                            <constraint firstItem="WvH-33-o3C" firstAttribute="leading" secondItem="K2f-27-Fa9" secondAttribute="leading" id="OHg-BI-cZP"/>
+                            <constraint firstItem="xz6-kj-5Yl" firstAttribute="trailing" secondItem="K2f-27-Fa9" secondAttribute="trailing" id="Smf-RQ-W3R"/>
+                            <constraint firstItem="xz6-kj-5Yl" firstAttribute="top" secondItem="K2f-27-Fa9" secondAttribute="top" id="Stc-0G-M6B"/>
+                            <constraint firstItem="xz6-kj-5Yl" firstAttribute="bottom" secondItem="K2f-27-Fa9" secondAttribute="bottom" id="XDT-vo-KeQ"/>
+                            <constraint firstItem="WvH-33-o3C" firstAttribute="top" secondItem="K2f-27-Fa9" secondAttribute="top" id="Yo1-mZ-afr"/>
+                            <constraint firstAttribute="trailing" secondItem="WvH-33-o3C" secondAttribute="trailing" id="cNa-ZD-VVV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2cs-0N-bEH"/>
+                    <connections>
+                        <outlet property="amountTextField" destination="z6c-td-kZN" id="ZPD-Wi-mKb"/>
+                        <outlet property="costCurrencyField" destination="fg1-WQ-Bbj" id="Y6P-DU-zHz"/>
+                        <outlet property="costStackView" destination="r3g-Zf-aL6" id="jtn-PH-SyA"/>
+                        <outlet property="currentAmountLabel" destination="gCj-Ok-Mz6" id="jt7-7A-Rwi"/>
+                        <outlet property="deleteButton" destination="Bd9-Vj-TwF" id="cD0-2V-LHJ"/>
+                        <outlet property="ingredientStackView" destination="1wp-P4-IX2" id="FfI-xO-4YP"/>
+                        <outlet property="ingredientTextField" destination="8Cy-FL-S7M" id="Ya1-uE-BS0"/>
+                        <outlet property="measuredUnitsPopupButton" destination="PAI-VP-kK2" id="jio-66-4Z5"/>
+                        <outlet property="onHandView" destination="ueu-ke-YDs" id="CZF-hi-aQD"/>
+                        <outlet property="saveButton" destination="I8G-WV-aoB" id="s4r-eH-UkV"/>
+                        <outlet property="standardUnitsPopupButton" destination="nIR-Gj-mI2" id="MSg-Ow-H1I"/>
+                        <outlet property="standardUnitsStackView" destination="M8X-YD-ueN" id="Grj-Ch-Gev"/>
+                        <outlet property="updateButton" destination="iRM-kg-wpF" id="HEc-Gs-7Pw"/>
+                        <outlet property="updatedAmountLabel" destination="Qqk-Ry-330" id="9g6-M1-SzF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u3l-tt-uKu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2286,6 +2879,11 @@ Ingredient</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                         <color key="textColor" name="BakeShopBlueberry"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-8q-16T" userLabel="First Name Text Field">
                                                         <rect key="frame" x="159.5" y="0.0" width="300" height="45"/>
@@ -2309,6 +2907,11 @@ Ingredient</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                         <color key="textColor" name="BakeShopBlueberry"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W5G-BQ-Co1" userLabel="Last Name Text Field">
                                                         <rect key="frame" x="154.5" y="0.0" width="300" height="45"/>
@@ -2332,6 +2935,11 @@ Ingredient</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                         <color key="textColor" name="BakeShopBlueberry"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WRN-0c-lOX" userLabel="Address Text Field">
                                                         <rect key="frame" x="119.5" y="0.0" width="350" height="45"/>
@@ -2355,6 +2963,11 @@ Ingredient</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                         <color key="textColor" name="BakeShopBlueberry"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uxq-sZ-ouA" userLabel="City Text Field">
                                                         <rect key="frame" x="70" y="0.0" width="200" height="45"/>
@@ -2378,6 +2991,11 @@ Ingredient</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                         <color key="textColor" name="BakeShopBlueberry"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qRZ-ud-vY7" userLabel="State Text Field">
                                                         <rect key="frame" x="80" y="0.0" width="150" height="45"/>
@@ -2401,6 +3019,11 @@ Ingredient</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                         <color key="textColor" name="BakeShopBlueberry"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vy9-wm-S5D" userLabel="Zip Text Field">
                                                         <rect key="frame" x="134.5" y="0.0" width="100" height="45"/>
@@ -2424,6 +3047,11 @@ Ingredient</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                         <color key="textColor" name="BakeShopBlueberry"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fi0-gn-9zW" userLabel="Phone Text Field">
                                                         <rect key="frame" x="95" y="0.0" width="250" height="45"/>
@@ -2513,15 +3141,22 @@ Ingredient</string>
                     </view>
                     <navigationItem key="navigationItem" id="NfP-v2-4SJ"/>
                     <connections>
+                        <outlet property="addressStackView" destination="eCv-wH-Y6E" id="PoE-HR-0vI"/>
                         <outlet property="addressTextField" destination="WRN-0c-lOX" id="YC9-OL-XBy"/>
+                        <outlet property="cityStackView" destination="sVW-df-e4w" id="9BI-mc-Vel"/>
                         <outlet property="cityTextField" destination="Uxq-sZ-ouA" id="PVW-BI-Xqg"/>
                         <outlet property="customerInfoTitleLabel" destination="l58-Hb-efh" id="5jH-5e-ZKT"/>
                         <outlet property="deleteCustomerButton" destination="zyq-3M-6xM" id="lLa-5K-qaL"/>
+                        <outlet property="firstNameStackView" destination="vQP-7L-KVg" id="Eak-0o-x8D"/>
                         <outlet property="firstNameTextField" destination="xbk-8q-16T" id="4SH-I0-PvZ"/>
+                        <outlet property="lastNameStackView" destination="iRs-xd-H8y" id="hfx-3k-THx"/>
                         <outlet property="lastNameTextField" destination="W5G-BQ-Co1" id="tVW-mf-3dP"/>
+                        <outlet property="phoneStackView" destination="egF-A7-gjc" id="ije-n6-mci"/>
                         <outlet property="phoneTextField" destination="fi0-gn-9zW" id="lOw-xx-lvq"/>
                         <outlet property="saveInfoButton" destination="stc-f0-Z3v" id="WWA-jF-rjp"/>
+                        <outlet property="stateStackView" destination="uNy-HL-D9i" id="zr7-tn-Zgv"/>
                         <outlet property="stateTextField" destination="qRZ-ud-vY7" id="nLs-Yr-Tot"/>
+                        <outlet property="zipStackView" destination="YrC-L1-YSD" id="p5M-T6-FCD"/>
                         <outlet property="zipTextField" destination="Vy9-wm-S5D" id="sZR-2N-O5T"/>
                     </connections>
                 </viewController>
@@ -3243,7 +3878,7 @@ Ingredient</string>
     <inferredMetricsTieBreakers>
         <segue reference="M0N-3I-mtB"/>
         <segue reference="qO5-cu-h87"/>
-        <segue reference="Qih-7M-Qtx"/>
+        <segue reference="xjg-cQ-06Z"/>
         <segue reference="DMC-Rm-AwU"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3279,16 +3914,16 @@ Ingredient</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

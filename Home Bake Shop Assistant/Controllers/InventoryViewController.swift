@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreData
-import SwipeCellKit
 
 class InventoryViewController: UIViewController {
     
@@ -19,9 +18,14 @@ class InventoryViewController: UIViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var quickAddButton: BrettButton!
     
     var inventoryList: [Inventory] = []
-    var selectedIndexPath: IndexPath? = nil
+    var ordersList: [Order] = []
+    var orderedItemsList: [OrderedItem] = []
+    var orderedIngredientsList: [Inventory] = []
+    var segueInventoryIngredient: Inventory? = nil
+    var selectedStandardUnit: UnitsOfMeasurement.Units = .None
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,7 @@ class InventoryViewController: UIViewController {
         AddBorders().addLeftBorder(with: K.bakeShopBrown, andWidth: 4.0, view: ingredientsTableView)
         AddBorders().addRightBorder(with: K.bakeShopBrown, andWidth: 4.0, view: ingredientsTableView)
         AddBorders().addAllBorders(with: K.bakeShopBrown, andWidth: 4.0, view: bottomView)
+        AddBorders().addBottomBorder(with: K.bakeShopBrown, andWidth: 4.0, view: quickAddButton)
         addIngredientButton.tintColor = K.bakeShopBrown
         ingredientsTableView.rowHeight = 50
         
@@ -45,25 +50,51 @@ class InventoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        inventoryList = inventoryList.sorted {$0.ingredientName! < $1.ingredientName!}
         errorLabel.isHidden = true
+        getAmountNeeded()
         setupUnitsTypeButton()
         updateDataAndView()
+        inventoryList = inventoryList.sorted {$0.ingredientName! < $1.ingredientName!}
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.segueIdentifierToEditInventory {
+            let destinationVC = segue.destination as! EditInventoryViewController
+            destinationVC.loadedInventoryIngredient = segueInventoryIngredient
+        }
     }
     
     func setupUnitsTypeButton() {
         var chirren: [UIMenuElement] = []
-        let closure = { (action: UIAction) in
-            //print(action)
-        }
-        for unit in K.unitsOfMeasurement {
-            if unit == "" || unit == "Whole" {
-                chirren.append(UIAction(title: "\(unit)", handler: closure))
+        for unit in UnitsOfMeasurement.Units.allCases {
+            var myTitle = ""
+            if unit == .None {
+                myTitle = ""
+            } else if unit == .Whole {
+                myTitle = "\(unit)"
             } else {
-                chirren.append(UIAction(title: "\(unit)s", handler: closure))
+                myTitle = "\(unit)s"
             }
+            chirren.append(UIAction(title: myTitle) { (action: UIAction) in
+                self.selectedStandardUnit = unit
+            })
         }
         unitsPopUpButton.menu = UIMenu(children: chirren)
+    }
+    
+    func getAmountNeeded() {
+        loadOrders()
+        for order in ordersList {
+            if order.orderComplete == false {
+                for item in (order.toOrderedItem?.allObjects as! [OrderedItem]) {
+                    orderedItemsList.append(item)
+                }
+            }
+        }
+        for item in orderedItemsList {
+            item.toRecipe
+        }
+        print(orderedItemsList)
     }
     
     @IBAction func addIngredientPressed(_ sender: BrettButton) {
@@ -71,15 +102,18 @@ class InventoryViewController: UIViewController {
         if ingredientNameTextField.text == "" {
             errorLabel.isHidden = false
             errorLabel.text = "Please type an ingredient name!"
-        } else if unitsPopUpButton.titleLabel?.text == nil {
+        } else if selectedStandardUnit == .None {
             errorLabel.isHidden = false
             errorLabel.text = "Please select a standard unit!"
         } else {
             let newIngredient = Inventory(context: K.inventoryIngredientContext)
-            newIngredient.ingredientName = ingredientNameTextField.text
+            newIngredient.ingredientName = (ingredientNameTextField.text)!.capitalized
             newIngredient.baseUnit = unitsPopUpButton.titleLabel?.text
             updateDataAndView()
             ingredientNameTextField.text = ""
+            unitsPopUpButton.titleLabel?.text = nil
+            selectedStandardUnit = .None
+            setupUnitsTypeButton()
         }
     }
     
@@ -102,6 +136,17 @@ class InventoryViewController: UIViewController {
         }
     }
     
+    func loadOrders() {
+        let request: NSFetchRequest<Order> = Order.fetchRequest()
+        let orderNumberSort = NSSortDescriptor(key:"orderNumber", ascending:true)
+        request.sortDescriptors = [orderNumberSort]
+        do {
+            ordersList = try K.ordersContext.fetch(request)
+        } catch {
+            print("Error loading Ingredients: \(error)")
+        }
+    }
+    
     func updateDataAndView() {
         saveIngredients()
         loadIngredients()
@@ -109,7 +154,6 @@ class InventoryViewController: UIViewController {
             self.ingredientsTableView.reloadData()
         }
     }
-    
 }
 
 //MARK: TableView DataSource Methods
@@ -122,7 +166,6 @@ extension InventoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
-        cell.delegate = self
         cell.ingredientLabel.text = inventoryList[indexPath.row].ingredientName
         cell.unitsLabel.text = inventoryList[indexPath.row].baseUnit
         cell.onHandLabel.text = "\(inventoryList[indexPath.row].amountOnHand)"
@@ -137,45 +180,8 @@ extension InventoryViewController: UITableViewDataSource {
 extension InventoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        //Allowing the user to deselect a selected cell
-        if selectedIndexPath == indexPath {
-            // it was already selected
-            selectedIndexPath = nil
-            tableView.deselectRow(at: indexPath, animated: false)
-        } else {
-            // wasn't yet selected, so let's remember it
-            selectedIndexPath = indexPath
-        }
-        
-    }
-}
-
-//MARK: Swipe Cell Kit Functionality
-
-extension InventoryViewController: SwipeTableViewCellDelegate {
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            K.inventoryIngredientContext.delete(self.inventoryList[indexPath.row])
-            self.inventoryList.remove(at: indexPath.row)
-            self.updateDataAndView()
-        }
-        
-        let editAction = SwipeAction(style: .default, title: "Edit\nIngredient") { action, indexPath in
-//            self.segueCollectedWisdom = [self.collectedWisdom[indexPath.row]]
-//            self.performSegue(withIdentifier: "editWisdomSegue", sender: self)
-        }
-        
-        // customize the action appearance
-        deleteAction.image = UIImage(named: "delete-icon")
-//        editAction.backgroundColor = K.fontColor.withAlphaComponent(1.0)
-//        editAction.textColor = K.fontColorWhite
-//        editAction.font = UIFont(name: "Times New Roman", size: 20.0)
-        
-        return [deleteAction, editAction]
+        segueInventoryIngredient = inventoryList[indexPath.row]
+        performSegue(withIdentifier: K.segueIdentifierToEditInventory, sender: self)
     }
 }
 

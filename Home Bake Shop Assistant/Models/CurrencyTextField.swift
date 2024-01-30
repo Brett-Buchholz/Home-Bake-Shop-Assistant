@@ -24,7 +24,7 @@ class CurrencyField: UITextField {
         Formatter.currency.locale = locale
         addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         keyboardType = .numberPad
-        textAlignment = .right
+        textAlignment = .center
         sendActions(for: .editingChanged)
     }
     override func deleteBackward() {

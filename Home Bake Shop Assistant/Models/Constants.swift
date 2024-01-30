@@ -35,6 +35,8 @@ class K {
     static let recipeReuseIdentifier = "RecipeReusableCell"
     static let customerCellNibName = "CustomerTableViewCell"
     static let customerReuseIdentifier = "CustomerReusableCell"
+    static let quickAddCellNibName = "QuickAddTableViewCell"
+    static let quickAddReuseIdentifier = "QuickAddReusableCell"
     
     //MARK: SegueIdentifiers
     static let segueIdentifierToViewRecipe = "viewReceipeSegue"
@@ -45,10 +47,10 @@ class K {
     static let segueIdentifierToAddIngredient = "addIngredientSegue"
     static let segueIdentifierToCustomerInfo = "ToCustomerInfo"
     static let segueIdentifierToCompanyInfo = "ToCompanyInfo"
+    static let segueIdentifierToEditInventory = "ToEditInventorySegue"
     
     //MARK: Misc
     static var interfaceMode = UIDevice.current.userInterfaceIdiom
-    static let unitsOfMeasurement = ["", "Whole", "Teaspoon", "Tablespoon", "Cup", "Ounce", "Pound", "Fluid Ounce", "Pint", "Quart", "Gallon", "Gram", "Kilogram", "Liter", "Milliliter"]
     static let fractionalMeasurements = ["", "1/8", "1/4", "3/8", "1/2", "5/8", "3/4", "7/8"]
     
     //MARK: CoreData

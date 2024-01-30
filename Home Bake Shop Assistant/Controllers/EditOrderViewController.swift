@@ -149,9 +149,9 @@ class EditOrderViewController: UIViewController {
                 itemDict["BatchSubtotal"] = item.batchSubtotal
                 tempItemsOrdered.append(itemDict)
             }
-            self.subTotalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSubtotal())
-            self.salesTaxAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSalesTax())
-            self.totalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getTotal())
+            self.subTotalAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.getSubtotal())
+            self.salesTaxAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.getSalesTax())
+            self.totalAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.getTotal())
         }
         self.priceTextField.text = ""
         self.errorLabel.isHidden = true
@@ -299,7 +299,7 @@ class EditOrderViewController: UIViewController {
         }
         itemDict["BatchName"] = batchName
         itemDict["BatchSize"] = tempBatchSize
-        let floatPrice = UnitsConverter().convertCurrencyStringToFloat(stringCurrency: priceTextField.text ?? "0")
+        let floatPrice = StringConverter().convertCurrencyStringToFloat(stringCurrency: priceTextField.text ?? "0")
         itemDict["BatchPrice"] = floatPrice
         itemDict["BatchSubtotal"] = Float(quantity) * floatPrice
         tempItemsOrdered.append(itemDict)
@@ -390,6 +390,9 @@ class EditOrderViewController: UIViewController {
             priceTextField.text = ""
             itemNoteTextField.text = ""
             updateData()
+            itemNoteTextField.resignFirstResponder()
+            quantityTextField.resignFirstResponder()
+            priceTextField.resignFirstResponder()
         }
     }
     
@@ -498,9 +501,9 @@ class EditOrderViewController: UIViewController {
     
     func updateData() {
         DispatchQueue.main.async {
-            self.subTotalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSubtotal())
-            self.salesTaxAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getSalesTax())
-            self.totalAmountLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: self.getTotal())
+            self.subTotalAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.getSubtotal())
+            self.salesTaxAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.getSalesTax())
+            self.totalAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.getTotal())
             self.orderTableView.reloadData()
         }
     }
@@ -524,10 +527,10 @@ extension EditOrderViewController: UITableViewDataSource {
         cell.itemOrderedLabel.text = "\(recipeName!) \(tempItemsOrdered[indexPath.row]["BatchName"]!)"
         cell.itemOrderedLabel.textColor = K.bakeShopBlueberry
         let floatPrice = tempItemsOrdered[indexPath.row]["BatchPrice"] as! Float
-        cell.batchPriceLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: floatPrice)
+        cell.batchPriceLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: floatPrice)
         cell.batchPriceLabel.textColor = K.bakeShopBlueberry
         let floatSubtotal = tempItemsOrdered[indexPath.row]["BatchSubtotal"] as! Float
-        cell.subtotalLabel.text = UnitsConverter().convertCurrencyFloatToString(floatCurrency: floatSubtotal)
+        cell.subtotalLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: floatSubtotal)
         cell.subtotalLabel.textColor = K.bakeShopBlueberry
         let itemNote = tempItemsOrdered[indexPath.row]["ItemNotes"]
         if itemNote as! String == "" {
