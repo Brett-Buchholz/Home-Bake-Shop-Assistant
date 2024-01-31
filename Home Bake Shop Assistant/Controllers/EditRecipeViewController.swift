@@ -23,8 +23,8 @@ class EditRecipeViewController: UIViewController {
     @IBOutlet weak var saveButton: BrettButton!
     @IBOutlet weak var addButton: BrettButton!
     @IBOutlet weak var ingredientsView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var directionsView: UIView!
+    @IBOutlet weak var addNewView: UIView!
     
     var newRecipe: Recipe? = nil
     var loadedRecipe: Recipe? = nil
@@ -42,8 +42,8 @@ class EditRecipeViewController: UIViewController {
         AddBorders().addTopBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
         AddBorders().addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
         AddBorders().addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: ingredientsView)
-        AddBorders().addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: scrollView)
-        AddBorders().addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: scrollView)
+        AddBorders().addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: addNewView)
+        AddBorders().addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: addNewView)
         AddBorders().addLeftBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
         AddBorders().addRightBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
         AddBorders().addBottomBorder(with: K.bakeShopMaroon, andWidth: 2.0, view: directionsView)
