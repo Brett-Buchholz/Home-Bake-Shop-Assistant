@@ -59,7 +59,6 @@ class EditInventoryViewController: UIViewController, UITextFieldDelegate {
         var chirren: [UIMenuElement] = []
         chirren.append(UIAction(title: (loadedInventoryIngredient!.baseUnit)!) { (action: UIAction) in
             self.selectedStandardUnit = UnitsOfMeasurement().convertStringToUnits(string: self.loadedInventoryIngredient!.baseUnit!)
-            print("Standard Units: \(self.selectedStandardUnit!)")
         })
         for unit in UnitsOfMeasurement.Units.allCases {
             let currentUnit: UnitsOfMeasurement.Units = unit

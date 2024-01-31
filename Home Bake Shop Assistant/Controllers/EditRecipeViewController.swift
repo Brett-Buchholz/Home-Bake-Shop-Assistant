@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import SwipeCellKit
 
-class EditRecipeViewController: UIViewController {
+class EditRecipeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var ingredientPopUpButton: UIButton!
@@ -25,6 +25,10 @@ class EditRecipeViewController: UIViewController {
     @IBOutlet weak var ingredientsView: UIView!
     @IBOutlet weak var directionsView: UIView!
     @IBOutlet weak var addNewView: UIView!
+    @IBOutlet weak var batchSizeTextField: UITextField!
+    @IBOutlet weak var priceDozenCurrencyField: CurrencyField!
+    @IBOutlet weak var priceHalfDozenCurrencyField: CurrencyField!
+    @IBOutlet weak var priceSingleCurrencyField: CurrencyField!
     
     var newRecipe: Recipe? = nil
     var loadedRecipe: Recipe? = nil
@@ -53,6 +57,8 @@ class EditRecipeViewController: UIViewController {
         ingredientsTableView.rowHeight = 36.0
         
         //Register delegates, data sources and Nibs
+        quantityIntegerTextField.delegate = self
+        batchSizeTextField.delegate = self
         fractionPickerView.dataSource = self
         fractionPickerView.delegate = self
         ingredientsTableView.dataSource = self
@@ -66,6 +72,14 @@ class EditRecipeViewController: UIViewController {
             newRecipe = loadedRecipe!
             recipeNameTextField.text = loadedRecipe!.name
             directionsTextView.text = loadedRecipe!.directions
+            batchSizeTextField.text = "\(loadedRecipe!.batchSize)"
+            priceSingleCurrencyField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe!.priceSingle)
+            priceHalfDozenCurrencyField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe!.priceHalfDozen)
+            priceDozenCurrencyField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe!.priceDozen)
+        } else {
+            priceSingleCurrencyField.text = ""
+            priceHalfDozenCurrencyField.text = ""
+            priceDozenCurrencyField.text = ""
         }
         loadIngredients()
         setupIngredientButton()
@@ -136,6 +150,11 @@ class EditRecipeViewController: UIViewController {
         view.addSubview(border)
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet)
+    }
     
     @IBAction func addButtonPressed(_ sender: BrettButton) {
         errorLabel.isHidden = true
@@ -224,7 +243,7 @@ class EditRecipeViewController: UIViewController {
                     newIngredient.units = units
                     newIngredient.quantity = floatQuantity
                     if newIngredient.units == "Whole" {
-                        newIngredient.stringName = "\(quantity) \(recipeIngredient) (\(units))\(note)"
+                        newIngredient.stringName = "\(quantity) \(recipeIngredient) \(note)"
                     } else {
                         newIngredient.stringName = "\(quantity) \(units) of \(recipeIngredient)\(note)"
                     }
@@ -238,6 +257,8 @@ class EditRecipeViewController: UIViewController {
                     pickerValue = ""
                     fractionPickerView.selectRow(0, inComponent: 0, animated: true)
                     updateData()
+                    quantityIntegerTextField.resignFirstResponder()
+                    noteTextField.resignFirstResponder()
                 }
             }
         }
@@ -251,12 +272,32 @@ class EditRecipeViewController: UIViewController {
         } else if directionsTextView.text == "" {
             errorLabel.isHidden = false
             errorLabel.text = "Please add directions to this recipe"
+        } else if batchSizeTextField.text == "" || batchSizeTextField.text == "0" {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please provide a batch size for this recipe"
         } else {
             if newRecipe == nil {
                 newRecipe = Recipe(context: K.recipeContext)
             }
             newRecipe!.name = recipeNameTextField.text
             newRecipe!.directions = directionsTextView.text
+            let intBatchSize = Int16(batchSizeTextField.text!)!
+            newRecipe!.batchSize = intBatchSize
+            if priceDozenCurrencyField.text == "" {
+                newRecipe!.priceDozen = Float(0.00)
+            } else {
+                newRecipe!.priceDozen = StringConverter().convertCurrencyStringToFloat(stringCurrency: priceDozenCurrencyField.text!)
+            }
+            if priceHalfDozenCurrencyField.text == "" {
+                newRecipe!.priceHalfDozen = Float(0.00)
+            } else {
+                newRecipe!.priceHalfDozen = StringConverter().convertCurrencyStringToFloat(stringCurrency: priceHalfDozenCurrencyField.text!)
+            }
+            if priceSingleCurrencyField.text == "" {
+                newRecipe!.priceSingle = Float(0.00)
+            } else {
+                newRecipe!.priceSingle = StringConverter().convertCurrencyStringToFloat(stringCurrency: priceSingleCurrencyField.text!)
+            }
             for ingredient in tempIngredientList {
                 ingredient.addToRecipe(newRecipe!)
             }

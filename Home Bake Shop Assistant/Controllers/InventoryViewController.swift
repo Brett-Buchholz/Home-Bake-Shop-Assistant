@@ -22,8 +22,6 @@ class InventoryViewController: UIViewController {
     
     var inventoryList: [Inventory] = []
     var ordersList: [Order] = []
-    var orderedItemsList: [OrderedItem] = []
-    var orderedIngredientsList: [Inventory] = []
     var segueInventoryIngredient: Inventory? = nil
     var selectedStandardUnit: UnitsOfMeasurement.Units = .None
     
@@ -51,10 +49,10 @@ class InventoryViewController: UIViewController {
         super.viewWillAppear(animated)
         
         errorLabel.isHidden = true
-        getAmountNeeded()
         setupUnitsTypeButton()
         updateDataAndView()
         inventoryList = inventoryList.sorted {$0.ingredientName! < $1.ingredientName!}
+        getAmountNeeded()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -84,6 +82,10 @@ class InventoryViewController: UIViewController {
     
     func getAmountNeeded() {
         loadOrders()
+        var orderedItemsList: [OrderedItem] = []
+        for item in inventoryList {
+            item.amountNeeded = Float(0.00)
+        }
         for order in ordersList {
             if order.orderComplete == false {
                 for item in (order.toOrderedItem?.allObjects as! [OrderedItem]) {
@@ -92,9 +94,15 @@ class InventoryViewController: UIViewController {
             }
         }
         for item in orderedItemsList {
-            item.toRecipe
+            for ingredient in (item.toRecipe?.toRecipeIngredient?.allObjects as! [RecipeIngredient]){
+                let measuredUnits:UnitsOfMeasurement.Units = UnitsOfMeasurement().convertStringToUnits(string: ingredient.units!)
+                let standardUnits:UnitsOfMeasurement.Units = UnitsOfMeasurement().convertStringToUnits(string: (ingredient.inventory?.baseUnit)!)
+                let floatQuantity = Float(item.quantityOrdered) * ingredient.quantity
+                let neededAmount = UnitsConverter(amount: floatQuantity, measuredUnits: measuredUnits, standardUnits: standardUnits).convertUnits()
+                ingredient.inventory?.amountNeeded = neededAmount
+            }
         }
-        print(orderedItemsList)
+        saveIngredients()
     }
     
     @IBAction func addIngredientPressed(_ sender: BrettButton) {
@@ -151,6 +159,7 @@ class InventoryViewController: UIViewController {
         saveIngredients()
         loadIngredients()
         DispatchQueue.main.async {
+            self.inventoryList = self.inventoryList.sorted {$0.ingredientName! < $1.ingredientName!}
             self.ingredientsTableView.reloadData()
         }
     }

@@ -17,8 +17,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="787" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ylL-RJ-Zu0">
-                        <rect key="frame" x="0.0" y="0.0" width="787" height="90"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="ylL-RJ-Zu0">
+                        <rect key="frame" x="0.0" y="0.0" width="787" height="80"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lO7-2P-O5g" userLabel="Top Stack View">
                                 <rect key="frame" x="0.0" y="0.0" width="787" height="45"/>
@@ -57,9 +57,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="67X-t1-B9f"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hs8-Md-LEn" userLabel="Bottom Stack View">
-                                <rect key="frame" x="0.0" y="45" width="787" height="45"/>
+                                <rect key="frame" x="0.0" y="35" width="787" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Note: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="VWK-JH-DTx" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="787" height="45"/>
@@ -68,6 +71,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Vw1-I9-CWc"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                     </stackView>

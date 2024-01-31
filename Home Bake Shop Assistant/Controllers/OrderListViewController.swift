@@ -30,7 +30,7 @@ class OrderListViewController: UIViewController {
         AddBorders().addLeftBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
         AddBorders().addRightBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
         orderSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Times New Roman Bold", size: 30.0)!, NSAttributedString.Key.foregroundColor: K.bakeShopBlueberry], for: .normal)
-        orderTableView.rowHeight = 50.0
+        orderTableView.rowHeight = 65.0
         
         //Register delegates, data sources and Nibs
         orderTableView.delegate = self
@@ -51,6 +51,13 @@ class OrderListViewController: UIViewController {
             let destinationVC = segue.destination as! OrderViewController
             destinationVC.loadedOrder = segueOrder
         }
+    }
+    
+    func adjustForInventoryUsed() {
+        loadOrders()
+        let order = ordersList[0]
+        
+        //saveIngredients()
     }
     
     @IBAction func orderSegmentedControlUpdated(_ sender: UISegmentedControl) {
@@ -114,18 +121,9 @@ extension OrderListViewController: UITableViewDataSource {
         let orderDate = dateFormatter.string(from: date)
         let customer = "\(order.toCustomer?.firstName ?? "unknown") \(order.toCustomer?.lastName ?? "unknown")"
         cell.label1.text = "\(order.orderNumber!)"
-        cell.label1.textColor = K.bakeShopBlueberry
         cell.label2.text = "\(orderDate)"
-        cell.label2.textColor = K.bakeShopBlueberry
         cell.label3.text = "\(customer)"
-        cell.label3.textColor = K.bakeShopBlueberry
         cell.label4.text = String(format: "$%.2f", order.orderTotal)
-        cell.label4.textColor = K.bakeShopBlueberry
-        cell.label1.font =  UIFont(name: "Times New Roman", size: 30)
-        cell.label2.font =  UIFont(name: "Times New Roman", size: 30)
-        cell.label3.font =  UIFont(name: "Times New Roman", size: 30)
-        cell.label4.font =  UIFont(name: "Times New Roman", size: 30)
-        orderTableView.rowHeight = 65.0
         
         return cell
     }
@@ -148,14 +146,42 @@ extension OrderListViewController: SwipeTableViewCellDelegate {
         guard orientation == .right else { return nil }
         
         let completeAction = SwipeAction(style: .default, title: "Order\nComplete") { action, indexPath in
-            self.segControlList[indexPath.row].orderComplete = true
+            let order = self.segControlList[indexPath.row]
+            order.orderComplete = true
+            var orderedItemsList: [OrderedItem] = []
+            for item in (order.toOrderedItem?.allObjects as! [OrderedItem]) {
+                orderedItemsList.append(item)
+            }
+            for item in orderedItemsList {
+                for ingredient in (item.toRecipe?.toRecipeIngredient?.allObjects as! [RecipeIngredient]){
+                    let measuredUnits:UnitsOfMeasurement.Units = UnitsOfMeasurement().convertStringToUnits(string: ingredient.units!)
+                    let standardUnits:UnitsOfMeasurement.Units = UnitsOfMeasurement().convertStringToUnits(string: (ingredient.inventory?.baseUnit)!)
+                    let floatQuantity = Float(item.quantityOrdered) * ingredient.quantity
+                    let neededAmount = UnitsConverter(amount: floatQuantity, measuredUnits: measuredUnits, standardUnits: standardUnits).convertUnits()
+                    ingredient.inventory?.amountOnHand -= neededAmount
+                }
+            }
             self.saveOrders()
             self.orderSegmentedControlUpdated(self.orderSegmentedControl)
             self.updateData()
         }
         
         let pendingAction = SwipeAction(style: .default, title: "Order\nPending") { action, indexPath in
-            self.segControlList[indexPath.row].orderComplete = false
+            let order = self.segControlList[indexPath.row]
+            order.orderComplete = false
+            var orderedItemsList: [OrderedItem] = []
+            for item in (order.toOrderedItem?.allObjects as! [OrderedItem]) {
+                orderedItemsList.append(item)
+            }
+            for item in orderedItemsList {
+                for ingredient in (item.toRecipe?.toRecipeIngredient?.allObjects as! [RecipeIngredient]){
+                    let measuredUnits:UnitsOfMeasurement.Units = UnitsOfMeasurement().convertStringToUnits(string: ingredient.units!)
+                    let standardUnits:UnitsOfMeasurement.Units = UnitsOfMeasurement().convertStringToUnits(string: (ingredient.inventory?.baseUnit)!)
+                    let floatQuantity = Float(item.quantityOrdered) * ingredient.quantity
+                    let neededAmount = UnitsConverter(amount: floatQuantity, measuredUnits: measuredUnits, standardUnits: standardUnits).convertUnits()
+                    ingredient.inventory?.amountOnHand += neededAmount
+                }
+            }
             self.saveOrders()
             self.orderSegmentedControlUpdated(self.orderSegmentedControl)
             self.updateData()

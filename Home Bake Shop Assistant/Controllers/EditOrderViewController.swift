@@ -30,7 +30,7 @@ class EditOrderViewController: UIViewController {
     @IBOutlet weak var orderDatePicker: UIDatePicker!
     @IBOutlet weak var orderNumberTextField: UITextField!
     
-    @IBOutlet weak var itemOrderdPopUp: UIButton!
+    @IBOutlet weak var itemOrderedPopUp: UIButton!
     @IBOutlet weak var itemNoteTextField: UITextField!
     @IBOutlet weak var priceTextField: CurrencyField!
     @IBOutlet weak var addToOrderButton: BrettButton!
@@ -56,6 +56,7 @@ class EditOrderViewController: UIViewController {
     var ordersList: [Order] = []
     var recipeList: [Recipe] = []
     var selectedCustomer: Customer? = nil
+    var selectedItemOrdered: Recipe? = nil
     var pickerValue: String = ""
     var batchSize: Int16 = 12
     var tempItemsOrdered: [[String:Any]] = []
@@ -220,7 +221,6 @@ class EditOrderViewController: UIViewController {
     }
     
     func setupItemOrderedButton() {
-        
         loadRecipes()
         var chirren: [UIMenuElement] = []
         let closure = { (action: UIAction) in
@@ -228,15 +228,23 @@ class EditOrderViewController: UIViewController {
         }
         chirren.append(UIAction(title: "", handler: closure))
         for recipe in recipeList {
-            chirren.append(UIAction(title: "\(recipe.name!)", handler: closure))
+            chirren.append(UIAction(title: "\(recipe.name!)") { (action: UIAction) in
+                self.selectedItemOrdered = recipe
+                if self.batchSizeSegmentedControl.selectedSegmentIndex == 0 {
+                    self.priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.selectedItemOrdered!.priceDozen)
+                } else if self.batchSizeSegmentedControl.selectedSegmentIndex == 1 {
+                    self.priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.selectedItemOrdered!.priceHalfDozen)
+                } else if self.batchSizeSegmentedControl.selectedSegmentIndex == 2 {
+                    self.priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.selectedItemOrdered!.priceSingle)
+                }
+            })
         }
-        itemOrderdPopUp.menu = UIMenu(children: chirren)
-        
+        itemOrderedPopUp.menu = UIMenu(children: chirren)
     }
     
     func validateItemAddedData() -> Bool {
         var dataValid = false
-        if itemOrderdPopUp.titleLabel?.text == nil {
+        if itemOrderedPopUp.titleLabel?.text == nil {
             errorLabel.isHidden = false
             errorLabel.text = "Please choose an item to order!"
         } else if quantityTextField.text == "" {
@@ -270,13 +278,7 @@ class EditOrderViewController: UIViewController {
     
     func createOrderItem() {
         var itemDict: Dictionary = [String:Any]()
-        var selectedRecipe: Recipe? = nil
-        for recipe in recipeList {
-            if itemOrderdPopUp.titleLabel?.text == recipe.name {
-                selectedRecipe = recipe
-            }
-        }
-        itemDict["ItemOrdered"] = selectedRecipe
+        itemDict["ItemOrdered"] = selectedItemOrdered
         itemDict["ItemNotes"] = itemNoteTextField.text
         let quantity = Int16(quantityTextField.text ?? "0")!
         itemDict["Quantity"] = quantity
@@ -368,12 +370,21 @@ class EditOrderViewController: UIViewController {
         switch batchSizeSegmentedControl.selectedSegmentIndex {
         case 1 :
             batchSize = 6
+            if selectedItemOrdered != nil {
+                priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: selectedItemOrdered!.priceHalfDozen)
+            }
         case 2:
             batchSize = 1
+            if selectedItemOrdered != nil {
+                priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: selectedItemOrdered!.priceSingle)
+            }
         case 3:
             otherTextField.isHidden = false
         default:
             batchSize = 12
+            if selectedItemOrdered != nil {
+                priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: selectedItemOrdered!.priceDozen)
+            }
         }
     }
     
@@ -382,7 +393,8 @@ class EditOrderViewController: UIViewController {
         if validateItemAddedData() == true {
             createOrderItem()
             setupItemOrderedButton()
-            itemOrderdPopUp.titleLabel?.text = nil
+            itemOrderedPopUp.titleLabel?.text = nil
+            selectedItemOrdered = nil
             quantityTextField.text = ""
             batchSizeSegmentedControl.selectedSegmentIndex = 0
             otherTextField.text = ""

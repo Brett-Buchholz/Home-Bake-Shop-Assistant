@@ -18,6 +18,7 @@ class EditCustomerViewController: UIViewController {
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var zipTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var errorLabel: PaddingLabel!
     @IBOutlet weak var saveInfoButton: BrettButton!
     @IBOutlet weak var deleteCustomerButton: BrettButton!
     
@@ -53,6 +54,7 @@ class EditCustomerViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.tintColor = .systemBackground
+        errorLabel.isHidden = true
         if loadedCustomer != nil {
             firstNameTextField.text = loadedCustomer?.firstName
             lastNameTextField.text = loadedCustomer?.lastName
@@ -90,22 +92,31 @@ class EditCustomerViewController: UIViewController {
     }
     
     @IBAction func saveInfoPressed(_ sender: BrettButton) {
-        let customer: Customer
-        if loadedCustomer != nil {
+        errorLabel.isHidden = true
+        var customer: Customer? = nil
+        if firstNameTextField.text == "" {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please provide a first name"
+        } else if lastNameTextField.text == "" {
+            errorLabel.isHidden = false
+            errorLabel.text = "Please provide a last name"
+        } else if loadedCustomer != nil {
             customer = loadedCustomer!
         } else {
             customer = Customer(context: K.customerInfoContext)
-            customer.customerID = createUniqueCustomerID()
+            customer!.customerID = createUniqueCustomerID()
         }
-        customer.firstName = firstNameTextField.text
-        customer.lastName = lastNameTextField.text
-        customer.customerAddress = addressTextField.text
-        customer.customerCity = cityTextField.text
-        customer.customerState = stateTextField.text
-        customer.customerZipCode = zipTextField.text
-        customer.customerPhone = phoneTextField.text
-        saveCustomerInfo()
-        navigationController?.popViewController(animated: true)
+        if customer != nil {
+            customer!.firstName = firstNameTextField.text
+            customer!.lastName = lastNameTextField.text
+            customer!.customerAddress = addressTextField.text
+            customer!.customerCity = cityTextField.text
+            customer!.customerState = stateTextField.text
+            customer!.customerZipCode = zipTextField.text
+            customer!.customerPhone = phoneTextField.text
+            saveCustomerInfo()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func deleteCustomerPressed(_ sender: BrettButton) {

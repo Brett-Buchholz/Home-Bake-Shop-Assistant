@@ -57,7 +57,7 @@ class OrderViewController: UIViewController {
         editOrderButton.tintColor = K.bakeShopBlueberry
         printableInvoiceButton.tintColor = K.bakeShopBlueberry
         deleteOrderButton.tintColor = K.bakeShopDeleteRed
-        
+                
         //Register delegates, data sources and Nibs
         orderTableView.dataSource = self
         orderTableView.register(UINib(nibName: K.orderCellNibName, bundle: nil), forCellReuseIdentifier: K.orderReuseIdentifier)
@@ -175,23 +175,18 @@ extension OrderViewController: UITableViewDataSource {
         let cell = orderTableView.dequeueReusableCell(withIdentifier: K.orderReuseIdentifier, for: indexPath) as! OrderTableViewCell
         let item = orderedItems[indexPath.row]
         cell.qtyLabel.text = "\(item.quantityOrdered)"
-        cell.qtyLabel.textColor = K.bakeShopBlueberry
         let recipeName = (item.toRecipe!).name
         cell.itemOrderedLabel.text = "\(recipeName!) \(item.batchName!)"
-        cell.itemOrderedLabel.textColor = K.bakeShopBlueberry
         let floatPrice = item.batchPrice
         cell.batchPriceLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: floatPrice)
-        cell.batchPriceLabel.textColor = K.bakeShopBlueberry
         let floatSubtotal = item.batchSubtotal
         cell.subtotalLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: floatSubtotal)
-        cell.subtotalLabel.textColor = K.bakeShopBlueberry
         let itemNote = item.itemNote
         if itemNote == "" {
             cell.bottomStackView.isHidden = true
         } else {
             cell.itemNoteLabel.text = "    Note: \(itemNote ?? "")"
         }
-        cell.itemNoteLabel.textColor = K.bakeShopBlueberry
         
         return cell
     }

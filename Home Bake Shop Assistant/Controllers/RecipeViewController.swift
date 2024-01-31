@@ -16,6 +16,7 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var editRecipeButton: BrettButton!
     @IBOutlet weak var deleteRecipeButton: BrettButton!
+    @IBOutlet weak var batchLabel: PaddingLabel!
     
     var loadedRecipe: [Recipe] = []
     var recipeIngredients: [RecipeIngredient] = []
@@ -54,6 +55,10 @@ class RecipeViewController: UIViewController {
         directionsTextView.text = loadedRecipe[0].directions
         recipeIngredients = loadedRecipe[0].toRecipeIngredient!.allObjects as! [RecipeIngredient]
         recipeIngredients = recipeIngredients.sorted {$0.name! < $1.name!}
+        let singlePrice = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe[0].priceSingle)
+        let halfDozenPrice = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe[0].priceHalfDozen)
+        let dozenPrice = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe[0].priceDozen)
+        batchLabel.text = "Batch Size Of: \(loadedRecipe[0].batchSize), Price per: Dozen \(dozenPrice), Half Dozen \(halfDozenPrice), Single \(singlePrice)"
     }
     
     @IBAction func deleteRecipePressed(_ sender: BrettButton) {

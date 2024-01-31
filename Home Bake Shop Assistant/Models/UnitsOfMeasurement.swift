@@ -31,7 +31,7 @@ struct UnitsOfMeasurement {
         case .Pound:
             return "Pound"
         case .FluidOunce:
-            return "Fluid Ounce"
+            return "FluidOunce"
         case .Pint:
             return "Pint"
         case .Quart:
@@ -73,9 +73,9 @@ struct UnitsOfMeasurement {
             return .Pound
         case "Pounds":
             return .Pound
-        case "Fluid Ounce":
+        case "FluidOunce":
             return .FluidOunce
-        case "Fluid Ounces":
+        case "FluidOunces":
             return .FluidOunce
         case "Pint":
             return .Pint

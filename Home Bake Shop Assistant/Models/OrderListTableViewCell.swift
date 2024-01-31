@@ -28,21 +28,22 @@ class OrderListTableViewCell: SwipeTableViewCell {
     
     func cellStyleStup() {
         //General style of the cell
-//        layer.borderWidth = 1
-//        layer.borderColor = K.fontColorWhite.cgColor
-//        backgroundColor = K.fontColor.withAlphaComponent(0.0)
-//        dailyReminderCellLabel.highlightedTextColor = K.fontColor
-        
-        //Change the Background Color when selected
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = K.fontColorWhite
-//        selectedBackgroundView = backgroundView
+        label1.textColor = K.bakeShopBlueberry
+        label2.textColor = K.bakeShopBlueberry
+        label3.textColor = K.bakeShopBlueberry
+        label4.textColor = K.bakeShopBlueberry
         
         //Style for different interface modes
-//        if K.interfaceMode == .phone {
-//            dailyReminderCellLabel.font = UIFont(name: "Times New Roman", size: 20.0)
-//        } else {
-//            dailyReminderCellLabel.font = UIFont(name: "Times New Roman", size: 28.0)
-//        }
+        if K.interfaceMode == .phone {
+            label1.font =  UIFont(name: "Times New Roman", size: 22)
+            label2.font =  UIFont(name: "Times New Roman", size: 22)
+            label3.font =  UIFont(name: "Times New Roman", size: 22)
+            label4.font =  UIFont(name: "Times New Roman", size: 22)
+        } else {
+            label1.font =  UIFont(name: "Times New Roman", size: 30)
+            label2.font =  UIFont(name: "Times New Roman", size: 30)
+            label3.font =  UIFont(name: "Times New Roman", size: 30)
+            label4.font =  UIFont(name: "Times New Roman", size: 30)
+        }
     }
 }
