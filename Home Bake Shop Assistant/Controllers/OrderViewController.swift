@@ -105,7 +105,7 @@ class OrderViewController: UIViewController {
         
         let date = loadedOrder?.orderDate
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/DD/YY"
+        dateFormatter.dateFormat = "MM/dd/yy"
         let stringDate = dateFormatter.string(from: date!)
         orderDateValue.text = stringDate
         orderNumberValue.text = loadedOrder?.orderNumber

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeDataReusableCell" rowHeight="50" id="KGk-i7-Jjw" customClass="RecipeSalesTableViewCell" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="638" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="638" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qJN-p1-1O2">
+                        <rect key="frame" x="0.0" y="0.0" width="633" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="iCa-9Q-NCv" userLabel="Name Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="163" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="v8B-M0-Vph"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="FjK-6F-da9" userLabel="Sales Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="168" y="0.0" width="75" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="K20-BJ-uz6"/>
+                                    <constraint firstAttribute="height" constant="50" id="teh-XA-aP8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Revenue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="hP4-2X-2AV" userLabel="Revenue Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="248" y="0.0" width="125" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="aI4-Ue-KMC"/>
+                                    <constraint firstAttribute="height" constant="50" id="y3G-2F-h4j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="MdU-3p-zt2" userLabel="COGS Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="378" y="0.0" width="125" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6fO-0v-Zbk"/>
+                                    <constraint firstAttribute="width" constant="125" id="Nhr-cM-Q6x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="eVE-yG-3Lq" userLabel="Profit Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="508" y="0.0" width="125" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KGP-AN-bCM"/>
+                                    <constraint firstAttribute="width" constant="125" id="t8U-JU-Zxe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qJN-p1-1O2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9Az-ZN-wkv"/>
+                    <constraint firstItem="qJN-p1-1O2" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottom" id="EK7-i3-4pX"/>
+                    <constraint firstItem="qJN-p1-1O2" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="-5" id="J0q-bR-7ag"/>
+                    <constraint firstItem="qJN-p1-1O2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="U2c-jf-b5x"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cogsLabel" destination="MdU-3p-zt2" id="8Ce-mN-fay"/>
+                <outlet property="nameLabel" destination="iCa-9Q-NCv" id="Vnf-wh-bn0"/>
+                <outlet property="profitLabel" destination="eVE-yG-3Lq" id="jZ4-il-epC"/>
+                <outlet property="revenueLabel" destination="hP4-2X-2AV" id="ky4-zG-KoA"/>
+                <outlet property="salesLabel" destination="FjK-6F-da9" id="R3r-dk-xHV"/>
+            </connections>
+            <point key="canvasLocation" x="207.63358778625954" y="-9.1549295774647899"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="BakeShopChocolate">
+            <color red="0.40799999237060547" green="0.32199999690055847" blue="0.28999999165534973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

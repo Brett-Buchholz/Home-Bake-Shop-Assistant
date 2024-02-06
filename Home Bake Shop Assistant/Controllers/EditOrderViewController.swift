@@ -314,7 +314,7 @@ class EditOrderViewController: UIViewController {
             orderNumberList.append(order.orderNumber!)
         }
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYMMDD"
+        formatter.dateFormat = "yyMMdd"
         let stringDate = formatter.string(from: orderDatePicker.date)
         var tempOrderNumber = "\(stringDate)\("001")"
         var dailyOrders = 1

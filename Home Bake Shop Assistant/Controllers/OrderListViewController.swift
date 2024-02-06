@@ -53,13 +53,6 @@ class OrderListViewController: UIViewController {
         }
     }
     
-    func adjustForInventoryUsed() {
-        loadOrders()
-        let order = ordersList[0]
-        
-        //saveIngredients()
-    }
-    
     @IBAction func orderSegmentedControlUpdated(_ sender: UISegmentedControl) {
         
         let pendingOrders = ordersList.filter({ $0.orderComplete == false })
@@ -117,7 +110,7 @@ extension OrderListViewController: UITableViewDataSource {
         let order = segControlList[indexPath.row]
         let date = order.orderDate!
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/DD/YY"
+        dateFormatter.dateFormat = "MM/dd/yy"
         let orderDate = dateFormatter.string(from: date)
         let customer = "\(order.toCustomer?.firstName ?? "unknown") \(order.toCustomer?.lastName ?? "unknown")"
         cell.label1.text = "\(order.orderNumber!)"

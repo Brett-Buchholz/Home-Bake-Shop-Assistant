@@ -19,6 +19,8 @@ class K {
     static let bakeShopBrown = UIColor(red: 194/255, green: 122/255, blue: 56/255, alpha: 1.0)
     static let bakeShopBlueberry = UIColor(red: 107/255, green: 137/255, blue: 154/255, alpha: 1.0)
     static let bakeShopDeleteRed = UIColor(red: 255/255, green: 38/255, blue: 0/255, alpha: 1.0)
+    static let bakeShopChocolate = UIColor(red: 104/255, green: 82/255, blue: 74/255, alpha: 1.0)
+    static let systemBackground = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
     static let fontPadTitle = UIFont(name: "Marker Felt", size: 46.0)
     static let fontPadNormal = UIFont(name: "Marker Felt", size: 30.0)
     
@@ -37,6 +39,10 @@ class K {
     static let customerReuseIdentifier = "CustomerReusableCell"
     static let quickAddCellNibName = "QuickAddTableViewCell"
     static let quickAddReuseIdentifier = "QuickAddReusableCell"
+    static let recipeSalesCellNibName = "RecipeSalesTableViewCell"
+    static let recipeSalesReuseIdentifier = "RecipeDataReusableCell"
+    static let recipeCostCellNibName = "RecipeCostTableViewCell"
+    static let recipeCostReuseIdentifier = "RecipeCostReusableCell"
     
     //MARK: SegueIdentifiers
     static let segueIdentifierToViewRecipe = "viewReceipeSegue"

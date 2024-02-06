@@ -162,7 +162,6 @@ class EditInventoryViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     @IBAction func updateButtonPressed(_ sender: BrettButton) {
         updatedAmountLabel.isHidden = true
         updatedAmountLabel.textColor = K.bakeShopBrown

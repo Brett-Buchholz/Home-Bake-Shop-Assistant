@@ -33,6 +33,7 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
     var newRecipe: Recipe? = nil
     var loadedRecipe: Recipe? = nil
     var selectedUnits: UnitsOfMeasurement.Units? = nil
+    var selectedIngredient: Inventory? = nil
     var inventoryList: [Inventory] = []
     var tempIngredientList: [RecipeIngredient] = []
     var pickerValue: String = ""
@@ -95,7 +96,11 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
         chirren.append(UIAction(title: "", handler: closure))
         inventoryList = inventoryList.sorted {$0.ingredientName! < $1.ingredientName!}
         for ingredient in inventoryList {
-            chirren.append(UIAction(title: "\(ingredient.ingredientName ?? "unknown name")", handler: closure))
+            chirren.append(UIAction(title: "\(ingredient.ingredientName ?? "unknown name")") { action in
+                self.selectedIngredient = ingredient
+                self.selectedUnits = UnitsOfMeasurement().convertStringToUnits(string: (self.selectedIngredient?.baseUnit)!)
+                self.setupUnitsTypeButton()
+            })
         }
         ingredientPopUpButton.menu = UIMenu(children: chirren)
     }
@@ -103,6 +108,19 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
     func setupUnitsTypeButton() {
         var chirren: [UIMenuElement] = []
         var myTitle = ""
+        if selectedIngredient != nil {
+            let unit = UnitsOfMeasurement().convertStringToUnits(string: (selectedIngredient?.baseUnit)!)
+            if unit == .None {
+                myTitle = ""
+            } else if unit == .Whole {
+                myTitle = "\(unit)"
+            } else {
+                myTitle = "\(unit)s"
+            }
+            chirren.append(UIAction(title: myTitle) { (action: UIAction) in
+                self.selectedUnits = unit
+            })
+        }
         for unit in UnitsOfMeasurement.Units.allCases {
             if unit == .None {
                 myTitle = ""
@@ -116,6 +134,50 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
             })
         }
         unitsPopUpButton.menu = UIMenu(children: chirren)
+    }
+    
+    func ableToConvert() -> Bool {
+        let selectedStandardUnit = UnitsOfMeasurement().convertStringToUnits(string: (selectedIngredient?.baseUnit)!)
+        let selectedMeasuredUnit = selectedUnits
+        if selectedStandardUnit == .Whole && selectedMeasuredUnit != .Whole {
+            return false
+        } else if selectedMeasuredUnit == .Whole && selectedStandardUnit != .Whole {
+            return false
+        } else if selectedStandardUnit == .Gram {
+            if selectedMeasuredUnit == .Gram {
+                return true
+            } else if selectedMeasuredUnit == .Kilogram {
+                return true
+            } else {
+                return false
+            }
+        } else if selectedMeasuredUnit == .Gram {
+            if selectedStandardUnit == .Gram {
+                return true
+            } else if selectedStandardUnit == .Kilogram {
+                return true
+            } else {
+                return false
+            }
+        } else if selectedStandardUnit == .Kilogram {
+            if selectedMeasuredUnit == .Gram {
+                return true
+            } else if selectedMeasuredUnit == .Kilogram {
+                return true
+            } else {
+                return false
+            }
+        } else if selectedMeasuredUnit == .Kilogram {
+            if selectedStandardUnit == .Gram {
+                return true
+            } else if selectedStandardUnit == .Kilogram {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return true
+        }
     }
     
     func addTopBorder(with color: UIColor?, andWidth borderWidth: CGFloat, view: UIView) {
@@ -233,32 +295,43 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
             note = " (Note: \(noteTextField.text!))"
         }
         
+        //Check that units of measurment don't conflict
+        if ableToConvert() == false {
+            let selected = UnitsOfMeasurement().convertUnitsToString(unit: selectedUnits!)
+            let standard = selectedIngredient?.baseUnit
+            errorLabel.isHidden = false
+            errorLabel.text = "\(selected)s are not compatible with the standard unit of \(standard!)"
+        }
+        
         //Add ingredient to recipe
         if quantity != "" {
             if units != "" {
-                if recipeIngredient != "" {
-                    let newIngredient = RecipeIngredient(context: K.recipeContext)
-                    newIngredient.inventory = inventoryIngredient
-                    newIngredient.name = recipeIngredient
-                    newIngredient.units = units
-                    newIngredient.quantity = floatQuantity
-                    if newIngredient.units == "Whole" {
-                        newIngredient.stringName = "\(quantity) \(recipeIngredient) \(note)"
-                    } else {
-                        newIngredient.stringName = "\(quantity) \(units) of \(recipeIngredient)\(note)"
+                if ableToConvert() == true {
+                    if recipeIngredient != "" {
+                        let newIngredient = RecipeIngredient(context: K.recipeContext)
+                        newIngredient.inventory = inventoryIngredient
+                        newIngredient.name = recipeIngredient
+                        newIngredient.units = units
+                        newIngredient.quantity = floatQuantity
+                        if newIngredient.units == "Whole" {
+                            newIngredient.stringName = "\(quantity) \(recipeIngredient) \(note)"
+                        } else {
+                            newIngredient.stringName = "\(quantity) \(units) of \(recipeIngredient)\(note)"
+                        }
+                        tempIngredientList.append(newIngredient)
+                        quantityIntegerTextField.text = ""
+                        noteTextField.text = ""
+                        setupIngredientButton()
+                        ingredientPopUpButton.titleLabel?.text = nil
+                        selectedIngredient = nil
+                        setupUnitsTypeButton()
+                        unitsPopUpButton.titleLabel?.text = nil
+                        pickerValue = ""
+                        fractionPickerView.selectRow(0, inComponent: 0, animated: true)
+                        updateData()
+                        quantityIntegerTextField.resignFirstResponder()
+                        noteTextField.resignFirstResponder()
                     }
-                    tempIngredientList.append(newIngredient)
-                    quantityIntegerTextField.text = ""
-                    noteTextField.text = ""
-                    setupIngredientButton()
-                    ingredientPopUpButton.titleLabel?.text = nil
-                    setupUnitsTypeButton()
-                    unitsPopUpButton.titleLabel?.text = nil
-                    pickerValue = ""
-                    fractionPickerView.selectRow(0, inComponent: 0, animated: true)
-                    updateData()
-                    quantityIntegerTextField.resignFirstResponder()
-                    noteTextField.resignFirstResponder()
                 }
             }
         }
