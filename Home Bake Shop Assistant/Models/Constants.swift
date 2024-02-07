@@ -23,6 +23,8 @@ class K {
     static let systemBackground = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
     static let fontPadTitle = UIFont(name: "Marker Felt", size: 46.0)
     static let fontPadNormal = UIFont(name: "Marker Felt", size: 30.0)
+    static let fontSegCtrlPadNormal = UIFont(name: "Times New Roman", size: 18.0)
+    static let fontSegCtrlPadBold = UIFont(name: "Times New Roman Bold", size: 18.0)
     
     //MARK: TableViewCells
     static let ingredientCellNibName = "IngredientTableViewCell"
@@ -43,6 +45,8 @@ class K {
     static let recipeSalesReuseIdentifier = "RecipeDataReusableCell"
     static let recipeCostCellNibName = "RecipeCostTableViewCell"
     static let recipeCostReuseIdentifier = "RecipeCostReusableCell"
+    static let inventoryCostCellNibName = "InventoryCostTableViewCell"
+    static let inventoryCostReuseIdentifier = "InventoryCostReusableCell"
     
     //MARK: SegueIdentifiers
     static let segueIdentifierToViewRecipe = "viewReceipeSegue"

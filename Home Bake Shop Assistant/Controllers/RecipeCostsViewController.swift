@@ -70,9 +70,6 @@ class RecipeCostsViewController: UIViewController {
     func setupRecipeButton() {
         loadRecipes()
         var chirren: [UIMenuElement] = []
-        let closure = { (action: UIAction) in
-            //print(action)
-        }
         chirren.append(UIAction(title: "") { (action: UIAction) in
             self.selectedRecipe = nil
             self.loadIngredientCostList()
@@ -126,11 +123,12 @@ class RecipeCostsViewController: UIViewController {
         updateData()
     }
     
-    
     //MARK: CoreData CRUD Methods
     
     func loadRecipes() {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        let recipeSort = NSSortDescriptor(key:"name", ascending:true)
+        request.sortDescriptors = [recipeSort]
         do {
             recipeList = try K.recipeContext.fetch(request)
         } catch {

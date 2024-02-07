@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InventoryCostReusableCell" rowHeight="50" id="KGk-i7-Jjw" customClass="InventoryCostTableViewCell" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="695" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="695" height="48"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="leN-J3-VTw">
+                        <rect key="frame" x="0.0" y="0.0" width="695" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Ingredient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="0Cf-kW-Xr8" userLabel="Ingredient Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="206.33333333333334" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="mgP-SG-YfM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount Used" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="eWo-HV-rzL" userLabel="Amount Used Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="211.33333333333337" y="0.0" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="EZy-9l-dYu"/>
+                                    <constraint firstAttribute="height" constant="50" id="vKe-aS-CDG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit Cost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Vjw-TI-bHA" userLabel="Unit Cost Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="416.33333333333331" y="0.0" width="123.66666666666669" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DQ2-Fs-TrB"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="L1I-yg-TPj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Cost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="IJu-r8-rKG" userLabel="Total Cost Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="545" y="0.0" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="9bZ-TS-cIO"/>
+                                    <constraint firstAttribute="height" constant="50" id="Yzd-rn-6Uj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
+                                <color key="textColor" name="BakeShopChocolate"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="leN-J3-VTw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Sjf-nU-DXG"/>
+                    <constraint firstAttribute="bottom" secondItem="leN-J3-VTw" secondAttribute="bottom" id="Sqe-dc-1V3"/>
+                    <constraint firstAttribute="trailing" secondItem="leN-J3-VTw" secondAttribute="trailing" id="ZXg-Mp-ULy"/>
+                    <constraint firstItem="leN-J3-VTw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZaX-Ye-gl8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="amountUsedLabel" destination="eWo-HV-rzL" id="efc-bF-IUR"/>
+                <outlet property="ingredientLabel" destination="0Cf-kW-Xr8" id="bn8-o2-msh"/>
+                <outlet property="totalCostLabel" destination="IJu-r8-rKG" id="bvs-QM-usM"/>
+                <outlet property="unitCostLabel" destination="Vjw-TI-bHA" id="wWu-en-hfy"/>
+            </connections>
+            <point key="canvasLocation" x="416.03053435114504" y="-9.8591549295774659"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="BakeShopChocolate">
+            <color red="0.40799999237060547" green="0.32199999690055847" blue="0.28999999165534973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

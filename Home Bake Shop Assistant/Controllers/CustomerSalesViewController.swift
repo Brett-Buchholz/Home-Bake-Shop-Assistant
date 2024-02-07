@@ -1,18 +1,18 @@
 //
-//  RecipeFinancesViewController.swift
+//  CustomerSalesViewController.swift
 //  Home Bake Shop Assistant
 //
-//  Created by Brett Buchholz on 2/3/24.
+//  Created by Brett Buchholz on 2/6/24.
 //
 
 import UIKit
 import CoreData
 
-class RecipeSalesViewController: UIViewController {
+class CustomerSalesViewController: UIViewController {
     
     @IBOutlet weak var financesTitleLabel: PaddingLabel!
-    @IBOutlet weak var recipeDataTitleLabel: PaddingLabel!
-    @IBOutlet weak var totalSalesLabel: PaddingLabel!
+    @IBOutlet weak var customerSalesTitleLabel: PaddingLabel!
+    @IBOutlet weak var totalOrdersLabel: PaddingLabel!
     @IBOutlet weak var totalRevenueLabel: PaddingLabel!
     @IBOutlet weak var totalCOGSLabel: PaddingLabel!
     @IBOutlet weak var totalProfitLabel: PaddingLabel!
@@ -26,14 +26,13 @@ class RecipeSalesViewController: UIViewController {
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var sortPopUpButton: UIButton!
     @IBOutlet weak var sortSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var customerSalesTableView: UITableView!
     
-    @IBOutlet weak var recipeDataTableView: UITableView!
-    
-    var recipeList: [Recipe] = []
+    var customerList: [Customer] = []
     var ordersList: [Order] = []
     var tempOrderList: [Order] = []
-    var financeDataArray: [FinanceDataManager.RecipeSalesData] = []
-    var selectedSortOption = "Recipe"
+    var financeDataArray: [FinanceDataManager.CustomerSalesData] = []
+    var selectedSortOption = "Name"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,24 +40,24 @@ class RecipeSalesViewController: UIViewController {
         //Style The View
         financesTitleLabel.clipsToBounds = true
         AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 2.0, view: financesTitleLabel)
-        AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 4.0, view: recipeDataTitleLabel)
+        AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 4.0, view: customerSalesTitleLabel)
         AddBorders().addLeftBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: dateStackView)
         AddBorders().addRightBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: dateStackView)
         AddBorders().addLeftBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: sortView)
         AddBorders().addRightBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: sortView)
         AddBorders().addLeftBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: headersStackView)
         AddBorders().addRightBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: headersStackView)
-        AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 4.0, view: recipeDataTableView)
+        AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 4.0, view: customerSalesTableView)
         AddBorders().addLeftBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: totalsStackView)
         AddBorders().addRightBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: totalsStackView)
         AddBorders().addBottomBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: totalsStackView)
-        recipeDataTableView.rowHeight = 50.0
+        customerSalesTableView.rowHeight = 50.0
         sortSegmentedControl.defaultConfiguration()
         sortSegmentedControl.selectedConfiguration()
         
         //Register delegates, data sources and Nibs
-        recipeDataTableView.dataSource = self
-        recipeDataTableView.register(UINib(nibName: K.recipeSalesCellNibName, bundle: nil), forCellReuseIdentifier: K.recipeSalesReuseIdentifier)
+        customerSalesTableView.dataSource = self
+        customerSalesTableView.register(UINib(nibName: K.recipeSalesCellNibName, bundle: nil), forCellReuseIdentifier: K.recipeSalesReuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +66,7 @@ class RecipeSalesViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .systemBackground
         setupSortButton()
         setStartDate()
-        loadRecipeFinanceData()
+        loadCustomerFinanceData()
         sortFinanceArray()
     }
     
@@ -78,7 +77,7 @@ class RecipeSalesViewController: UIViewController {
     }
     
     func setupSortButton() {
-        let sortOptions = ["Recipe", "Sales", "Revenue", "COGS", "Profit"]
+        let sortOptions = ["Name", "Orders", "Revenue", "COGS", "Profit"]
         var chirren: [UIMenuElement] = []
         for option in sortOptions {
             chirren.append(UIAction(title: option) { (action: UIAction) in
@@ -93,9 +92,9 @@ class RecipeSalesViewController: UIViewController {
         switch selectedSortOption {
         case "Sales":
             if sortSegmentedControl.selectedSegmentIndex == 0 {
-                financeDataArray = financeDataArray.sorted {$0.sales < $1.sales}
+                financeDataArray = financeDataArray.sorted {$0.orders < $1.orders}
             } else {
-                financeDataArray = financeDataArray.sorted {$0.sales > $1.sales}
+                financeDataArray = financeDataArray.sorted {$0.orders > $1.orders}
             }
         case "Revenue":
             if sortSegmentedControl.selectedSegmentIndex == 0 {
@@ -117,9 +116,9 @@ class RecipeSalesViewController: UIViewController {
             }
         default:
             if sortSegmentedControl.selectedSegmentIndex == 0 {
-                financeDataArray = financeDataArray.sorted {$0.name < $1.name}
+                financeDataArray = financeDataArray.sorted {$0.stringName < $1.stringName}
             } else {
-                financeDataArray = financeDataArray.sorted {$0.name > $1.name}
+                financeDataArray = financeDataArray.sorted {$0.stringName > $1.stringName}
             }
         }
         reloadTableView()
@@ -137,6 +136,8 @@ class RecipeSalesViewController: UIViewController {
     }
     
     func getOrdersInDateRange() {
+        loadOrders()
+        
         //Format Start Date
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -163,90 +164,89 @@ class RecipeSalesViewController: UIViewController {
         }
     }
     
-    func loadRecipeFinanceData() {
-        loadRecipes()
-        loadOrders()
+    func loadCustomerFinanceData() {
+        loadCustomerList()
         getOrdersInDateRange()
         financeDataArray = []
-        
-        //Get orderdItems
-        var tempOrderedItems: [OrderedItem] = []
+
+        //Get Order Info
+        var orderCustomer: Customer? = nil
+        var orderRevenue: Float = 0
+        var orderCOGS: Float = 0
         for order in tempOrderList {
-            for item in (order.toOrderedItem?.allObjects as! [OrderedItem]) {
-                tempOrderedItems.append(item)
-            }
-        }
-        
-        //Get COGS
-        for orderedItem in tempOrderedItems {
-            var cogsAmount: Float = 0
-            cogsAmount += FinanceDataManager().getCOGS(recipe: orderedItem.toRecipe!, orderedItemBatchSize: orderedItem.batchSize, quantityOrdered: orderedItem.quantityOrdered)
+            orderCOGS = 0
+            orderCustomer = order.toCustomer!
+            orderRevenue = order.orderTotal - order.orderSalesTax
             
-            //Update the Finance Array
+            //Get COGS
+            for item in (order.toOrderedItem?.allObjects as! [OrderedItem]) {
+                orderCOGS += FinanceDataManager().getCOGS(recipe: item.toRecipe!, orderedItemBatchSize: item.batchSize, quantityOrdered: item.quantityOrdered)
+            }
             if financeDataArray.contains(where: { dataItem in
-                dataItem.name == orderedItem.toRecipe!.name!
+                dataItem.customer == orderCustomer
             }) == false {
-                let dataName = orderedItem.toRecipe!.name!
-                let dataSales = orderedItem.quantityOrdered
-                let dataRevenue = Float(orderedItem.quantityOrdered) * orderedItem.batchPrice
-                let dataCOGS = cogsAmount
-                let newDataItem = FinanceDataManager.RecipeSalesData(name: dataName, sales: dataSales, revenue: dataRevenue, cogs: dataCOGS)
-                financeDataArray.append(newDataItem)
+                let newSalesData = FinanceDataManager.CustomerSalesData(customer: orderCustomer!, orders: 1, revenue: orderRevenue, cogs: orderCOGS)
+                financeDataArray.append(newSalesData)
             } else {
                 for dataItem in financeDataArray {
-                    if dataItem.name == orderedItem.toRecipe!.name! {
-                        dataItem.sales += orderedItem.quantityOrdered
-                        dataItem.revenue += (Float(orderedItem.quantityOrdered) * orderedItem.batchPrice)
-                        dataItem.cogs += cogsAmount
+                    if dataItem.customer == orderCustomer {
+                        dataItem.orders += 1
+                        dataItem.revenue += orderRevenue
+                        dataItem.cogs += orderCOGS
                     }
                 }
             }
         }
-        for recipe in recipeList {
-            if financeDataArray.contains(where: { item in
-                item.name ==  recipe.name
+        
+        for customer in customerList {
+            if financeDataArray.contains(where: { dataItem in
+                dataItem.customer == customer
             }) == false {
-                let newRecipeData = FinanceDataManager.RecipeSalesData(name: recipe.name!, sales: 0, revenue: 0, cogs: 0)
-                financeDataArray.append(newRecipeData)
+                let newSalesData = FinanceDataManager.CustomerSalesData(customer: customer, orders: 0, revenue: 0, cogs: 0)
+                financeDataArray.append(newSalesData)
             }
         }
         //Get Totals
-        var totalSales: Int16 = 0
+        var totalOrders: Int16 = 0
         var totalRevenue: Float = 0
         var totalCogs: Float = 0
         var totalProfit: Float = 0
         for item in financeDataArray {
-            totalSales += item.sales
+            totalOrders += item.orders
             totalRevenue += item.revenue
             totalCogs += item.cogs
             totalProfit += item.profit
         }
-        totalSalesLabel.text = "\(totalSales)"
+        totalOrdersLabel.text = "\(totalOrders)"
         totalRevenueLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: totalRevenue)
         totalCOGSLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: totalCogs)
         totalProfitLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: totalProfit)
+        
     }
     
     @IBAction func sortSegmentedControlChanged(_ sender: UISegmentedControl) {
         sortFinanceArray()
     }
     
-    @IBAction func startDateUpdated(_ sender: UIDatePicker) {
-        loadRecipeFinanceData()
+    @IBAction func startDateChanged(_ sender: UIDatePicker) {
+        loadCustomerFinanceData()
         sortFinanceArray()
     }
     
-    @IBAction func endDateUpdated(_ sender: UIDatePicker) {
-        loadRecipeFinanceData()
+    @IBAction func endDateChanged(_ sender: UIDatePicker) {
+        loadCustomerFinanceData()
         sortFinanceArray()
     }
     
     //MARK: CoreData CRUD Methods
     
-    func loadRecipes() {
-        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+    func loadCustomerList() {
+        let request: NSFetchRequest<Customer> = Customer.fetchRequest()
+        let lastNameSort = NSSortDescriptor(key:"lastName", ascending:true)
+        let firstNameSort = NSSortDescriptor(key:"firstName", ascending:true)
+        request.sortDescriptors = [lastNameSort, firstNameSort]
         do {
-            recipeList = try K.recipeContext.fetch(request)
+            customerList = try K.customerInfoContext.fetch(request)
         } catch {
             print("Error loading Recipe: \(error)")
         }
@@ -265,52 +265,31 @@ class RecipeSalesViewController: UIViewController {
     
     func reloadTableView() {
         DispatchQueue.main.async {
-            self.recipeDataTableView.reloadData()
+            self.customerSalesTableView.reloadData()
         }
     }
 }
 
 //MARK: TableView DataSource Methods
 
-extension RecipeSalesViewController: UITableViewDataSource {
+extension CustomerSalesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         financeDataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = recipeDataTableView.dequeueReusableCell(withIdentifier: K.recipeSalesReuseIdentifier, for: indexPath) as! RecipeSalesTableViewCell
+        let cell = customerSalesTableView.dequeueReusableCell(withIdentifier: K.recipeSalesReuseIdentifier, for: indexPath) as! RecipeSalesTableViewCell
         
-        let recipe = financeDataArray[indexPath.row]
-        cell.nameLabel.text = recipe.name
-        cell.salesLabel.text = "\(recipe.sales)"
-        cell.revenueLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: recipe.revenue)
-        cell.cogsLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: recipe.cogs)
-        cell.profitLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: recipe.profit)
+        
+        let customer = financeDataArray[indexPath.row]
+        cell.nameLabel.text = customer.stringName
+        cell.salesLabel.text = "\(customer.orders)"
+        cell.revenueLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: customer.revenue)
+        cell.cogsLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: customer.cogs)
+        cell.profitLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: customer.profit)
         
         return cell
     }
 }
 
-//MARK: Segmented Control Style Options
-
-extension UISegmentedControl {
-    
-    func defaultConfiguration(font: UIFont = K.fontSegCtrlPadNormal!, color: UIColor = K.bakeShopChocolate)
-    {
-        let defaultAttributes = [
-            NSAttributedString.Key.font: font,
-            NSAttributedString.Key.foregroundColor: color
-        ]
-        setTitleTextAttributes(defaultAttributes, for: .normal)
-    }
-
-    func selectedConfiguration(font: UIFont = K.fontSegCtrlPadBold!, color: UIColor = K.bakeShopChocolate)
-    {
-        let selectedAttributes = [
-            NSAttributedString.Key.font: font,
-            NSAttributedString.Key.foregroundColor: color
-        ]
-        setTitleTextAttributes(selectedAttributes, for: .selected)
-    }
-}

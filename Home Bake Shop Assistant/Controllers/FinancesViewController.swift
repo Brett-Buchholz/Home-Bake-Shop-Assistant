@@ -29,6 +29,7 @@ class FinancesViewController: UIViewController {
     @IBOutlet weak var inventoryDataButton: BrettButton!
     
     var ordersList: [Order] = []
+    var tempOrderList: [Order] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +49,6 @@ class FinancesViewController: UIViewController {
         customerDataButton.configuration?.baseForegroundColor = K.bakeShopChocolate
         inventoryDataButton.tintColor = K.systemBackground
         inventoryDataButton.configuration?.baseForegroundColor = K.bakeShopChocolate
-        
-        //Register delegates, data sources and Nibs
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,9 +76,9 @@ class FinancesViewController: UIViewController {
         startDatePicker.date = startDate!
     }
     
-    func loadCompanyFinanceData() {
+    func getOrdersInDateRange() {
         loadOrders()
-        var tempOrderList: [Order] = []
+        tempOrderList = []
         
         //Format Start Date
         let formatter = DateFormatter()
@@ -107,6 +104,11 @@ class FinancesViewController: UIViewController {
                 tempOrderList.append(order)
             }
         }
+    }
+    
+    func loadCompanyFinanceData() {
+        loadOrders()
+        getOrdersInDateRange()
         
         //Get COGS
         var cogsAmount: Float = 0.00
@@ -118,19 +120,7 @@ class FinancesViewController: UIViewController {
             }
         }
         for item in orderedItems {
-            for ingredient in item.toRecipe!.toRecipeIngredient?.allObjects as! [RecipeIngredient] {
-                //Cost per standard Unit
-                let cost = ingredient.inventory!.cost
-                
-                //Convert recipe units to standard units
-                let amount = (ingredient.quantity * Float(item.quantityOrdered))
-                let measuredUnits = UnitsOfMeasurement().convertStringToUnits(string: ingredient.units!)
-                let standardUnits = UnitsOfMeasurement().convertStringToUnits(string: (ingredient.inventory?.baseUnit)!)
-                let adjustedAmount = UnitsConverter(amount: amount, measuredUnits: measuredUnits, standardUnits: standardUnits).convertUnits()
-                
-                //Update COGS
-                cogsAmount += (cost * adjustedAmount)
-            }
+            cogsAmount += FinanceDataManager().getCOGS(recipe: item.toRecipe!, orderedItemBatchSize: item.batchSize, quantityOrdered: item.quantityOrdered)
         }
         //Get Values
         var revenueAmount: Float = 0.00
