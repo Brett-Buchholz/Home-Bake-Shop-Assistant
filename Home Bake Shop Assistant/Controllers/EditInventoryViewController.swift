@@ -94,7 +94,7 @@ class EditInventoryViewController: UIViewController, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (amountTextField.text! as NSString).replacingCharacters(in: range, with: string)
-        let decimalRegex = try! NSRegularExpression(pattern: "^\\d*\\.?\\d{0,2}$", options: [])
+        let decimalRegex = try! NSRegularExpression(pattern: "^\\d*\\.?\\d{0,3}$", options: [])
         let matches = decimalRegex.matches(in: newString, options: [], range: NSMakeRange(0, newString.count))
         if matches.count == 1 {
             return true

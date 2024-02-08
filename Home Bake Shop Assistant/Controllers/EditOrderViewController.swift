@@ -100,14 +100,6 @@ class EditOrderViewController: UIViewController {
         loadTextFields()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.segueIdentifierToCompanyInfo {
-            let destinationVC = segue.destination as! CompanyInfoViewController
-            let originVC = segue.source as! EditOrderViewController
-            destinationVC.originVC = originVC
-        }
-    }
-    
     func loadTextFields() {
         
         loadCompanyInfo()

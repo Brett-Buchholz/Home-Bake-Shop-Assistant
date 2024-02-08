@@ -106,36 +106,35 @@ struct StringConverter {
     }
     
     func convertInventoryFloatToString(inventoryFloat: Float) -> String {
-        let newFloat = floorf(inventoryFloat)
-        var newString = String(format: "%.2f", newFloat)
+        var newString = String(format: "%.3f", inventoryFloat)
         let stringLength = newString.count
         switch stringLength {
         case 8:
-            let stringIndex = newString.index(newString.startIndex, offsetBy: 2)
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 1)
             newString.insert(",", at: stringIndex)
         case 9:
-            let stringIndex = newString.index(newString.startIndex, offsetBy: 3)
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 2)
             newString.insert(",", at: stringIndex)
         case 10:
-            let stringIndex = newString.index(newString.startIndex, offsetBy: 4)
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 3)
             newString.insert(",", at: stringIndex)
         case 11:
+            let stringIndex = newString.index(newString.startIndex, offsetBy: 4)
+            newString.insert(",", at: stringIndex)
+            let stringIndex2 = newString.index(newString.startIndex, offsetBy: 1)
+            newString.insert(",", at: stringIndex2)
+        case 12:
             let stringIndex = newString.index(newString.startIndex, offsetBy: 5)
             newString.insert(",", at: stringIndex)
             let stringIndex2 = newString.index(newString.startIndex, offsetBy: 2)
             newString.insert(",", at: stringIndex2)
-        case 12:
+        case 13:
             let stringIndex = newString.index(newString.startIndex, offsetBy: 6)
             newString.insert(",", at: stringIndex)
             let stringIndex2 = newString.index(newString.startIndex, offsetBy: 3)
             newString.insert(",", at: stringIndex2)
-        case 13:
-            let stringIndex = newString.index(newString.startIndex, offsetBy: 7)
-            newString.insert(",", at: stringIndex)
-            let stringIndex2 = newString.index(newString.startIndex, offsetBy: 4)
-            newString.insert(",", at: stringIndex2)
         default:
-            newString = String(format: "%.2f", newFloat)
+            newString = String(format: "%.3f", inventoryFloat)
         }
         
         return newString

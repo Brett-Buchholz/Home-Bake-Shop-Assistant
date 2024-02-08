@@ -56,6 +56,8 @@
 		57A5258B2B732A8000756328 /* InventoryCostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5258A2B732A8000756328 /* InventoryCostsViewController.swift */; };
 		57A5258E2B732DCC00756328 /* InventoryCostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5258C2B732DCC00756328 /* InventoryCostTableViewCell.swift */; };
 		57A5258F2B732DCC00756328 /* InventoryCostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A5258D2B732DCC00756328 /* InventoryCostTableViewCell.xib */; };
+		57A525912B74192200756328 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A525902B74192200756328 /* OtherViewController.swift */; };
+		57A525932B7438E300756328 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A525922B7438E300756328 /* ConverterViewController.swift */; };
 		57C75D0F2B3E071100E8B32D /* EditCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C75D0E2B3E071100E8B32D /* EditCustomerViewController.swift */; };
 		57C75D112B3E125500E8B32D /* CustomerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C75D102B3E125500E8B32D /* CustomerListViewController.swift */; };
 		57C95FDA2AF6DBA0006130FB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FD92AF6DBA0006130FB /* Constants.swift */; };
@@ -118,6 +120,8 @@
 		57A5258A2B732A8000756328 /* InventoryCostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCostsViewController.swift; sourceTree = "<group>"; };
 		57A5258C2B732DCC00756328 /* InventoryCostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCostTableViewCell.swift; sourceTree = "<group>"; };
 		57A5258D2B732DCC00756328 /* InventoryCostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InventoryCostTableViewCell.xib; sourceTree = "<group>"; };
+		57A525902B74192200756328 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
+		57A525922B7438E300756328 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		57C75D0E2B3E071100E8B32D /* EditCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomerViewController.swift; sourceTree = "<group>"; };
 		57C75D102B3E125500E8B32D /* CustomerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerListViewController.swift; sourceTree = "<group>"; };
 		57C95FD92AF6DBA0006130FB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 				5754A4EB2B6EE5A1007ABA66 /* RecipeSalesViewController.swift */,
 				57A2C93B2B72BB6F00ABE51E /* CustomerSalesViewController.swift */,
 				57A5258A2B732A8000756328 /* InventoryCostsViewController.swift */,
+				57A525902B74192200756328 /* OtherViewController.swift */,
+				57A525922B7438E300756328 /* ConverterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 				57A2C93C2B72BB6F00ABE51E /* CustomerSalesViewController.swift in Sources */,
 				57245B1B2B1699040063A1DB /* RecipeViewController.swift in Sources */,
 				5705AD272B5B032000525E37 /* CustomerTableViewCell.swift in Sources */,
+				57A525932B7438E300756328 /* ConverterViewController.swift in Sources */,
 				5732A8062B4A02A7007D5970 /* AddBorders.swift in Sources */,
 				572F0BEE2B5DA0FD00F9F158 /* UnitsOfMeasurement.swift in Sources */,
 				57A5258B2B732A8000756328 /* InventoryCostsViewController.swift in Sources */,
@@ -367,6 +374,7 @@
 				5705AD162B50F92B00525E37 /* PrintableInvoiceViewController.swift in Sources */,
 				57C75D112B3E125500E8B32D /* CustomerListViewController.swift in Sources */,
 				57C95FE42AFC96C3006130FB /* IngredientTableViewCell.swift in Sources */,
+				57A525912B74192200756328 /* OtherViewController.swift in Sources */,
 				5754A4EF2B6EEE88007ABA66 /* RecipeSalesTableViewCell.swift in Sources */,
 				572E72802B22CE820012B715 /* PaddingLabel.swift in Sources */,
 				572E727E2B180E2B0012B715 /* StringConverter.swift in Sources */,

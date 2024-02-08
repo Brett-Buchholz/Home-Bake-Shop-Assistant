@@ -79,7 +79,7 @@ struct UnitsConverter {
             } else if standardUnits == UnitsOfMeasurement.Units.Ounce {
                 multiplier = 8
             } else if standardUnits == UnitsOfMeasurement.Units.Pound {
-                multiplier = 2
+                multiplier = (1/2)
             } else if standardUnits == UnitsOfMeasurement.Units.FluidOunce {
                 multiplier = 8
             } else if standardUnits == UnitsOfMeasurement.Units.Pint {
@@ -99,11 +99,11 @@ struct UnitsConverter {
             } else if standardUnits == UnitsOfMeasurement.Units.Tablespoon {
                 multiplier = 2
             } else if standardUnits == UnitsOfMeasurement.Units.Cup {
-                multiplier = 8
+                multiplier = (1/8)
             } else if standardUnits == UnitsOfMeasurement.Units.Ounce {
                 multiplier = 1
             } else if standardUnits == UnitsOfMeasurement.Units.Pound {
-                multiplier = 16
+                multiplier = (1/16)
             } else if standardUnits == UnitsOfMeasurement.Units.FluidOunce {
                 multiplier = 1
             } else if standardUnits == UnitsOfMeasurement.Units.Pint {
@@ -123,13 +123,13 @@ struct UnitsConverter {
             } else if standardUnits == UnitsOfMeasurement.Units.Tablespoon {
                 multiplier = 32
             } else if standardUnits == UnitsOfMeasurement.Units.Cup {
-                multiplier = (1/2)
+                multiplier = 2
             } else if standardUnits == UnitsOfMeasurement.Units.Ounce {
-                multiplier = (1/16)
+                multiplier = 16
             } else if standardUnits == UnitsOfMeasurement.Units.Pound {
                 multiplier = 1
             } else if standardUnits == UnitsOfMeasurement.Units.FluidOunce {
-                multiplier = (1/16)
+                multiplier = 16
             } else if standardUnits == UnitsOfMeasurement.Units.Pint {
                 multiplier = 1
             } else if standardUnits == UnitsOfMeasurement.Units.Quart {
@@ -147,11 +147,11 @@ struct UnitsConverter {
             } else if standardUnits == UnitsOfMeasurement.Units.Tablespoon {
                 multiplier = 2
             } else if standardUnits == UnitsOfMeasurement.Units.Cup {
-                multiplier = 8
+                multiplier = (1/8)
             } else if standardUnits == UnitsOfMeasurement.Units.Ounce {
                 multiplier = 1
             } else if standardUnits == UnitsOfMeasurement.Units.Pound {
-                multiplier = 16
+                multiplier = (1/16)
             } else if standardUnits == UnitsOfMeasurement.Units.FluidOunce {
                 multiplier = 1
             } else if standardUnits == UnitsOfMeasurement.Units.Pint {
@@ -167,7 +167,7 @@ struct UnitsConverter {
             }
         } else if measuredUnits == UnitsOfMeasurement.Units.Pint {
             if standardUnits == UnitsOfMeasurement.Units.Teaspoon {
-                multiplier = 16
+                multiplier = 96
             } else if standardUnits == UnitsOfMeasurement.Units.Tablespoon {
                 multiplier = 32
             } else if standardUnits == UnitsOfMeasurement.Units.Cup {
@@ -247,7 +247,7 @@ struct UnitsConverter {
             } else if standardUnits == UnitsOfMeasurement.Units.Ounce {
                 multiplier = 33.814
             } else if standardUnits == UnitsOfMeasurement.Units.Pound {
-                multiplier = 2.2
+                multiplier = 2.113
             } else if standardUnits == UnitsOfMeasurement.Units.FluidOunce {
                 multiplier = 33.814
             } else if standardUnits == UnitsOfMeasurement.Units.Pint {
@@ -271,7 +271,7 @@ struct UnitsConverter {
             } else if standardUnits == UnitsOfMeasurement.Units.Ounce {
                 multiplier = (1/29.574)
             } else if standardUnits == UnitsOfMeasurement.Units.Pound {
-                multiplier = (1/0.0022)
+                multiplier = (1/473.2)
             } else if standardUnits == UnitsOfMeasurement.Units.FluidOunce {
                 multiplier = (1/29.574)
             } else if standardUnits == UnitsOfMeasurement.Units.Pint {

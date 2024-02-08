@@ -11,6 +11,14 @@ import CoreData
 class CompanyInfoViewController: UIViewController {
     
     @IBOutlet weak var companyInfoTitleLabel: PaddingLabel!
+    @IBOutlet weak var nameStackView: UIStackView!
+    @IBOutlet weak var addressStackView: UIStackView!
+    @IBOutlet weak var cityStackView: UIStackView!
+    @IBOutlet weak var stateStackView: UIStackView!
+    @IBOutlet weak var zipStackView: UIStackView!
+    @IBOutlet weak var taxStackView: UIStackView!
+    @IBOutlet weak var taxRateStackView: UIStackView!
+    
     @IBOutlet weak var companyNameTextField: UITextField!
     @IBOutlet weak var companyAddressTextField: UITextField!
     @IBOutlet weak var companyCityTextField: UITextField!
@@ -18,8 +26,8 @@ class CompanyInfoViewController: UIViewController {
     @IBOutlet weak var companyZipCodeTextField: UITextField!
     @IBOutlet weak var chargeSalesTaxSwitch: UISwitch!
     @IBOutlet weak var taxRateTextField: UITextField!
+    @IBOutlet weak var saveInfoButton: BrettButton!
     
-    var originVC: EditOrderViewController? = nil
     var loadedCompany: [Company] = []
     
     override func viewDidLoad() {
@@ -27,7 +35,15 @@ class CompanyInfoViewController: UIViewController {
         
         //Style The View
         AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: companyInfoTitleLabel)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: nameStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: addressStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: cityStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: stateStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: zipStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: taxStackView)
+        AddBorders().addAllBorders(with: K.bakeShopBlueberry, andWidth: 2.0, view: taxRateStackView)
         companyInfoTitleLabel.layer.masksToBounds = true
+        saveInfoButton.tintColor = K.bakeShopBlueberry
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,12 +91,7 @@ class CompanyInfoViewController: UIViewController {
         companyInfo.taxRate = (stringTaxRate! as NSString).floatValue
         saveCompanyInfo()
         loadCompanyInfo()
-        if originVC != nil {
-            DispatchQueue.main.async {
-                self.originVC?.viewWillAppear(true)
-            }
-        }
-        self.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     //MARK: CoreData CRUD Methods
