@@ -25,21 +25,12 @@ class CustomerTableViewCell: UITableViewCell {
     func cellStyleStup() {
         //General style of the cell
         customerLabel.textColor = K.bakeShopBlueberry
-//        layer.borderWidth = 1
-//        layer.borderColor = K.fontColorWhite.cgColor
-//        backgroundColor = K.fontColor.withAlphaComponent(0.0)
-//        dailyReminderCellLabel.highlightedTextColor = K.fontColor
-        
-        //Change the Background Color when selected
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = K.fontColorWhite
-//        selectedBackgroundView = backgroundView
         
         //Style for different interface modes
         if K.interfaceMode == .pad {
             customerLabel.font = UIFont(name: "Times New Roman", size: 32)
         } else {
-            customerLabel.font = UIFont(name: "Times New Roman", size: 24)
+            customerLabel.font = UIFont(name: "Times New Roman", size: 22)
         }
     }
 }

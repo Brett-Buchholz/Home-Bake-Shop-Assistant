@@ -41,7 +41,11 @@ class QuickAddViewController: UIViewController, UITextFieldDelegate {
         AddBorders().addAllBorders(with: K.bakeShopBrown, andWidth: 4.0, view: bottomView)
         addButton.tintColor = K.bakeShopBrown
         saveButton.tintColor = K.bakeShopBrown
-        quickAddTableView.rowHeight = 50.0
+        if K.interfaceMode == .phone {
+            quickAddTableView.rowHeight = 40
+        } else {
+            quickAddTableView.rowHeight = 50
+        }
         
         //Register delegates, data sources and Nibs
         amountAddedTextField.delegate = self
@@ -147,7 +151,6 @@ class QuickAddViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func addButtonPressed(_ sender: BrettButton) {
         errorLabel.isHidden = true
-        standardUnit = UnitsOfMeasurement().convertStringToUnits(string: (selectedIngredient?.baseUnit)!)
         if selectedIngredient == nil {
             errorLabel.isHidden = false
             errorLabel.text = "Please select an ingredient!"
@@ -158,9 +161,11 @@ class QuickAddViewController: UIViewController, UITextFieldDelegate {
             errorLabel.isHidden = false
             errorLabel.text = "Please select units of measurement!"
         } else if ableToConvert() == false {
+            standardUnit = UnitsOfMeasurement().convertStringToUnits(string: (selectedIngredient?.baseUnit)!)
             errorLabel.isHidden = false
             errorLabel.text = "Unable to convert \(selectedMeasuredUnit!)s to the standard unit of \(standardUnit!)s!"
         } else {
+            standardUnit = UnitsOfMeasurement().convertStringToUnits(string: (selectedIngredient?.baseUnit)!)
             var itemDict: Dictionary = [String:Any]()
             itemDict["Ingredient"] = selectedIngredient!
             itemDict["Name"] = selectedIngredient!.ingredientName

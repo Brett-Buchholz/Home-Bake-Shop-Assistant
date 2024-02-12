@@ -28,7 +28,7 @@ class RecipeViewController: UIViewController {
         //Style The View
         AddBorders().addAllBorders(with: K.bakeShopMaroon, andWidth: 2.0, view: stackView)
         editRecipeButton.tintColor = K.bakeShopMaroon
-        deleteRecipeButton.tintColor = K.bakeShopMaroon
+        deleteRecipeButton.tintColor = K.bakeShopDeleteRed
         
         //Register delegates, data sources and Nibs
         recipeIngredientsTableView.delegate = self
@@ -58,7 +58,11 @@ class RecipeViewController: UIViewController {
         let singlePrice = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe[0].priceSingle)
         let halfDozenPrice = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe[0].priceHalfDozen)
         let dozenPrice = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe[0].priceDozen)
-        batchLabel.text = "Batch Size Of: \(loadedRecipe[0].batchSize), Price per: Dozen \(dozenPrice), Half Dozen \(halfDozenPrice), Single \(singlePrice)"
+        if K.interfaceMode == .phone {
+            batchLabel.text = "Batch Size Of: \(loadedRecipe[0].batchSize), Price per:\nDozen \(dozenPrice), Half Dozen \(halfDozenPrice), Single \(singlePrice)"
+        } else {
+            batchLabel.text = "Batch Size Of: \(loadedRecipe[0].batchSize), Price per: Dozen \(dozenPrice), Half Dozen \(halfDozenPrice), Single \(singlePrice)"
+        }
     }
     
     @IBAction func deleteRecipePressed(_ sender: BrettButton) {

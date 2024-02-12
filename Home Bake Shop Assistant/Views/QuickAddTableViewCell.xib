@@ -20,26 +20,20 @@
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3b0-bV-yXt">
                         <rect key="frame" x="0.0" y="0.0" width="666" height="58"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZs-ys-2w8" userLabel="Label 1" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="266" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="fZs-ys-2w8" userLabel="Label 1" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="472" height="58"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MiE-Wi-Ven" userLabel="Label 2" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="266" y="0.0" width="250" height="58"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="6yy-aS-KuQ"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="MiE-Wi-Ven" userLabel="Label 2" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="472" y="0.0" width="97" height="58"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpU-nK-Vjb" userLabel="Label 3" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="516" y="0.0" width="150" height="58"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="fBu-aq-EpD"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="LpU-nK-Vjb" userLabel="Label 3" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="569" y="0.0" width="97" height="58"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

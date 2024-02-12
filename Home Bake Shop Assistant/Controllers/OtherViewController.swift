@@ -13,6 +13,7 @@ class OtherViewController: UIViewController {
     @IBOutlet weak var customersButton: BrettButton!
     @IBOutlet weak var unitsConverterButton: BrettButton!
     @IBOutlet weak var subscriptionButton: BrettButton!
+    @IBOutlet weak var privacyPolicyButton: BrettButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class OtherViewController: UIViewController {
         customersButton.tintColor = K.systemBackground
         unitsConverterButton.tintColor = K.systemBackground
         subscriptionButton.tintColor = K.systemBackground
-        
+        privacyPolicyButton.tintColor = K.systemBackground
     }
     
     

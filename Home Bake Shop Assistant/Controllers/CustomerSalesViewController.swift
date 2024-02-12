@@ -207,7 +207,7 @@ class CustomerSalesViewController: UIViewController {
             }
         }
         //Get Totals
-        var totalOrders: Int16 = 0
+        var totalOrders: Int = 0
         var totalRevenue: Float = 0
         var totalCogs: Float = 0
         var totalProfit: Float = 0

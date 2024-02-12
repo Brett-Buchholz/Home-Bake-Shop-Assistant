@@ -55,7 +55,6 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
         saveButton.tintColor = K.bakeShopMaroon
         addButton.tintColor = K.bakeShopMaroon
         errorLabel.isHidden = true
-        ingredientsTableView.rowHeight = 36.0
         
         //Register delegates, data sources and Nibs
         quantityIntegerTextField.delegate = self
@@ -137,6 +136,9 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
     }
     
     func ableToConvert() -> Bool {
+        if selectedIngredient == nil {
+            return false
+        }
         let selectedStandardUnit = UnitsOfMeasurement().convertStringToUnits(string: (selectedIngredient?.baseUnit)!)
         let selectedMeasuredUnit = selectedUnits
         if selectedStandardUnit == .Whole && selectedMeasuredUnit != .Whole {
@@ -297,10 +299,12 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
         
         //Check that units of measurment don't conflict
         if ableToConvert() == false {
-            let selected = UnitsOfMeasurement().convertUnitsToString(unit: selectedUnits!)
-            let standard = selectedIngredient?.baseUnit
-            errorLabel.isHidden = false
-            errorLabel.text = "\(selected)s are not compatible with the standard unit of \(standard!)"
+            if selectedIngredient != nil {
+                let selected = UnitsOfMeasurement().convertUnitsToString(unit: selectedUnits!)
+                let standard = selectedIngredient?.baseUnit
+                errorLabel.isHidden = false
+                errorLabel.text = "\(selected)s are not compatible with the standard unit of \(standard!)"
+            }
         }
         
         //Add ingredient to recipe
@@ -423,7 +427,6 @@ extension EditRecipeViewController: UITableViewDataSource {
         
         return cell
     }
-    
 }
 
 extension EditRecipeViewController: UITableViewDelegate {

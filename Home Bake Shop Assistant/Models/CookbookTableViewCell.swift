@@ -25,23 +25,13 @@ class CookbookTableViewCell: UITableViewCell {
     func cellStyleStup() {
         //General style of the cell
         cookbookLabel.textColor = K.bakeShopMaroon
-//        layer.borderWidth = 1
-//        layer.borderColor = K.fontColorWhite.cgColor
-//        backgroundColor = K.fontColor.withAlphaComponent(0.0)
-//        dailyReminderCellLabel.highlightedTextColor = K.fontColor
-        
-        //Change the Background Color when selected
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = K.fontColorWhite
-//        selectedBackgroundView = backgroundView
         
         //Style for different interface modes
         if K.interfaceMode == .pad {
             cookbookLabel.font = UIFont(name: "Times New Roman", size: 32)
         } else {
-            cookbookLabel.font = UIFont(name: "Times New Roman", size: 24)
+            cookbookLabel.font = UIFont(name: "Times New Roman", size: 22)
         }
     }
-
     
 }

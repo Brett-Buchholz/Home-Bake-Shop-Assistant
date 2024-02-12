@@ -58,6 +58,10 @@
 		57A5258F2B732DCC00756328 /* InventoryCostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57A5258D2B732DCC00756328 /* InventoryCostTableViewCell.xib */; };
 		57A525912B74192200756328 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A525902B74192200756328 /* OtherViewController.swift */; };
 		57A525932B7438E300756328 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A525922B7438E300756328 /* ConverterViewController.swift */; };
+		57AA77412B769F0D00D3685A /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA77402B769F0D00D3685A /* PrivacyPolicyViewController.swift */; };
+		57AA77432B769F6D00D3685A /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA77422B769F6D00D3685A /* SubscriptionViewController.swift */; };
+		57AA77462B76A9AC00D3685A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 57AA77452B76A9AC00D3685A /* IQKeyboardManagerSwift */; };
+		57AA77482B76CFDA00D3685A /* GettingStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AA77472B76CFDA00D3685A /* GettingStartedViewController.swift */; };
 		57C75D0F2B3E071100E8B32D /* EditCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C75D0E2B3E071100E8B32D /* EditCustomerViewController.swift */; };
 		57C75D112B3E125500E8B32D /* CustomerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C75D102B3E125500E8B32D /* CustomerListViewController.swift */; };
 		57C95FDA2AF6DBA0006130FB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C95FD92AF6DBA0006130FB /* Constants.swift */; };
@@ -122,6 +126,9 @@
 		57A5258D2B732DCC00756328 /* InventoryCostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InventoryCostTableViewCell.xib; sourceTree = "<group>"; };
 		57A525902B74192200756328 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		57A525922B7438E300756328 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
+		57AA77402B769F0D00D3685A /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		57AA77422B769F6D00D3685A /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
+		57AA77472B76CFDA00D3685A /* GettingStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStartedViewController.swift; sourceTree = "<group>"; };
 		57C75D0E2B3E071100E8B32D /* EditCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomerViewController.swift; sourceTree = "<group>"; };
 		57C75D102B3E125500E8B32D /* CustomerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerListViewController.swift; sourceTree = "<group>"; };
 		57C95FD92AF6DBA0006130FB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -138,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57C95FE82AFC9E80006130FB /* SwipeCellKit in Frameworks */,
+				57AA77462B76A9AC00D3685A /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				5734355D2AF1856F00BB3611 /* ViewController.swift */,
+				57AA77472B76CFDA00D3685A /* GettingStartedViewController.swift */,
 				57245B182B15560D0063A1DB /* CookbookViewController.swift */,
 				57245B1A2B1699040063A1DB /* RecipeViewController.swift */,
 				57C95FDE2AFC0A96006130FB /* EditRecipeViewController.swift */,
@@ -199,6 +208,8 @@
 				57A5258A2B732A8000756328 /* InventoryCostsViewController.swift */,
 				57A525902B74192200756328 /* OtherViewController.swift */,
 				57A525922B7438E300756328 /* ConverterViewController.swift */,
+				57AA77402B769F0D00D3685A /* PrivacyPolicyViewController.swift */,
+				57AA77422B769F6D00D3685A /* SubscriptionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -269,6 +280,7 @@
 			name = "Home Bake Shop Assistant";
 			packageProductDependencies = (
 				57C95FE72AFC9E80006130FB /* SwipeCellKit */,
+				57AA77452B76A9AC00D3685A /* IQKeyboardManagerSwift */,
 			);
 			productName = "Home Bake Shop Assistant";
 			productReference = 573435562AF1856F00BB3611 /* Home Bake Shop Assistant.app */;
@@ -300,6 +312,7 @@
 			mainGroup = 5734354D2AF1856F00BB3611;
 			packageReferences = (
 				57C95FE62AFC9E80006130FB /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+				57AA77442B76A9AC00D3685A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 573435572AF1856F00BB3611 /* Products */;
 			projectDirPath = "";
@@ -378,9 +391,12 @@
 				5754A4EF2B6EEE88007ABA66 /* RecipeSalesTableViewCell.swift in Sources */,
 				572E72802B22CE820012B715 /* PaddingLabel.swift in Sources */,
 				572E727E2B180E2B0012B715 /* StringConverter.swift in Sources */,
+				57AA77482B76CFDA00D3685A /* GettingStartedViewController.swift in Sources */,
 				572F0BF02B63067500F9F158 /* QuickAddViewController.swift in Sources */,
 				574A84C12B70394700E3CC68 /* FinanceDataManager.swift in Sources */,
 				57245B192B15560D0063A1DB /* CookbookViewController.swift in Sources */,
+				57AA77432B769F6D00D3685A /* SubscriptionViewController.swift in Sources */,
+				57AA77412B769F0D00D3685A /* PrivacyPolicyViewController.swift in Sources */,
 				5732A8082B4C7787007D5970 /* OrderViewController.swift in Sources */,
 				5705AD1D2B5AF7FF00525E37 /* CookbookTableViewCell.swift in Sources */,
 			);
@@ -542,8 +558,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -573,8 +589,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -613,6 +629,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		57AA77442B76A9AC00D3685A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.1;
+			};
+		};
 		57C95FE62AFC9E80006130FB /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
@@ -624,6 +648,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		57AA77452B76A9AC00D3685A /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57AA77442B76A9AC00D3685A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		57C95FE72AFC9E80006130FB /* SwipeCellKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 57C95FE62AFC9E80006130FB /* XCRemoteSwiftPackageReference "SwipeCellKit" */;

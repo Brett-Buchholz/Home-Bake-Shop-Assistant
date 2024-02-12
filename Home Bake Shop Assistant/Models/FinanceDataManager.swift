@@ -12,14 +12,14 @@ class FinanceDataManager {
     class RecipeSalesData {
         
         var name: String
-        var sales: Int16
+        var sales: Int
         var revenue: Float
         var cogs: Float
         var profit: Float {
             return revenue - cogs
         }
         
-        init(name: String, sales: Int16, revenue: Float, cogs: Float) {
+        init(name: String, sales: Int, revenue: Float, cogs: Float) {
             self.name = name
             self.sales = sales
             self.revenue = revenue
@@ -50,14 +50,14 @@ class FinanceDataManager {
         var stringName: String {
             "\(customer.lastName!), \(customer.firstName!)"
         }
-        var orders: Int16
+        var orders: Int
         var revenue: Float
         var cogs: Float
         var profit: Float {
             return revenue - cogs
         }
         
-        init(customer: Customer, orders: Int16, revenue: Float, cogs: Float) {
+        init(customer: Customer, orders: Int, revenue: Float, cogs: Float) {
             self.customer = customer
             self.orders = orders
             self.revenue = revenue
@@ -74,7 +74,6 @@ class FinanceDataManager {
         var totalCost: Float
         var amountUsed: String {
             let stringUnits = UnitsOfMeasurement().convertUnitsToString(unit: units)
-            let stringAmount = StringConverter().convertInventoryFloatToString(inventoryFloat: amount)
             var used = ""
             if units == .Whole {
                 used = "\(String(format: "%.f", amount))"

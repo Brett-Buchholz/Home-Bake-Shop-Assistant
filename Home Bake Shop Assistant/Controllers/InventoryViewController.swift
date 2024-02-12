@@ -37,7 +37,11 @@ class InventoryViewController: UIViewController {
         AddBorders().addAllBorders(with: K.bakeShopBrown, andWidth: 4.0, view: bottomView)
         AddBorders().addBottomBorder(with: K.bakeShopBrown, andWidth: 4.0, view: quickAddButton)
         addIngredientButton.tintColor = K.bakeShopBrown
-        ingredientsTableView.rowHeight = 50
+        if K.interfaceMode == .phone {
+            ingredientsTableView.rowHeight = 40
+        } else {
+            ingredientsTableView.rowHeight = 50
+        }
         
         //Register delegates, data sources and Nibs
         ingredientsTableView.dataSource = self
@@ -50,6 +54,7 @@ class InventoryViewController: UIViewController {
         
         errorLabel.isHidden = true
         setupUnitsTypeButton()
+        setupAddIngredientButton()
         updateDataAndView()
         inventoryList = inventoryList.sorted {$0.ingredientName! < $1.ingredientName!}
         getAmountNeeded()
@@ -59,6 +64,21 @@ class InventoryViewController: UIViewController {
         if segue.identifier == K.segueIdentifierToEditInventory {
             let destinationVC = segue.destination as! EditInventoryViewController
             destinationVC.loadedInventoryIngredient = segueInventoryIngredient
+        }
+    }
+    
+    func setupAddIngredientButton() {
+        if K.interfaceMode == .phone {
+            let title = "Add\nIngredient"
+            let paragraph = NSMutableParagraphStyle()
+            let font = UIFont(name: "Times New Roman", size: 16.0)!
+            paragraph.alignment = .center
+            let myAttributes = [ NSAttributedString.Key.foregroundColor: K.systemBackground,
+                                 NSAttributedString.Key.font: font,
+                                 NSAttributedString.Key.paragraphStyle: paragraph
+            ]
+            let attributedString = NSAttributedString(string: title, attributes: myAttributes as [NSAttributedString.Key : Any])
+            addIngredientButton.setAttributedTitle(attributedString, for: .normal)
         }
     }
     

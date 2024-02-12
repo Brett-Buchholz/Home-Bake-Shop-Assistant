@@ -25,6 +25,7 @@ class K {
     static let fontPadNormal = UIFont(name: "Marker Felt", size: 30.0)
     static let fontSegCtrlPadNormal = UIFont(name: "Times New Roman", size: 18.0)
     static let fontSegCtrlPadBold = UIFont(name: "Times New Roman Bold", size: 18.0)
+    static let fontTNR32 = UIFont(name: "Times New Roman", size: 32.0)
     
     //MARK: TableViewCells
     static let ingredientCellNibName = "IngredientTableViewCell"
@@ -58,6 +59,7 @@ class K {
     static let segueIdentifierToCustomerInfo = "ToCustomerInfo"
     static let segueIdentifierToCompanyInfo = "ToCompanyInfo"
     static let segueIdentifierToEditInventory = "ToEditInventorySegue"
+    static let segueIdentifierToGettingStarted = "ToGettingStartedSegue"
     
     //MARK: Misc
     static var interfaceMode = UIDevice.current.userInterfaceIdiom

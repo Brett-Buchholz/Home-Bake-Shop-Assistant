@@ -187,7 +187,7 @@ class RecipeSalesViewController: UIViewController {
                 dataItem.name == orderedItem.toRecipe!.name!
             }) == false {
                 let dataName = orderedItem.toRecipe!.name!
-                let dataSales = orderedItem.quantityOrdered
+                let dataSales = Int(orderedItem.quantityOrdered)
                 let dataRevenue = Float(orderedItem.quantityOrdered) * orderedItem.batchPrice
                 let dataCOGS = cogsAmount
                 let newDataItem = FinanceDataManager.RecipeSalesData(name: dataName, sales: dataSales, revenue: dataRevenue, cogs: dataCOGS)
@@ -195,7 +195,7 @@ class RecipeSalesViewController: UIViewController {
             } else {
                 for dataItem in financeDataArray {
                     if dataItem.name == orderedItem.toRecipe!.name! {
-                        dataItem.sales += orderedItem.quantityOrdered
+                        dataItem.sales += Int(orderedItem.quantityOrdered)
                         dataItem.revenue += (Float(orderedItem.quantityOrdered) * orderedItem.batchPrice)
                         dataItem.cogs += cogsAmount
                     }
@@ -211,7 +211,7 @@ class RecipeSalesViewController: UIViewController {
             }
         }
         //Get Totals
-        var totalSales: Int16 = 0
+        var totalSales: Int = 0
         var totalRevenue: Float = 0
         var totalCogs: Float = 0
         var totalProfit: Float = 0

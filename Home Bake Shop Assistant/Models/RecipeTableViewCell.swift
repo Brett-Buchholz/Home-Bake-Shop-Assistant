@@ -24,17 +24,7 @@ class RecipeTableViewCell: SwipeTableViewCell {
     }
     
     func cellStyleStup() {
-        //General style of the cell
         recipeIngredientLabel.textColor = K.bakeShopMaroon
-//        layer.borderWidth = 1
-//        layer.borderColor = K.fontColorWhite.cgColor
-//        backgroundColor = K.fontColor.withAlphaComponent(0.0)
-//        dailyReminderCellLabel.highlightedTextColor = K.fontColor
-        
-        //Change the Background Color when selected
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = K.fontColorWhite
-//        selectedBackgroundView = backgroundView
         
         //Style for different interface modes
         if K.interfaceMode == .pad {

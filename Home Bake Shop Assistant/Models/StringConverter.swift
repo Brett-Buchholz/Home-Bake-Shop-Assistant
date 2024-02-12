@@ -68,8 +68,12 @@ struct StringConverter {
         let stringLength = newString.count
         switch stringLength {
         case 8:
-            let stringIndex = newString.index(newString.startIndex, offsetBy: 2)
-            newString.insert(",", at: stringIndex)
+            if floatCurrency < 0 {
+                newString = String(format: "$%.2f", floatCurrency)
+            } else {
+                let stringIndex = newString.index(newString.startIndex, offsetBy: 2)
+                newString.insert(",", at: stringIndex)
+            }
         case 9:
             let stringIndex = newString.index(newString.startIndex, offsetBy: 3)
             newString.insert(",", at: stringIndex)
@@ -77,10 +81,15 @@ struct StringConverter {
             let stringIndex = newString.index(newString.startIndex, offsetBy: 4)
             newString.insert(",", at: stringIndex)
         case 11:
-            let stringIndex = newString.index(newString.startIndex, offsetBy: 5)
-            newString.insert(",", at: stringIndex)
-            let stringIndex2 = newString.index(newString.startIndex, offsetBy: 2)
-            newString.insert(",", at: stringIndex2)
+            if floatCurrency < 0 {
+                let stringIndex = newString.index(newString.startIndex, offsetBy: 5)
+                newString.insert(",", at: stringIndex)
+            } else {
+                let stringIndex = newString.index(newString.startIndex, offsetBy: 5)
+                newString.insert(",", at: stringIndex)
+                let stringIndex2 = newString.index(newString.startIndex, offsetBy: 2)
+                newString.insert(",", at: stringIndex2)
+            }
         case 12:
             let stringIndex = newString.index(newString.startIndex, offsetBy: 6)
             newString.insert(",", at: stringIndex)
