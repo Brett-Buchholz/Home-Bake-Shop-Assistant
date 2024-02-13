@@ -12,15 +12,11 @@ class OrderViewController: UIViewController {
     
     @IBOutlet weak var companyNameLabel: PaddingLabel!
     @IBOutlet weak var companyAddressLabel: PaddingLabel!
-    @IBOutlet weak var companyCityLabel: PaddingLabel!
-    @IBOutlet weak var companyStateLabel: PaddingLabel!
-    @IBOutlet weak var companyZipCodeLabel: PaddingLabel!
+    @IBOutlet weak var companyCityStateZipLabel: PaddingLabel!
     
     @IBOutlet weak var customerNameLabel: PaddingLabel!
     @IBOutlet weak var customerAddressLabel: PaddingLabel!
-    @IBOutlet weak var customerCityLabel: PaddingLabel!
-    @IBOutlet weak var customerStateLabel: PaddingLabel!
-    @IBOutlet weak var customerZipCodeLabel: PaddingLabel!
+    @IBOutlet weak var customerCityStateZipLabel: PaddingLabel!
     @IBOutlet weak var customerPhoneLabel: PaddingLabel!
     
     @IBOutlet weak var orderDateValue: PaddingLabel!
@@ -90,17 +86,13 @@ class OrderViewController: UIViewController {
         if loadedCompany != [] {
             companyNameLabel.text = loadedCompany[0].name
             companyAddressLabel.text = loadedCompany[0].address
-            companyCityLabel.text = loadedCompany[0].city
-            companyStateLabel.text = loadedCompany[0].state
-            companyZipCodeLabel.text = loadedCompany[0].zipCode
+            companyCityStateZipLabel.text = "\(loadedCompany[0].city ?? ""), \(loadedCompany[0].state ?? "") \(loadedCompany[0].zipCode ?? "")"
         }
         
         let customer = loadedOrder?.toCustomer
         customerNameLabel.text = "\(customer!.firstName ?? "unknown") \(customer!.lastName ?? "unknown")"
         customerAddressLabel.text = customer?.customerAddress
-        customerCityLabel.text = customer?.customerCity
-        customerStateLabel.text = customer?.customerState
-        customerZipCodeLabel.text = customer?.customerZipCode
+        customerCityStateZipLabel.text = "\(customer?.customerCity ?? ""), \(customer?.customerState ?? "") \(customer?.customerZipCode ?? "")"
         customerPhoneLabel.text = customer?.customerPhone
         
         let date = loadedOrder?.orderDate

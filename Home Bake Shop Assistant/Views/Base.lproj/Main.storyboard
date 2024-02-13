@@ -5026,22 +5026,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-2K-pfQ" userLabel="Company Stack View">
-                                                        <rect key="frame" x="238" y="78.5" width="244.5" height="33.5"/>
+                                                        <rect key="frame" x="273" y="78.5" width="174" height="33.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDb-Ar-Gti" userLabel="Company City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="52" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlack"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ha4-HC-SP2" userLabel="Company State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="62" y="0.0" width="60" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlack"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDD-95-z20" userLabel="Company Zip Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="132" y="0.0" width="112.5" height="33.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State Zip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDb-Ar-Gti" userLabel="Company City, State Zip Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="174" height="33.5"/>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
                                                                 <color key="textColor" name="BakeShopBlack"/>
                                                                 <nil key="highlightedColor"/>
@@ -5104,22 +5092,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4fo-Ye-9o5" userLabel="Customer Stack View">
-                                                        <rect key="frame" x="5" y="259" width="284.5" height="33.5"/>
+                                                        <rect key="frame" x="5" y="259" width="174" height="33.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Columbus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v46-Sn-KZZ" userLabel="Customer City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="131" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlack"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" OH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eG-Dq-3bB" userLabel="Customer State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="141" y="0.0" width="51" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlack"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 43230" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsJ-8p-cXL" userLabel="Customer Zip Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="202" y="0.0" width="82.5" height="33.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State Zip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v46-Sn-KZZ" userLabel="Customer City, State Zip Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="174" height="33.5"/>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
                                                                 <color key="textColor" name="BakeShopBlack"/>
                                                                 <nil key="highlightedColor"/>
@@ -5402,11 +5378,11 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </stackView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="stj-WG-uZd" userLabel="Order Table View">
-                                                <rect key="frame" x="50" y="574" width="720" height="354"/>
+                                                <rect key="frame" x="50" y="574" width="720" height="341"/>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="T1y-Qf-emF" userLabel="Subtotal Stack View">
-                                                <rect key="frame" x="636" y="928" width="134" height="24.5"/>
+                                                <rect key="frame" x="636" y="915" width="134" height="24.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogs-ma-EqY" userLabel="Subtotal Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="79.5" height="24.5"/>
@@ -5423,7 +5399,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NGm-3D-Jz0" userLabel="Sales Tax Stack View">
-                                                <rect key="frame" x="620.5" y="952.5" width="149.5" height="24.5"/>
+                                                <rect key="frame" x="620.5" y="939.5" width="149.5" height="24.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales Tax:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhn-D4-qKa" userLabel="Sales Tax Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="95" height="24.5"/>
@@ -5440,7 +5416,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="F90-xY-zhU" userLabel="Total Stack View">
-                                                <rect key="frame" x="621.5" y="977" width="148.5" height="33.5"/>
+                                                <rect key="frame" x="621.5" y="964" width="148.5" height="33.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZS-ds-qjf" userLabel="Total Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="76" height="33.5"/>
@@ -5457,10 +5433,12 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blp-rZ-Wem" userLabel="Save Order Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                <rect key="frame" x="661" y="1015.5" width="109" height="34.5"/>
+                                                <rect key="frame" x="610" y="1002.5" width="160" height="47.5"/>
                                                 <color key="tintColor" name="BakeShopBlueberry"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Save Order"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Save Order">
+                                                    <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="30"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="saveOrderPressed:" destination="31H-gJ-76A" eventType="touchUpInside" id="cpy-rs-Cw3"/>
                                                 </connections>
@@ -5520,15 +5498,11 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                         <outlet property="addToOrderButton" destination="l8D-rx-aBw" id="7Yx-oF-C3E"/>
                         <outlet property="batchSizeSegmentedControl" destination="W8n-0w-TgF" id="qyn-tN-JfY"/>
                         <outlet property="companyAddressLabel" destination="bcE-3N-Dtr" id="Q03-qf-6eb"/>
-                        <outlet property="companyCityLabel" destination="oDb-Ar-Gti" id="Aej-7l-GcA"/>
+                        <outlet property="companyCityStateZipLabel" destination="oDb-Ar-Gti" id="Aej-7l-GcA"/>
                         <outlet property="companyNameLabel" destination="Mg7-ik-QlS" id="F3p-mL-Xz5"/>
-                        <outlet property="companyStateLabel" destination="Ha4-HC-SP2" id="KSm-Ib-x5e"/>
-                        <outlet property="companyZipLabel" destination="nDD-95-z20" id="GIx-YU-YVY"/>
                         <outlet property="customerAddressLabel" destination="FnQ-eJ-ez5" id="Hkj-uG-Gat"/>
-                        <outlet property="customerCityLabel" destination="v46-Sn-KZZ" id="Fas-5Z-D4c"/>
+                        <outlet property="customerCityStateZipLabel" destination="v46-Sn-KZZ" id="Fas-5Z-D4c"/>
                         <outlet property="customerPhoneLabel" destination="xEu-c3-h7l" id="1Mn-5J-X8F"/>
-                        <outlet property="customerStateLabel" destination="3eG-Dq-3bB" id="voF-ez-dvH"/>
-                        <outlet property="customerZipLabel" destination="bsJ-8p-cXL" id="xjz-Fn-6xM"/>
                         <outlet property="errorLabel" destination="cKW-8r-ZvQ" id="Duc-rI-pSD"/>
                         <outlet property="headerStackView" destination="sWl-YS-gOn" id="ZF5-tG-1xk"/>
                         <outlet property="itemNoteTextField" destination="kTH-82-ahl" id="rrR-us-a7T"/>
@@ -6111,22 +6085,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IbD-J8-ME6" userLabel="Company Stack View">
-                                                        <rect key="frame" x="230.5" y="78.5" width="259.5" height="33.5"/>
+                                                        <rect key="frame" x="332.5" y="78.5" width="55" height="33.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHR-ps-ugp" userLabel="Company City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHR-ps-ugp" userLabel="Company City, State Zip Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="55" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlueberry"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hls-jL-Na7" userLabel="Company State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="65" y="0.0" width="65" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlueberry"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNS-Mr-195" userLabel="Company Zip Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="140" y="0.0" width="119.5" height="33.5"/>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                                 <color key="textColor" name="BakeShopBlueberry"/>
                                                                 <nil key="highlightedColor"/>
@@ -6152,22 +6114,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hey-RA-HwM" userLabel="Customer Stack View">
-                                                        <rect key="frame" x="15" y="218.5" width="296.5" height="33.5"/>
+                                                        <rect key="frame" x="15" y="218.5" width="139.5" height="33.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Columbus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Doh-i2-IJj" userLabel="Customer City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Columbus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Doh-i2-IJj" userLabel="Customer City, State Zip Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="139.5" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlueberry"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" OH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ln-af-zlV" userLabel="Customer State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="149.5" y="0.0" width="54.5" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlueberry"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 43230" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2g-H6-6CS" userLabel="Customer Zip Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="214" y="0.0" width="82.5" height="33.5"/>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                                 <color key="textColor" name="BakeShopBlueberry"/>
                                                                 <nil key="highlightedColor"/>
@@ -6422,16 +6372,12 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                     <navigationItem key="navigationItem" id="3Hp-8g-nwy"/>
                     <connections>
                         <outlet property="companyAddressLabel" destination="YQl-TE-bm8" id="Q9W-p6-gRz"/>
-                        <outlet property="companyCityLabel" destination="bHR-ps-ugp" id="iEK-gk-5Sn"/>
+                        <outlet property="companyCityStateZipLabel" destination="bHR-ps-ugp" id="iEK-gk-5Sn"/>
                         <outlet property="companyNameLabel" destination="r9F-yf-n9d" id="1ze-dx-Rnx"/>
-                        <outlet property="companyStateLabel" destination="Hls-jL-Na7" id="qFb-zF-zx3"/>
-                        <outlet property="companyZipCodeLabel" destination="lNS-Mr-195" id="7Gd-9m-r6I"/>
                         <outlet property="customerAddressLabel" destination="FQl-LZ-n6m" id="aKF-bf-wgP"/>
-                        <outlet property="customerCityLabel" destination="Doh-i2-IJj" id="UN4-v0-4VA"/>
+                        <outlet property="customerCityStateZipLabel" destination="Doh-i2-IJj" id="UN4-v0-4VA"/>
                         <outlet property="customerNameLabel" destination="RGO-04-q5E" id="Fvk-gI-5Ed"/>
                         <outlet property="customerPhoneLabel" destination="D2e-hD-gTo" id="QDC-hd-Ki3"/>
-                        <outlet property="customerStateLabel" destination="6Ln-af-zlV" id="2mZ-dJ-VkX"/>
-                        <outlet property="customerZipCodeLabel" destination="D2g-H6-6CS" id="IIy-sk-yHh"/>
                         <outlet property="deleteOrderButton" destination="nDw-UF-yKt" id="Uin-M3-doH"/>
                         <outlet property="editOrderButton" destination="LRo-Av-mGt" id="lXS-ar-WoP"/>
                         <outlet property="headerStackView" destination="4aQ-qS-Yq0" id="E7h-lL-byP"/>
@@ -6483,22 +6429,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KZh-EN-cj3" userLabel="Company Stack View">
-                                                        <rect key="frame" x="230.5" y="78.5" width="259.5" height="33.5"/>
+                                                        <rect key="frame" x="267" y="78.5" width="186" height="33.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTn-88-lYk" userLabel="Company City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlack"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZN8-nJ-Q7m" userLabel="Company State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="65" y="0.0" width="65" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlack"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIM-Yd-nV4" userLabel="Company Zip Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="140" y="0.0" width="119.5" height="33.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State Zip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTn-88-lYk" userLabel="Company City, State Zip Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="186" height="33.5"/>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                                 <color key="textColor" name="BakeShopBlack"/>
                                                                 <nil key="highlightedColor"/>
@@ -6524,22 +6458,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2WK-KP-fP3" userLabel="Customer Stack View">
-                                                        <rect key="frame" x="15" y="218.5" width="296.5" height="33.5"/>
+                                                        <rect key="frame" x="15" y="218.5" width="186" height="33.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Columbus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOg-fg-kNo" userLabel="Customer City Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="139.5" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlack"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" OH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnb-7j-uPb" userLabel="Customer State Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="149.5" y="0.0" width="54.5" height="33.5"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
-                                                                <color key="textColor" name="BakeShopBlack"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 43230" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aya-J9-w3g" userLabel="Customer Zip Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="214" y="0.0" width="82.5" height="33.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State Zip" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOg-fg-kNo" userLabel="Customer City, State Zip Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="186" height="33.5"/>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="30"/>
                                                                 <color key="textColor" name="BakeShopBlack"/>
                                                                 <nil key="highlightedColor"/>
@@ -6760,16 +6682,12 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                     </navigationItem>
                     <connections>
                         <outlet property="companyAddressLabel" destination="dUB-ze-0nO" id="lLg-1j-b7b"/>
-                        <outlet property="companyCityLabel" destination="CTn-88-lYk" id="M2L-Ri-eVd"/>
+                        <outlet property="companyCityStateZipLabel" destination="CTn-88-lYk" id="M2L-Ri-eVd"/>
                         <outlet property="companyNameLabel" destination="Yez-Gr-c7L" id="EtU-6i-mcF"/>
-                        <outlet property="companyStateLabel" destination="ZN8-nJ-Q7m" id="923-9e-oYg"/>
-                        <outlet property="companyZipLabel" destination="pIM-Yd-nV4" id="hry-Ng-9oj"/>
                         <outlet property="customerAddressLabel" destination="byL-4p-Afw" id="ubw-VS-KmV"/>
-                        <outlet property="customerCityLabel" destination="lOg-fg-kNo" id="y3X-Oj-EiH"/>
+                        <outlet property="customerCityStateZipLabel" destination="lOg-fg-kNo" id="y3X-Oj-EiH"/>
                         <outlet property="customerNameLabel" destination="96b-Uf-xr9" id="tRP-lr-K8G"/>
                         <outlet property="customerPhoneLabel" destination="VYF-Yl-9bs" id="6u5-QB-hDI"/>
-                        <outlet property="customerStateLabel" destination="rnb-7j-uPb" id="uQQ-hE-TWG"/>
-                        <outlet property="customerZipLabel" destination="Aya-J9-w3g" id="o5S-nk-Hb5"/>
                         <outlet property="headerStackView" destination="n7t-Jn-W0h" id="BZx-JF-w6Z"/>
                         <outlet property="innerScrollView" destination="Dnq-1u-3NF" id="I4P-mv-b5U"/>
                         <outlet property="orderDateValue" destination="K49-A2-0Sg" id="sCg-Yd-WGs"/>

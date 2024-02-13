@@ -16,15 +16,11 @@ class EditOrderViewController: UIViewController {
     
     @IBOutlet weak var companyNameLabel: PaddingLabel!
     @IBOutlet weak var companyAddressLabel: PaddingLabel!
-    @IBOutlet weak var companyCityLabel: PaddingLabel!
-    @IBOutlet weak var companyStateLabel: PaddingLabel!
-    @IBOutlet weak var companyZipLabel: PaddingLabel!
+    @IBOutlet weak var companyCityStateZipLabel: PaddingLabel!
     
     @IBOutlet weak var selectCustomerPopup: UIButton!
     @IBOutlet weak var customerAddressLabel: PaddingLabel!
-    @IBOutlet weak var customerCityLabel: PaddingLabel!
-    @IBOutlet weak var customerStateLabel: PaddingLabel!
-    @IBOutlet weak var customerZipLabel: PaddingLabel!
+    @IBOutlet weak var customerCityStateZipLabel: PaddingLabel!
     @IBOutlet weak var customerPhoneLabel: PaddingLabel!
     
     @IBOutlet weak var orderDatePicker: UIDatePicker!
@@ -44,6 +40,7 @@ class EditOrderViewController: UIViewController {
     @IBOutlet weak var salesTaxLabel: PaddingLabel!
     @IBOutlet weak var salesTaxAmountLabel: PaddingLabel!
     @IBOutlet weak var totalAmountLabel: PaddingLabel!
+    @IBOutlet weak var totalsView: UIView!
     
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var batchSizeSegmentedControl: UISegmentedControl!
@@ -73,6 +70,11 @@ class EditOrderViewController: UIViewController {
         AddBorders().addTopBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
         AddBorders().addLeftBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
         AddBorders().addRightBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
+        if K.interfaceMode == .phone {
+            AddBorders().addBottomBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: totalsView)
+            AddBorders().addLeftBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: totalsView)
+            AddBorders().addRightBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: totalsView)
+        }
         addToOrderButton.tintColor = K.bakeShopBlueberry
         saveOrderButton.tintColor = K.bakeShopBlueberry
         
@@ -90,9 +92,7 @@ class EditOrderViewController: UIViewController {
         
         otherTextField.isHidden = true
         self.customerAddressLabel.text = " "
-        self.customerCityLabel.text = " "
-        self.customerStateLabel.text = " "
-        self.customerZipLabel.text = " "
+        self.customerCityStateZipLabel.text = " "
         self.customerPhoneLabel.text = " "
         loadCustomerList()
         setupSelectCustomerButton()
@@ -107,9 +107,7 @@ class EditOrderViewController: UIViewController {
             let comp = loadedCompany[0]
             companyNameLabel.text = comp.name
             companyAddressLabel.text = comp.address
-            companyCityLabel.text = comp.city
-            companyStateLabel.text = comp.state
-            companyZipLabel.text = comp.zipCode
+            companyCityStateZipLabel.text = "\(comp.city ?? ""), \(comp.state ?? "") \(comp.zipCode ?? "")"
             if comp.withholdTax == true {
                 subTotalStackView.isHidden = false
                 salesTaxStackView.isHidden = false
@@ -124,9 +122,7 @@ class EditOrderViewController: UIViewController {
             selectCustomerPopup.changesSelectionAsPrimaryAction = true
             loadSelectCustomerButton()
             self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
-            self.customerCityLabel.text = self.selectedCustomer?.customerCity
-            self.customerStateLabel.text = self.selectedCustomer?.customerState
-            self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+            self.customerCityStateZipLabel.text = "\(self.selectedCustomer?.customerCity ?? ""), \(self.selectedCustomer?.customerState ?? "") \(self.selectedCustomer?.customerZipCode ?? "")"
             self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
             orderDatePicker.date = (segueOrder?.orderDate)!
             orderNumberTextField.text = segueOrder?.orderNumber
@@ -155,9 +151,7 @@ class EditOrderViewController: UIViewController {
         var chirren: [UIMenuElement] = []
         chirren.append(UIAction(title: "", handler: { action in
             self.customerAddressLabel.text = " "
-            self.customerCityLabel.text = " "
-            self.customerStateLabel.text = " "
-            self.customerZipLabel.text = " "
+            self.customerCityStateZipLabel.text = " "
             self.customerPhoneLabel.text = " "
         }))
         for customer in customerList {
@@ -170,9 +164,7 @@ class EditOrderViewController: UIViewController {
                     }
                 }
                 self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
-                self.customerCityLabel.text = self.selectedCustomer?.customerCity
-                self.customerStateLabel.text = self.selectedCustomer?.customerState
-                self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+                self.customerCityStateZipLabel.text = "\(self.selectedCustomer?.customerCity ?? ""), \(self.selectedCustomer?.customerState ?? "") \(self.selectedCustomer?.customerZipCode ?? "")"
                 self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
             }))
         }
@@ -185,9 +177,7 @@ class EditOrderViewController: UIViewController {
         var chirren: [UIMenuElement] = []
         chirren.append(UIAction(title: "\(selectedCustomer!.lastName ?? "unknown name"), \(selectedCustomer!.firstName ?? "unknown name")", handler: { action in
             self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
-            self.customerCityLabel.text = self.selectedCustomer?.customerCity
-            self.customerStateLabel.text = self.selectedCustomer?.customerState
-            self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+            self.customerCityStateZipLabel.text = "\(self.selectedCustomer?.customerCity ?? ""), \(self.selectedCustomer?.customerState ?? "") \(self.selectedCustomer?.customerZipCode ?? "")"
             self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
         }))
         for customer in customerList {
@@ -201,9 +191,7 @@ class EditOrderViewController: UIViewController {
                         }
                     }
                     self.customerAddressLabel.text = self.selectedCustomer?.customerAddress
-                    self.customerCityLabel.text = self.selectedCustomer?.customerCity
-                    self.customerStateLabel.text = self.selectedCustomer?.customerState
-                    self.customerZipLabel.text = self.selectedCustomer?.customerZipCode
+                    self.customerCityStateZipLabel.text = "\(self.selectedCustomer?.customerCity ?? ""), \(self.selectedCustomer?.customerState ?? "") \(self.selectedCustomer?.customerZipCode ?? "")"
                     self.customerPhoneLabel.text = self.selectedCustomer?.customerPhone
                 }))
             }

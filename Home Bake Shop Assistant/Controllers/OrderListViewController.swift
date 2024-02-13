@@ -29,8 +29,14 @@ class OrderListViewController: UIViewController {
         AddBorders().addTopBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
         AddBorders().addLeftBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
         AddBorders().addRightBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
-        orderSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Times New Roman Bold", size: 30.0)!, NSAttributedString.Key.foregroundColor: K.bakeShopBlueberry], for: .normal)
-        orderTableView.rowHeight = 65.0
+        if K.interfaceMode == .phone {
+            orderSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Times New Roman Bold", size: 20.0)!, NSAttributedString.Key.foregroundColor: K.bakeShopBlueberry], for: .normal)
+            orderTableView.rowHeight = 55.0
+        } else {
+            orderSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Times New Roman Bold", size: 30.0)!, NSAttributedString.Key.foregroundColor: K.bakeShopBlueberry], for: .normal)
+            orderTableView.rowHeight = 65.0
+        }
+        
         
         //Register delegates, data sources and Nibs
         orderTableView.delegate = self
@@ -116,7 +122,7 @@ extension OrderListViewController: UITableViewDataSource {
         cell.label1.text = "\(order.orderNumber!)"
         cell.label2.text = "\(orderDate)"
         cell.label3.text = "\(customer)"
-        cell.label4.text = String(format: "$%.2f", order.orderTotal)
+        cell.label4.text = StringConverter().convertCurrencyFloatToString(floatCurrency: order.orderTotal)
         
         return cell
     }
@@ -183,8 +189,13 @@ extension OrderListViewController: SwipeTableViewCellDelegate {
         // customize the action appearance
         completeAction.backgroundColor = K.bakeShopBlueberry
         pendingAction.backgroundColor = K.bakeShopBlueberry
-        completeAction.font = UIFont(name: "Times New Roman", size: 20.0)
-        pendingAction.font = UIFont(name: "Times New Roman", size: 20.0)
+        if K.interfaceMode == .phone {
+            completeAction.font = UIFont(name: "Times New Roman", size: 14.0)
+            pendingAction.font = UIFont(name: "Times New Roman", size: 14.0)
+        } else {
+            completeAction.font = UIFont(name: "Times New Roman", size: 20.0)
+            pendingAction.font = UIFont(name: "Times New Roman", size: 20.0)
+        }
         
         if orderSegmentedControl.selectedSegmentIndex == 1 {
             return [pendingAction]

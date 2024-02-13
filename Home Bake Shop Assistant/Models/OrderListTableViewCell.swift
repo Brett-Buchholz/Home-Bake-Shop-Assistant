@@ -35,15 +35,40 @@ class OrderListTableViewCell: SwipeTableViewCell {
         
         //Style for different interface modes
         if K.interfaceMode == .phone {
-            label1.font =  UIFont(name: "Times New Roman", size: 22)
-            label2.font =  UIFont(name: "Times New Roman", size: 22)
-            label3.font =  UIFont(name: "Times New Roman", size: 22)
-            label4.font =  UIFont(name: "Times New Roman", size: 22)
+            label1.font =  UIFont(name: "Times New Roman", size: 18)
+            label2.font =  UIFont(name: "Times New Roman", size: 18)
+            label3.font =  UIFont(name: "Times New Roman", size: 18)
+            label4.font =  UIFont(name: "Times New Roman", size: 18)
+            
+            label1.translatesAutoresizingMaskIntoConstraints = false
+            let label1Width = label1.widthAnchor.constraint(equalToConstant: 90)
+            label1.addConstraint(label1Width)
+            
+            label2.translatesAutoresizingMaskIntoConstraints = false
+            let label2Width = label2.widthAnchor.constraint(equalToConstant: 75)
+            label2.addConstraint(label2Width)
+            
+            label4.translatesAutoresizingMaskIntoConstraints = false
+            let label4Width = label4.widthAnchor.constraint(equalToConstant: 70)
+            label4.addConstraint(label4Width)
+            
         } else {
             label1.font =  UIFont(name: "Times New Roman", size: 30)
             label2.font =  UIFont(name: "Times New Roman", size: 30)
             label3.font =  UIFont(name: "Times New Roman", size: 30)
             label4.font =  UIFont(name: "Times New Roman", size: 30)
+            
+            label1.translatesAutoresizingMaskIntoConstraints = false
+            let label1Width = label1.widthAnchor.constraint(equalToConstant: 150)
+            label1.addConstraint(label1Width)
+            
+            label2.translatesAutoresizingMaskIntoConstraints = false
+            let label2Width = label2.widthAnchor.constraint(equalToConstant: 125)
+            label2.addConstraint(label2Width)
+            
+            label4.translatesAutoresizingMaskIntoConstraints = false
+            let label4Width = label4.widthAnchor.constraint(equalToConstant: 150)
+            label4.addConstraint(label4Width)
         }
     }
 }
