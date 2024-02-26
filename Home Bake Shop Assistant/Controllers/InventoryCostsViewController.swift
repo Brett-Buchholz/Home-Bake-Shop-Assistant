@@ -48,7 +48,6 @@ class InventoryCostsViewController: UIViewController {
         AddBorders().addLeftBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: totalsStackView)
         AddBorders().addRightBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: totalsStackView)
         AddBorders().addBottomBorder(with: K.bakeShopChocolate, andWidth: 4.0, view: totalsStackView)
-        inventoryCostsTableView.rowHeight = 50.0
         sortSegmentedControl.defaultConfiguration()
         sortSegmentedControl.selectedConfiguration()
         

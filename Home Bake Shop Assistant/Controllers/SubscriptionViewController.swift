@@ -42,10 +42,14 @@ class SubscriptionViewController: UIViewController {
     
     func setupSubscribeButton() {
         let title = "Subscribe\n($19.99 Annually)"
+        var font: UIFont = K.fontTNR32!
+        if K.interfaceMode == .phone {
+            font = K.fontTNR22!
+        }
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         let myAttributes = [ NSAttributedString.Key.foregroundColor: K.systemBackground,
-                             NSAttributedString.Key.font: K.fontTNR32,
+                             NSAttributedString.Key.font: font,
                              NSAttributedString.Key.paragraphStyle: paragraph
         ]
         let attributedString = NSAttributedString(string: title, attributes: myAttributes as [NSAttributedString.Key : Any])

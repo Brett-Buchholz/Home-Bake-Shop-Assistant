@@ -13,6 +13,7 @@ class InventoryCostTableViewCell: UITableViewCell {
     @IBOutlet weak var amountUsedLabel: PaddingLabel!
     @IBOutlet weak var unitCostLabel: PaddingLabel!
     @IBOutlet weak var totalCostLabel: PaddingLabel!
+    @IBOutlet weak var stackView: UIStackView!
     
     
     override func awakeFromNib() {
@@ -37,15 +38,48 @@ class InventoryCostTableViewCell: UITableViewCell {
         
         //Style for different interface modes
         if K.interfaceMode == .phone {
-            ingredientLabel.font =  UIFont(name: "Times New Roman", size: 22)
-            amountUsedLabel.font =  UIFont(name: "Times New Roman", size: 22)
-            unitCostLabel.font =  UIFont(name: "Times New Roman", size: 22)
-            totalCostLabel.font =  UIFont(name: "Times New Roman", size: 22)
+            ingredientLabel.font =  UIFont(name: "Times New Roman", size: 16)
+            amountUsedLabel.font =  UIFont(name: "Times New Roman", size: 16)
+            unitCostLabel.font =  UIFont(name: "Times New Roman", size: 16)
+            totalCostLabel.font =  UIFont(name: "Times New Roman", size: 16)
+            
+            amountUsedLabel.translatesAutoresizingMaskIntoConstraints = false
+            let amountWidth = amountUsedLabel.widthAnchor.constraint(equalToConstant: 100)
+            amountUsedLabel.addConstraint(amountWidth)
+            
+            unitCostLabel.translatesAutoresizingMaskIntoConstraints = false
+            let unitWidth = unitCostLabel.widthAnchor.constraint(equalToConstant: 60)
+            unitCostLabel.addConstraint(unitWidth)
+            
+            totalCostLabel.translatesAutoresizingMaskIntoConstraints = false
+            let totalWidth = totalCostLabel.widthAnchor.constraint(equalToConstant: 70)
+            totalCostLabel.addConstraint(totalWidth)
+            
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            let height = stackView.heightAnchor.constraint(equalToConstant: 40)
+            stackView.addConstraint(height)
+
         } else {
             ingredientLabel.font =  UIFont(name: "Times New Roman", size: 30)
             amountUsedLabel.font =  UIFont(name: "Times New Roman", size: 30)
             unitCostLabel.font =  UIFont(name: "Times New Roman", size: 30)
             totalCostLabel.font =  UIFont(name: "Times New Roman", size: 30)
+            
+            amountUsedLabel.translatesAutoresizingMaskIntoConstraints = false
+            let amountWidth = amountUsedLabel.widthAnchor.constraint(equalToConstant: 200)
+            amountUsedLabel.addConstraint(amountWidth)
+            
+            unitCostLabel.translatesAutoresizingMaskIntoConstraints = false
+            let unitWidth = unitCostLabel.widthAnchor.constraint(equalToConstant: 100)
+            unitCostLabel.addConstraint(unitWidth)
+            
+            totalCostLabel.translatesAutoresizingMaskIntoConstraints = false
+            let totalWidth = totalCostLabel.widthAnchor.constraint(equalToConstant: 150)
+            totalCostLabel.addConstraint(totalWidth)
+            
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            let height = stackView.heightAnchor.constraint(equalToConstant: 50)
+            stackView.addConstraint(height)
         }
     }
     

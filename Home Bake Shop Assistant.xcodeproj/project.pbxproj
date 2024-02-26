@@ -52,6 +52,8 @@
 		577F03F52B3B46AE00ABE3EF /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F03F42B3B46AE00ABE3EF /* CurrencyTextField.swift */; };
 		577F03F72B3B7C5F00ABE3EF /* CompanyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F03F62B3B7C5F00ABE3EF /* CompanyInfoViewController.swift */; };
 		578127F12B462A690088CF8D /* PercentageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578127F02B462A690088CF8D /* PercentageField.swift */; };
+		5796D2AB2B881388003C7F49 /* PrintableInvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796D2A92B881388003C7F49 /* PrintableInvoiceTableViewCell.swift */; };
+		5796D2AC2B881388003C7F49 /* PrintableInvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5796D2AA2B881388003C7F49 /* PrintableInvoiceTableViewCell.xib */; };
 		57A2C93C2B72BB6F00ABE51E /* CustomerSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A2C93B2B72BB6F00ABE51E /* CustomerSalesViewController.swift */; };
 		57A5258B2B732A8000756328 /* InventoryCostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5258A2B732A8000756328 /* InventoryCostsViewController.swift */; };
 		57A5258E2B732DCC00756328 /* InventoryCostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5258C2B732DCC00756328 /* InventoryCostTableViewCell.swift */; };
@@ -120,6 +122,8 @@
 		577F03F42B3B46AE00ABE3EF /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
 		577F03F62B3B7C5F00ABE3EF /* CompanyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfoViewController.swift; sourceTree = "<group>"; };
 		578127F02B462A690088CF8D /* PercentageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageField.swift; sourceTree = "<group>"; };
+		5796D2A92B881388003C7F49 /* PrintableInvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintableInvoiceTableViewCell.swift; sourceTree = "<group>"; };
+		5796D2AA2B881388003C7F49 /* PrintableInvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrintableInvoiceTableViewCell.xib; sourceTree = "<group>"; };
 		57A2C93B2B72BB6F00ABE51E /* CustomerSalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSalesViewController.swift; sourceTree = "<group>"; };
 		57A5258A2B732A8000756328 /* InventoryCostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCostsViewController.swift; sourceTree = "<group>"; };
 		57A5258C2B732DCC00756328 /* InventoryCostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCostTableViewCell.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 				57A5258D2B732DCC00756328 /* InventoryCostTableViewCell.xib */,
 				5732A8022B49FB83007D5970 /* OrderListTableViewCell.xib */,
 				570749C42B45DDB600BD918B /* OrderTableViewCell.xib */,
+				5796D2AA2B881388003C7F49 /* PrintableInvoiceTableViewCell.xib */,
 				57709BB12B6834BB00A2D247 /* QuickAddTableViewCell.xib */,
 				574A84C52B719DFC00E3CC68 /* RecipeCostTableViewCell.xib */,
 				5754A4EE2B6EEE88007ABA66 /* RecipeSalesTableViewCell.xib */,
@@ -254,6 +259,7 @@
 				57A5258C2B732DCC00756328 /* InventoryCostTableViewCell.swift */,
 				5732A8012B49FB83007D5970 /* OrderListTableViewCell.swift */,
 				570749C32B45DDB600BD918B /* OrderTableViewCell.swift */,
+				5796D2A92B881388003C7F49 /* PrintableInvoiceTableViewCell.swift */,
 				57709BB02B6834BB00A2D247 /* QuickAddTableViewCell.swift */,
 				574A84C42B719DFC00E3CC68 /* RecipeCostTableViewCell.swift */,
 				5754A4ED2B6EEE88007ABA66 /* RecipeSalesTableViewCell.swift */,
@@ -330,6 +336,7 @@
 			files = (
 				570749C62B45DDB600BD918B /* OrderTableViewCell.xib in Resources */,
 				57C95FE52AFC96C3006130FB /* IngredientTableViewCell.xib in Resources */,
+				5796D2AC2B881388003C7F49 /* PrintableInvoiceTableViewCell.xib in Resources */,
 				573435712AF1860900BB3611 /* Main_iPhone.storyboard in Resources */,
 				574A84C72B719DFC00E3CC68 /* RecipeCostTableViewCell.xib in Resources */,
 				573435692AF1857100BB3611 /* LaunchScreen.storyboard in Resources */,
@@ -391,6 +398,7 @@
 				5754A4EF2B6EEE88007ABA66 /* RecipeSalesTableViewCell.swift in Sources */,
 				572E72802B22CE820012B715 /* PaddingLabel.swift in Sources */,
 				572E727E2B180E2B0012B715 /* StringConverter.swift in Sources */,
+				5796D2AB2B881388003C7F49 /* PrintableInvoiceTableViewCell.swift in Sources */,
 				57AA77482B76CFDA00D3685A /* GettingStartedViewController.swift in Sources */,
 				572F0BF02B63067500F9F158 /* QuickAddViewController.swift in Sources */,
 				574A84C12B70394700E3CC68 /* FinanceDataManager.swift in Sources */,

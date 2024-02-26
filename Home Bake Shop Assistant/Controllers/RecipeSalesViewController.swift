@@ -296,8 +296,7 @@ extension RecipeSalesViewController: UITableViewDataSource {
 
 extension UISegmentedControl {
     
-    func defaultConfiguration(font: UIFont = K.fontSegCtrlPadNormal!, color: UIColor = K.bakeShopChocolate)
-    {
+    func defaultConfiguration(font: UIFont = K.fontSegCtrlPadNormal!, color: UIColor = K.bakeShopChocolate) {
         let defaultAttributes = [
             NSAttributedString.Key.font: font,
             NSAttributedString.Key.foregroundColor: color
@@ -305,8 +304,7 @@ extension UISegmentedControl {
         setTitleTextAttributes(defaultAttributes, for: .normal)
     }
 
-    func selectedConfiguration(font: UIFont = K.fontSegCtrlPadBold!, color: UIColor = K.bakeShopChocolate)
-    {
+    func selectedConfiguration(font: UIFont = K.fontSegCtrlPadBold!, color: UIColor = K.bakeShopChocolate){
         let selectedAttributes = [
             NSAttributedString.Key.font: font,
             NSAttributedString.Key.foregroundColor: color

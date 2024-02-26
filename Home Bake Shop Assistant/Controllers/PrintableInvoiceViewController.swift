@@ -53,7 +53,7 @@ class PrintableInvoiceViewController: UIViewController, PDFViewDelegate {
         
         //Register delegates, data sources and Nibs
         orderTableView.dataSource = self
-        orderTableView.register(UINib(nibName: K.orderCellNibName, bundle: nil), forCellReuseIdentifier: K.orderReuseIdentifier)
+        orderTableView.register(UINib(nibName: K.printableInvoiceCellNibName, bundle: nil), forCellReuseIdentifier: K.printableInvoiceReuseIdentifier)
         orderedItems = loadedOrder?.toOrderedItem?.allObjects as! [OrderedItem]
         orderedItems = orderedItems.sorted {$0.toRecipe!.name! < $1.toRecipe!.name!}
         loadLabelData()
@@ -156,7 +156,7 @@ extension PrintableInvoiceViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = orderTableView.dequeueReusableCell(withIdentifier: K.orderReuseIdentifier, for: indexPath) as! OrderTableViewCell
+        let cell = orderTableView.dequeueReusableCell(withIdentifier: K.printableInvoiceReuseIdentifier, for: indexPath) as! PrintableInvoiceTableViewCell
         let item = orderedItems[indexPath.row]
         cell.qtyLabel.text = "\(item.quantityOrdered)"
         cell.qtyLabel.textColor = K.bakeShopBlack

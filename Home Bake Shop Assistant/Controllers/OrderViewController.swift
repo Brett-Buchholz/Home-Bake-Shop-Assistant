@@ -32,6 +32,7 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var subtotalStackView: UIStackView!
     @IBOutlet weak var salesTaxStackView: UIStackView!
+    @IBOutlet weak var totalsView: UIView!
     
     @IBOutlet weak var editOrderButton: BrettButton!
     @IBOutlet weak var deleteOrderButton: BrettButton!
@@ -50,6 +51,11 @@ class OrderViewController: UIViewController {
         AddBorders().addTopBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
         AddBorders().addLeftBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
         AddBorders().addRightBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: headerStackView)
+        if K.interfaceMode == .phone {
+            AddBorders().addBottomBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: totalsView)
+            AddBorders().addLeftBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: totalsView)
+            AddBorders().addRightBorder(with: K.bakeShopBlueberry, andWidth: 2.0, view: totalsView)
+        }
         editOrderButton.tintColor = K.bakeShopBlueberry
         printableInvoiceButton.tintColor = K.bakeShopBlueberry
         deleteOrderButton.tintColor = K.bakeShopDeleteRed

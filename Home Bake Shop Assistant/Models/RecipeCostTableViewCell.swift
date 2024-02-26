@@ -1,4 +1,4 @@
-//
+    //
 //  RecipeCostTableViewCell.swift
 //  Home Bake Shop Assistant
 //
@@ -32,11 +32,27 @@ class RecipeCostTableViewCell: UITableViewCell {
         
         //Style for different interface modes
         if K.interfaceMode == .phone {
-            ingredientLabel.font =  UIFont(name: "Times New Roman", size: 22)
-            costLabel.font =  UIFont(name: "Times New Roman", size: 22)
+            ingredientLabel.font =  UIFont(name: "Times New Roman", size: 18)
+            costLabel.font =  UIFont(name: "Times New Roman", size: 18)
+            
+            costLabel.translatesAutoresizingMaskIntoConstraints = false
+            let costWidth = costLabel.widthAnchor.constraint(equalToConstant: 100)
+            costLabel.addConstraint(costWidth)
+            
+            costLabel.translatesAutoresizingMaskIntoConstraints = false
+            let height = costLabel.heightAnchor.constraint(equalToConstant: 35)
+            costLabel.addConstraint(height)
         } else {
             ingredientLabel.font =  UIFont(name: "Times New Roman", size: 30)
             costLabel.font =  UIFont(name: "Times New Roman", size: 30)
+            
+            costLabel.translatesAutoresizingMaskIntoConstraints = false
+            let costWidth = costLabel.widthAnchor.constraint(equalToConstant: 150)
+            costLabel.addConstraint(costWidth)
+            
+            costLabel.translatesAutoresizingMaskIntoConstraints = false
+            let height = costLabel.heightAnchor.constraint(equalToConstant: 50)
+            costLabel.addConstraint(height)
         }
     }
     

@@ -25,6 +25,7 @@ class K {
     static let fontPadNormal = UIFont(name: "Marker Felt", size: 30.0)
     static let fontSegCtrlPadNormal = UIFont(name: "Times New Roman", size: 18.0)
     static let fontSegCtrlPadBold = UIFont(name: "Times New Roman Bold", size: 18.0)
+    static let fontTNR22 = UIFont(name: "Times New Roman", size: 22.0)
     static let fontTNR32 = UIFont(name: "Times New Roman", size: 32.0)
     
     //MARK: TableViewCells
@@ -48,6 +49,8 @@ class K {
     static let recipeCostReuseIdentifier = "RecipeCostReusableCell"
     static let inventoryCostCellNibName = "InventoryCostTableViewCell"
     static let inventoryCostReuseIdentifier = "InventoryCostReusableCell"
+    static let printableInvoiceCellNibName = "PrintableInvoiceTableViewCell"
+    static let printableInvoiceReuseIdentifier = "PrintableInvoiceReusableCell"
     
     //MARK: SegueIdentifiers
     static let segueIdentifierToViewRecipe = "viewReceipeSegue"
