@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5705038E2B8D4439007B1496 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705038D2B8D4439007B1496 /* StoreKitManager.swift */; };
+		570503922B8FA9BB007B1496 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570503912B8FA9BA007B1496 /* CloudKit.framework */; };
 		5705AD162B50F92B00525E37 /* PrintableInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD152B50F92B00525E37 /* PrintableInvoiceViewController.swift */; };
 		5705AD1A2B5893AD00525E37 /* EditInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD192B5893AD00525E37 /* EditInventoryViewController.swift */; };
 		5705AD1D2B5AF7FF00525E37 /* CookbookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705AD1B2B5AF7FF00525E37 /* CookbookTableViewCell.swift */; };
@@ -75,6 +77,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5705038D2B8D4439007B1496 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		5705038F2B8D4678007B1496 /* Home Bake Shop Assistant.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Home Bake Shop Assistant.storekit"; sourceTree = "<group>"; };
+		570503912B8FA9BA007B1496 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		5705AD152B50F92B00525E37 /* PrintableInvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintableInvoiceViewController.swift; sourceTree = "<group>"; };
 		5705AD192B5893AD00525E37 /* EditInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInventoryViewController.swift; sourceTree = "<group>"; };
 		5705AD1B2B5AF7FF00525E37 /* CookbookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookTableViewCell.swift; sourceTree = "<group>"; };
@@ -148,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570503922B8FA9BB007B1496 /* CloudKit.framework in Frameworks */,
 				57C95FE82AFC9E80006130FB /* SwipeCellKit in Frameworks */,
 				57AA77462B76A9AC00D3685A /* IQKeyboardManagerSwift in Frameworks */,
 			);
@@ -156,11 +162,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570503902B8FA9BA007B1496 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				570503912B8FA9BA007B1496 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5734354D2AF1856F00BB3611 = {
 			isa = PBXGroup;
 			children = (
 				573435582AF1856F00BB3611 /* Home Bake Shop Assistant */,
 				573435572AF1856F00BB3611 /* Products */,
+				570503902B8FA9BA007B1496 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,10 +264,12 @@
 				574A84C02B70394600E3CC68 /* FinanceDataManager.swift */,
 				572E727F2B22CE820012B715 /* PaddingLabel.swift */,
 				578127F02B462A690088CF8D /* PercentageField.swift */,
+				5705038D2B8D4439007B1496 /* StoreKitManager.swift */,
 				572E727D2B180E2B0012B715 /* StringConverter.swift */,
 				572F0BEB2B5D989100F9F158 /* UnitsConverter.swift */,
 				572F0BED2B5DA0FD00F9F158 /* UnitsOfMeasurement.swift */,
 				573435622AF1856F00BB3611 /* Home_Bake_Shop_Assistant.xcdatamodeld */,
+				5705038F2B8D4678007B1496 /* Home Bake Shop Assistant.storekit */,
 				5705AD1B2B5AF7FF00525E37 /* CookbookTableViewCell.swift */,
 				5705AD252B5B032000525E37 /* CustomerTableViewCell.swift */,
 				57C95FE22AFC96C3006130FB /* IngredientTableViewCell.swift */,
@@ -374,6 +391,7 @@
 				5734355C2AF1856F00BB3611 /* SceneDelegate.swift in Sources */,
 				5732A8032B49FB83007D5970 /* OrderListTableViewCell.swift in Sources */,
 				577F03F52B3B46AE00ABE3EF /* CurrencyTextField.swift in Sources */,
+				5705038E2B8D4439007B1496 /* StoreKitManager.swift in Sources */,
 				5754A4EC2B6EE5A2007ABA66 /* RecipeSalesViewController.swift in Sources */,
 				57A2C93C2B72BB6F00ABE51E /* CustomerSalesViewController.swift in Sources */,
 				57245B1B2B1699040063A1DB /* RecipeViewController.swift in Sources */,

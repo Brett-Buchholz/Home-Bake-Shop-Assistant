@@ -25,6 +25,7 @@ class K {
     static let fontPadNormal = UIFont(name: "Marker Felt", size: 30.0)
     static let fontSegCtrlPadNormal = UIFont(name: "Times New Roman", size: 18.0)
     static let fontSegCtrlPadBold = UIFont(name: "Times New Roman Bold", size: 18.0)
+    static let fontTNR18 = UIFont(name: "Times New Roman", size: 18.0)
     static let fontTNR22 = UIFont(name: "Times New Roman", size: 22.0)
     static let fontTNR32 = UIFont(name: "Times New Roman", size: 32.0)
     
@@ -67,6 +68,7 @@ class K {
     //MARK: Misc
     static var interfaceMode = UIDevice.current.userInterfaceIdiom
     static let fractionalMeasurements = ["", "1/8", "1/4", "3/8", "1/2", "5/8", "3/4", "7/8"]
+    static let skm = (UIApplication.shared.delegate as! AppDelegate).storeKitManager
     
     //MARK: CoreData
     static var context: NSManagedObjectContext {

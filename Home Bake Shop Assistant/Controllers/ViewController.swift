@@ -9,11 +9,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var recipesButton: BrettButton!
+    @IBOutlet weak var inventoryButton: BrettButton!
+    @IBOutlet weak var ordersButton: BrettButton!
+    @IBOutlet weak var financesButton: BrettButton!
+    @IBOutlet weak var otherButton: BrettButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createGettingStartedButton()
+        recipesButton.tintColor = K.systemBackground
+        inventoryButton.tintColor = K.systemBackground
+        ordersButton.tintColor = K.systemBackground
+        financesButton.tintColor = K.systemBackground
+        otherButton.tintColor = K.systemBackground
     }
     
     func createGettingStartedButton() {
