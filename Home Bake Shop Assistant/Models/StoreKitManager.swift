@@ -143,33 +143,27 @@ class StoreKitManager {
                     switch status.state {
                     case .subscribed:
                         if info.willAutoRenew {
-                            debugPrint("getSubscriptionStatus user subscription is active.")
                             subscriptionGroupStatus = status.state
                             subscriptionGroupInfo = info
                             return
                         } else {
-                            debugPrint("getSubscriptionStatus user subscription is expiring.")
                             subscriptionGroupStatus = status.state
                             subscriptionGroupInfo = info
                             return
                         }
                     case .inBillingRetryPeriod:
-                        debugPrint("getSubscriptionStatus user subscription is in billing retry period.")
                         subscriptionGroupStatus = status.state
                         subscriptionGroupInfo = info
                         return
                     case .inGracePeriod:
-                        debugPrint("getSubscriptionStatus user subscription is in grace period.")
                         subscriptionGroupStatus = status.state
                         subscriptionGroupInfo = info
                         return
                     case .expired:
-                        debugPrint("getSubscriptionStatus user subscription is expired.")
                         subscriptionGroupStatus = status.state
                         subscriptionGroupInfo = info
                         return
                     case .revoked:
-                        debugPrint("getSubscriptionStatus user subscription was revoked.")
                         subscriptionGroupStatus = status.state
                         subscriptionGroupInfo = info
                         return

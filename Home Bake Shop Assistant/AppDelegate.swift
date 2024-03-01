@@ -13,6 +13,7 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var storeKitManager:StoreKitManager = StoreKitManager()
+    var needsSubscription:Bool = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

@@ -69,6 +69,7 @@ class K {
     static var interfaceMode = UIDevice.current.userInterfaceIdiom
     static let fractionalMeasurements = ["", "1/8", "1/4", "3/8", "1/2", "5/8", "3/4", "7/8"]
     static let skm = (UIApplication.shared.delegate as! AppDelegate).storeKitManager
+    static var needsSubscription = (UIApplication.shared.delegate as! AppDelegate).needsSubscription
     
     //MARK: CoreData
     static var context: NSManagedObjectContext {

@@ -7542,11 +7542,11 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gR3-yA-ZTQ"/>
+        <segue reference="M0N-3I-mtB"/>
         <segue reference="CwK-fV-0th"/>
         <segue reference="9Xc-ol-fcv"/>
-        <segue reference="uzE-Y3-8IL"/>
-        <segue reference="SyY-vg-RA8"/>
+        <segue reference="e8s-5l-cgK"/>
+        <segue reference="tC7-74-3MF"/>
         <segue reference="Qih-7M-Qtx"/>
         <segue reference="FGP-8e-AVL"/>
         <segue reference="2mT-ai-1s8"/>

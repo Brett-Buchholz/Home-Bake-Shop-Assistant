@@ -11,7 +11,6 @@ import SwipeCellKit
 
 class EditOrderViewController: UIViewController {
     
-    
     @IBOutlet weak var topBackgroundView: UIView!
     
     @IBOutlet weak var companyNameLabel: PaddingLabel!
@@ -100,8 +99,23 @@ class EditOrderViewController: UIViewController {
         loadTextFields()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkAvailability()
+    }
+    
+    func checkAvailability() {
+        if AvailabilityManager().giveFullAccess() == false {
+            let alert = UIAlertController(title: "", message: "Unsubscribed users are limited to 2 orders. Subscribed users have full access to all features.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //Dismiss
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func loadTextFields() {
-        
         loadCompanyInfo()
         if loadedCompany != [] {
             let comp = loadedCompany[0]
@@ -413,24 +427,33 @@ class EditOrderViewController: UIViewController {
                     newItemOrdered.addToToOrder(newOrder)
                 }
             } else {
-                let newOrder = Order(context: K.ordersContext)
-                selectedCustomer?.addToToOrder(newOrder)
-                newOrder.orderDate = orderDatePicker.date
-                newOrder.orderNumber = orderNumberTextField.text
-                newOrder.orderSubtotal = getSubtotal()
-                newOrder.orderSalesTax = getSalesTax()
-                newOrder.orderTotal = getTotal()
-                newOrder.orderComplete = false
-                for item in tempItemsOrdered {
-                    let newItemOrdered = OrderedItem(context: K.ordersContext)
-                    (item["ItemOrdered"] as! Recipe).addToToOrderedItem(newItemOrdered)
-                    newItemOrdered.quantityOrdered = item["Quantity"] as! Int16
-                    newItemOrdered.batchName = "\(item["BatchName"]!)"
-                    newItemOrdered.batchSize = item["BatchSize"] as! Int16
-                    newItemOrdered.batchPrice = item["BatchPrice"] as! Float
-                    newItemOrdered.batchSubtotal = item["BatchSubtotal"] as! Float
-                    newItemOrdered.itemNote = "\(item["ItemNotes"]!)"
-                    newItemOrdered.addToToOrder(newOrder)
+                if AvailabilityManager().giveFullAccess() == false && ordersList.count >= 2 {
+                    let alert = UIAlertController(title: "", message: "You cannot add a new order. Unsubscribed users are limited to 2 orders. Subscribed users have full access to all features.", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Dismiss", style: .default) { action in
+                        //Dismiss
+                    }
+                    alert.addAction(action)
+                    present(alert, animated: true, completion: nil)
+                } else {
+                    let newOrder = Order(context: K.ordersContext)
+                    selectedCustomer?.addToToOrder(newOrder)
+                    newOrder.orderDate = orderDatePicker.date
+                    newOrder.orderNumber = orderNumberTextField.text
+                    newOrder.orderSubtotal = getSubtotal()
+                    newOrder.orderSalesTax = getSalesTax()
+                    newOrder.orderTotal = getTotal()
+                    newOrder.orderComplete = false
+                    for item in tempItemsOrdered {
+                        let newItemOrdered = OrderedItem(context: K.ordersContext)
+                        (item["ItemOrdered"] as! Recipe).addToToOrderedItem(newItemOrdered)
+                        newItemOrdered.quantityOrdered = item["Quantity"] as! Int16
+                        newItemOrdered.batchName = "\(item["BatchName"]!)"
+                        newItemOrdered.batchSize = item["BatchSize"] as! Int16
+                        newItemOrdered.batchPrice = item["BatchPrice"] as! Float
+                        newItemOrdered.batchSubtotal = item["BatchSubtotal"] as! Float
+                        newItemOrdered.itemNote = "\(item["ItemNotes"]!)"
+                        newItemOrdered.addToToOrder(newOrder)
+                    }
                 }
             }
             saveOrder()
@@ -514,23 +537,18 @@ extension EditOrderViewController: UITableViewDataSource {
         let cell = orderTableView.dequeueReusableCell(withIdentifier: K.orderReuseIdentifier, for: indexPath) as! OrderTableViewCell
         cell.delegate = self
         cell.qtyLabel.text = "\(tempItemsOrdered[indexPath.row]["Quantity"]!)"
-        cell.qtyLabel.textColor = K.bakeShopBlueberry
         let recipeName = (tempItemsOrdered[indexPath.row]["ItemOrdered"] as! Recipe).name
         cell.itemOrderedLabel.text = "\(recipeName!) \(tempItemsOrdered[indexPath.row]["BatchName"]!)"
-        cell.itemOrderedLabel.textColor = K.bakeShopBlueberry
         let floatPrice = tempItemsOrdered[indexPath.row]["BatchPrice"] as! Float
         cell.batchPriceLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: floatPrice)
-        cell.batchPriceLabel.textColor = K.bakeShopBlueberry
         let floatSubtotal = tempItemsOrdered[indexPath.row]["BatchSubtotal"] as! Float
         cell.subtotalLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: floatSubtotal)
-        cell.subtotalLabel.textColor = K.bakeShopBlueberry
         let itemNote = tempItemsOrdered[indexPath.row]["ItemNotes"]
         if itemNote as! String == "" {
             cell.bottomStackView.isHidden = true
         } else {
             cell.itemNoteLabel.text = "    Note: \(itemNote ?? "")"
         }
-        cell.itemNoteLabel.textColor = K.bakeShopBlueberry
         
         return cell
     }

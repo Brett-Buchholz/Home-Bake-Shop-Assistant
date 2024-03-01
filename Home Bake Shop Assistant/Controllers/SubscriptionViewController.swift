@@ -7,6 +7,7 @@
 
 import UIKit
 import StoreKit
+import CoreData
 
 class SubscriptionViewController: UIViewController {
     
@@ -72,10 +73,11 @@ class SubscriptionViewController: UIViewController {
     }
     
     func setSubscriptionInfo() {
-        dateStackView.isHidden = true
+        let product = K.skm.subscriptions[0]
         Task {
-            let product = K.skm.subscriptions[0]
             await K.skm.getSubscriptionStatus(product: product)
+            dateStackView.isHidden = true
+            
             statusLabel.text = K.skm.subscriptionGroupStatus?.localizedDescription ?? "Not subscribed"
             
             if K.skm.subscriptionGroupStatus == .subscribed {
@@ -95,6 +97,57 @@ class SubscriptionViewController: UIViewController {
     }
     
     @IBAction func applyCodePressed(_ sender: BrettButton) {
+        if promoCodeTextField.text == "A25z398yY2W" {
+            let mySub:[Subscription]
+            let request: NSFetchRequest<Subscription> = Subscription.fetchRequest()
+            do {
+                mySub = try K.context.fetch(request)
+                mySub[0].needsSubscription = false
+                do {
+                    try K.context.save()
+                } catch {
+                    print("Error saving Subscription Need: \(error)")
+                }
+            } catch {
+                print("Error loading Recipe: \(error)")
+            }
+            AvailabilityManager().needsSubscriptionCheck()
+            promoCodeTextField.text = ""
+            promoCodeTextField.resignFirstResponder()
+            let alert = UIAlertController(title: "", message: "Code Successfully Entered! You will no longer require a subscription for full access", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //Dismiss
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        } else if promoCodeTextField.text == "1000" {
+            let mySub:[Subscription]
+            let request: NSFetchRequest<Subscription> = Subscription.fetchRequest()
+            do {
+                mySub = try K.context.fetch(request)
+                mySub[0].needsSubscription = true
+                do {
+                    try K.context.save()
+                } catch {
+                    print("Error saving Subscription Need: \(error)")
+                }
+            } catch {
+                print("Error loading Recipe: \(error)")
+            }
+            AvailabilityManager().needsSubscriptionCheck()
+            promoCodeTextField.text = ""
+            promoCodeTextField.resignFirstResponder()
+            print("Needs Subscription set to true")
+        } else {
+            promoCodeTextField.text = ""
+            promoCodeTextField.resignFirstResponder()
+            let alert = UIAlertController(title: "", message: "There are no offers matching that code", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //Dismiss
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func subscribeButtonPressed(_ sender: BrettButton) {

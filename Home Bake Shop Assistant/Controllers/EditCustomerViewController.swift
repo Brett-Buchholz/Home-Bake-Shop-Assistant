@@ -67,11 +67,28 @@ class EditCustomerViewController: UIViewController {
         } else {
             deleteCustomerButton.isHidden = true
         }
+        loadCustomers()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkAvailability()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.tintColor = .bakeShopBlack
+    }
+    
+    func checkAvailability() {
+        if AvailabilityManager().giveFullAccess() == false {
+            let alert = UIAlertController(title: "", message: "Unsubscribed users are limited to 2 customers. Subscribed users have full access to all features.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //Dismiss
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func createUniqueCustomerID() -> Int32 {
@@ -100,6 +117,13 @@ class EditCustomerViewController: UIViewController {
         } else if lastNameTextField.text == "" {
             errorLabel.isHidden = false
             errorLabel.text = "Please provide a last name"
+        } else if AvailabilityManager().giveFullAccess() == false && customerList.count >= 2 && loadedCustomer == nil {
+            let alert = UIAlertController(title: "", message: "You cannot add a new customer. Unsubscribed users are limited to 2 customers. Subscribed users have full access to all features.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //Dismiss
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
         } else if loadedCustomer != nil {
             customer = loadedCustomer!
         } else {
@@ -135,7 +159,6 @@ class EditCustomerViewController: UIViewController {
         alert.addAction(deleteAction)
         
         present(alert, animated: true, completion: nil)
-        
     }
     
     //MARK: CoreData CRUD Methods

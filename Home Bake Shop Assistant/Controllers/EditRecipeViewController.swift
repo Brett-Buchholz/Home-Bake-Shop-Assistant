@@ -39,6 +39,7 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
     var pickerValue: String = ""
     var selectedIndexPath: IndexPath? = nil
     var pickerAsFloat: Float = 0
+    var recipeList: [Recipe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,9 +83,26 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
             priceDozenCurrencyField.text = ""
         }
         loadIngredients()
+        loadRecipes()
         setupIngredientButton()
         setupUnitsTypeButton()
         updateData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkAvailability()
+    }
+    
+    func checkAvailability() {
+        if AvailabilityManager().giveFullAccess() == false {
+            let alert = UIAlertController(title: "", message: "Unsubscribed users are limited to 2 recipes. Subscribed users have full access to all features.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //Dismiss
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func setupIngredientButton() {
@@ -352,6 +370,13 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
         } else if batchSizeTextField.text == "" || batchSizeTextField.text == "0" {
             errorLabel.isHidden = false
             errorLabel.text = "Please provide a batch size for this recipe"
+        } else if AvailabilityManager().giveFullAccess() == false && newRecipe == nil && recipeList.count >= 2 {
+            let alert = UIAlertController(title: "", message: "You cannot add a new recipe. Unsubscribed users are limited to 2 recipes. Subscribed users have full access to all features.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //Dismiss
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
         } else {
             if newRecipe == nil {
                 newRecipe = Recipe(context: K.recipeContext)
@@ -390,6 +415,15 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
             try K.recipeContext.save()
         } catch {
             print("Error saving Ingredients: \(error)")
+        }
+    }
+    
+    func loadRecipes() {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        do {
+            recipeList = try K.recipeContext.fetch(request)
+        } catch {
+            print("Error loading Recipe: \(error)")
         }
     }
     
