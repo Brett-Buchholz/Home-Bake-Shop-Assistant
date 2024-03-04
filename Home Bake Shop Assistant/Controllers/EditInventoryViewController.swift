@@ -31,6 +31,7 @@ class EditInventoryViewController: UIViewController, UITextFieldDelegate {
     var selectedMeasuredUnit: UnitsOfMeasurement.Units? = nil
     var convertedAmount:Float = 0.00
     var updateOnHandAmount: Bool = false
+    var recipeList: [Recipe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -190,9 +191,36 @@ class EditInventoryViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func deleteButtonPressed(_ sender: BrettButton) {
-        K.inventoryIngredientContext.delete(loadedInventoryIngredient!)
-        saveInventoryIngredients()
-        navigationController?.popViewController(animated: true)
+        loadRecipes()
+        var recipeIngredients:[Inventory] = []
+        for recipe in recipeList {
+            for ingredient in (recipe.toRecipeIngredient?.allObjects as! [RecipeIngredient]) {
+                if ingredient.inventory == loadedInventoryIngredient {
+                    recipeIngredients.append(ingredient.inventory!)
+                }
+            }
+        }
+        if recipeIngredients != [] {
+            let ingredientAlert = UIAlertController(title: "", message: "This ingredient is used in an existing recipe and cannot be deleted", preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //alert is dismissed
+            }
+            ingredientAlert.addAction(dismissAction)
+            present(ingredientAlert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Delete Ingredient?", message: "Are you sure you want to delete this ingredient?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default) { action in
+                //alert is dismissed
+            }
+            alert.addAction(cancelAction)
+            let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
+                K.inventoryIngredientContext.delete(self.loadedInventoryIngredient!)
+                self.saveInventoryIngredients()
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(deleteAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func saveButtonPressed(_ sender: BrettButton) {
@@ -238,4 +266,12 @@ class EditInventoryViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func loadRecipes() {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        do {
+            recipeList = try K.recipeContext.fetch(request)
+        } catch {
+            print("Error loading Recipe: \(error)")
+        }
+    }
 }

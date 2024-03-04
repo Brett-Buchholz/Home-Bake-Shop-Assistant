@@ -32,6 +32,7 @@ class EditCustomerViewController: UIViewController {
     
     var loadedCustomer: Customer? = nil
     var customerList: [Customer] = []
+    var ordersList: [Order] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,21 +145,36 @@ class EditCustomerViewController: UIViewController {
     }
     
     @IBAction func deleteCustomerPressed(_ sender: BrettButton) {
-        let alert = UIAlertController(title: "Delete Customer?", message: "Are you sure you want to delete this customer?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { action in
-            //alert is dismissed
-        }
-        alert.addAction(cancelAction)
-        let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
-            if self.loadedCustomer != nil {
-                K.customerInfoContext.delete(self.loadedCustomer!)
-                self.saveCustomerInfo()
-                self.navigationController?.popViewController(animated: true)
+        loadOrders()
+        var customerOrders:[Customer] = []
+        for order in ordersList {
+            if order.toCustomer == loadedCustomer {
+                customerOrders.append(order.toCustomer!)
             }
         }
-        alert.addAction(deleteAction)
-        
-        present(alert, animated: true, completion: nil)
+        if customerOrders != [] {
+            let customerAlert = UIAlertController(title: "", message: "This customer is used in an existing order and cannot be deleted", preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //alert is dismissed
+            }
+            customerAlert.addAction(dismissAction)
+            present(customerAlert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Delete Customer?", message: "Are you sure you want to delete this customer?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default) { action in
+                //alert is dismissed
+            }
+            alert.addAction(cancelAction)
+            let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
+                if self.loadedCustomer != nil {
+                    K.customerInfoContext.delete(self.loadedCustomer!)
+                    self.saveCustomerInfo()
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            alert.addAction(deleteAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     //MARK: CoreData CRUD Methods
@@ -180,4 +196,14 @@ class EditCustomerViewController: UIViewController {
         }
     }
     
+    func loadOrders() {
+        let request: NSFetchRequest<Order> = Order.fetchRequest()
+        let orderNumberSort = NSSortDescriptor(key:"orderNumber", ascending:true)
+        request.sortDescriptors = [orderNumberSort]
+        do {
+            ordersList = try K.ordersContext.fetch(request)
+        } catch {
+            print("Error loading Ingredients: \(error)")
+        }
+    }
 }

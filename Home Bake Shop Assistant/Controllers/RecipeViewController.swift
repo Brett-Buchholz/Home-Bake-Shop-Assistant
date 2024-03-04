@@ -21,6 +21,7 @@ class RecipeViewController: UIViewController {
     var loadedRecipe: [Recipe] = []
     var recipeIngredients: [RecipeIngredient] = []
     var selectedIndexPath: IndexPath? = nil
+    var ordersList: [Order] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,19 +67,49 @@ class RecipeViewController: UIViewController {
     }
     
     @IBAction func deleteRecipePressed(_ sender: BrettButton) {
-        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this recipe?", preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { action in
-            //Dismiss alert
+        loadOrders()
+        var recipeOrders:[Recipe] = []
+        for order in ordersList {
+            for item in (order.toOrderedItem?.allObjects as! [OrderedItem]) {
+                if item.toRecipe == loadedRecipe[0] {
+                    recipeOrders.append(item.toRecipe!)
+                }
+            }
         }
-        alert.addAction(dismissAction)
-        let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
-            K.recipeContext.delete(self.loadedRecipe[0])
-            self.navigationController?.popToViewController((self.navigationController?.viewControllers[1])!, animated: true)
+        if recipeOrders != [] {
+            let recipeAlert = UIAlertController(title: "", message: "This recipe is used in an existing order and cannot be deleted", preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { action in
+                //alert is dismissed
+            }
+            recipeAlert.addAction(dismissAction)
+            present(recipeAlert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Delete Recipe?", message: "Are you sure you want to delete this recipe?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default) { action in
+                //Dismiss alert
+            }
+            alert.addAction(cancelAction)
+            let deleteAction = UIAlertAction(title: "Delete", style: .default) { action in
+                K.recipeContext.delete(self.loadedRecipe[0])
+                self.navigationController?.popToViewController((self.navigationController?.viewControllers[1])!, animated: true)
+            }
+            alert.addAction(deleteAction)
+            present(alert, animated: true, completion: nil)
         }
-        alert.addAction(deleteAction)
-        present(alert, animated: true, completion: nil)
     }
     
+    //MARK: CoreData CRUD Methods
+    
+    func loadOrders() {
+        let request: NSFetchRequest<Order> = Order.fetchRequest()
+        let orderNumberSort = NSSortDescriptor(key:"orderNumber", ascending:true)
+        request.sortDescriptors = [orderNumberSort]
+        do {
+            ordersList = try K.ordersContext.fetch(request)
+        } catch {
+            print("Error loading Ingredients: \(error)")
+        }
+    }
 }
 
 //MARK: TableView DataSource Methods
