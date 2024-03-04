@@ -40,9 +40,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         Task {
-            let product = K.skm.subscriptions[0]
-            await K.skm.getSubscriptionStatus(product: product)
-            AvailabilityManager().needsSubscriptionCheck()
+            if K.skm.subscriptions.count == 0 {
+                await K.skm.requestProducts()
+                let product = K.skm.subscriptions[0]
+                await K.skm.getSubscriptionStatus(product: product)
+                AvailabilityManager().needsSubscriptionCheck()
+            } else {
+                let product = K.skm.subscriptions[0]
+                await K.skm.getSubscriptionStatus(product: product)
+                AvailabilityManager().needsSubscriptionCheck()
+            }
         }
     }
 

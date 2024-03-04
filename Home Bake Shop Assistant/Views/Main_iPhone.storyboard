@@ -2273,10 +2273,10 @@ Ingredient</string>
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9w-Dl-Jxx" userLabel="Inner Scroll View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="850"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="725"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="8UE-6L-K62">
-                                                <rect key="frame" x="96.666666666666686" y="202.66666666666663" width="200" height="445"/>
+                                                <rect key="frame" x="96.666666666666686" y="191.66666666666663" width="200" height="445"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ps1-Cn-L7G" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="200" height="49"/>
@@ -2426,8 +2426,8 @@ Ingredient</string>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="8UE-6L-K62" firstAttribute="centerX" secondItem="m9w-Dl-Jxx" secondAttribute="centerX" id="Cfp-rv-bvY"/>
-                                            <constraint firstAttribute="height" constant="850" id="GDg-Jh-hEU"/>
-                                            <constraint firstItem="8UE-6L-K62" firstAttribute="centerY" secondItem="m9w-Dl-Jxx" secondAttribute="centerY" id="U9h-42-CDM"/>
+                                            <constraint firstAttribute="height" constant="725" id="GDg-Jh-hEU"/>
+                                            <constraint firstItem="8UE-6L-K62" firstAttribute="centerY" secondItem="m9w-Dl-Jxx" secondAttribute="centerYWithinMargins" id="U9h-42-CDM"/>
                                             <constraint firstItem="8UE-6L-K62" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="m9w-Dl-Jxx" secondAttribute="bottom" id="ZhB-SL-vKE"/>
                                             <constraint firstItem="8UE-6L-K62" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m9w-Dl-Jxx" secondAttribute="top" id="wrK-LU-j9T"/>
                                         </constraints>
@@ -2449,8 +2449,8 @@ Ingredient</string>
                             <constraint firstItem="tMH-RQ-ARQ" firstAttribute="top" secondItem="zrv-WQ-XQx" secondAttribute="top" id="1Ys-eZ-TT3"/>
                             <constraint firstItem="tMH-RQ-ARQ" firstAttribute="leading" secondItem="zrv-WQ-XQx" secondAttribute="leading" id="5aA-bY-ENs"/>
                             <constraint firstItem="m9w-Dl-Jxx" firstAttribute="width" secondItem="zrv-WQ-XQx" secondAttribute="width" id="9CV-CX-fCm"/>
-                            <constraint firstAttribute="trailing" secondItem="tMH-RQ-ARQ" secondAttribute="trailing" id="T0X-5v-juQ"/>
-                            <constraint firstAttribute="bottom" secondItem="tMH-RQ-ARQ" secondAttribute="bottom" id="TEG-BA-TXF"/>
+                            <constraint firstItem="tMH-RQ-ARQ" firstAttribute="trailing" secondItem="zrv-WQ-XQx" secondAttribute="trailing" id="T0X-5v-juQ"/>
+                            <constraint firstItem="tMH-RQ-ARQ" firstAttribute="bottom" secondItem="zrv-WQ-XQx" secondAttribute="bottom" id="TEG-BA-TXF"/>
                             <constraint firstItem="QsS-EJ-cPy" firstAttribute="top" secondItem="zrv-WQ-XQx" secondAttribute="top" id="g4y-Ip-dIU"/>
                             <constraint firstItem="QsS-EJ-cPy" firstAttribute="bottom" secondItem="zrv-WQ-XQx" secondAttribute="bottom" id="gA6-lv-Zww"/>
                             <constraint firstItem="QsS-EJ-cPy" firstAttribute="trailing" secondItem="zrv-WQ-XQx" secondAttribute="trailing" id="mzI-Fw-S7Y"/>
@@ -3078,13 +3078,16 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iuJ-rB-2cU" userLabel="Inner Scroll View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="850"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="725"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="o1x-08-sik">
-                                                <rect key="frame" x="79.666666666666686" y="202.66666666666663" width="234" height="445"/>
+                                                <rect key="frame" x="79.666666666666686" y="189" width="234" height="450"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLe-Ap-gnh" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="234" height="49"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="234" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="uMs-yP-AA8"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="46"/>
                                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -3112,7 +3115,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZh-G3-rw6" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="99.000000000000028" width="234" height="49"/>
+                                                        <rect key="frame" x="0.0" y="100" width="234" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="zbL-k5-xSJ"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="46"/>
                                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -3140,7 +3146,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9T-hE-FzV" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="198.00000000000003" width="234" height="49"/>
+                                                        <rect key="frame" x="0.0" y="200" width="234" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="NSZ-Oj-gP0"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="46"/>
                                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -3168,7 +3177,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSZ-oN-J7B" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="297" width="234" height="49"/>
+                                                        <rect key="frame" x="0.0" y="300" width="234" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="GVu-RE-4EK"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="46"/>
                                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -3196,7 +3208,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WjD-2U-uEe" userLabel="Privacy Policy Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="396" width="234" height="49"/>
+                                                        <rect key="frame" x="0.0" y="400" width="234" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="b2a-XK-Rut"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="46"/>
                                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -3228,8 +3243,8 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="o1x-08-sik" firstAttribute="centerX" secondItem="iuJ-rB-2cU" secondAttribute="centerX" id="Y94-d0-xfV"/>
-                                            <constraint firstItem="o1x-08-sik" firstAttribute="centerY" secondItem="iuJ-rB-2cU" secondAttribute="centerY" id="bCF-30-0GR"/>
-                                            <constraint firstAttribute="height" constant="850" id="xhW-oV-9dM"/>
+                                            <constraint firstItem="o1x-08-sik" firstAttribute="centerY" secondItem="iuJ-rB-2cU" secondAttribute="centerYWithinMargins" id="bCF-30-0GR"/>
+                                            <constraint firstAttribute="height" constant="725" id="xhW-oV-9dM"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -6790,13 +6805,13 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Item Ordered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ez1-xH-x56">
-                                                        <rect key="frame" x="70" y="0.0" width="281" height="26.666666666666668"/>
+                                                        <rect key="frame" x="70.000000000000014" y="0.0" width="247.33333333333337" height="26.666666666666668"/>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="24"/>
                                                         <color key="textColor" name="BakeShopBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eal-al-vYj">
-                                                        <rect key="frame" x="351" y="0.0" width="53.333333333333314" height="26.666666666666668"/>
+                                                        <rect key="frame" x="317.33333333333331" y="0.0" width="125" height="26.666666666666668"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="xe7-3r-lBe"/>
                                                         </constraints>
@@ -6805,7 +6820,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmx-0l-OSC">
-                                                        <rect key="frame" x="404.33333333333331" y="0.0" width="124.99999999999994" height="26.666666666666668"/>
+                                                        <rect key="frame" x="442.33333333333331" y="0.0" width="86.999999999999943" height="26.666666666666668"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="1lM-J4-JBl"/>
                                                         </constraints>
@@ -7699,9 +7714,9 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
         <image name="flour-5290444" width="1994" height="3000"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="muffins-1329679" width="4828" height="3219"/>
-        <image name="plus.app" catalog="system" width="128" height="114"/>
+        <image name="plus.app" catalog="system" width="32" height="32"/>
         <image name="plus.rectangle" catalog="system" width="128" height="93"/>
-        <image name="plus.square" catalog="system" width="128" height="114"/>
+        <image name="plus.square" catalog="system" width="32" height="32"/>
         <image name="recipe-5570289" width="4526" height="2546"/>
         <image name="spoon-2918612" width="6000" height="4000"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
@@ -7728,22 +7743,22 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
             <color red="1" green="0.14900000393390656" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
