@@ -119,7 +119,7 @@ class InventoryViewController: UIViewController {
                 let standardUnits:UnitsOfMeasurement.Units = UnitsOfMeasurement().convertStringToUnits(string: (ingredient.inventory?.baseUnit)!)
                 let floatQuantity = (Float(item.quantityOrdered) * ingredient.quantity) / (Float(item.toRecipe!.batchSize)/Float(item.batchSize))
                 let neededAmount = UnitsConverter(amount: floatQuantity, measuredUnits: measuredUnits, standardUnits: standardUnits).convertUnits()
-                ingredient.inventory?.amountNeeded = neededAmount
+                ingredient.inventory?.amountNeeded += neededAmount
             }
         }
         saveIngredients()
