@@ -114,7 +114,7 @@ class RecipeCostsViewController: UIViewController {
             } else if selectedRecipe!.batchSize == 6 {
                 batchPrice = selectedRecipe!.priceHalfDozen
             } else {
-                batchPrice = selectedRecipe!.priceSingle
+                batchPrice = (selectedRecipe!.priceSingle * Float(selectedRecipe!.batchSize))
             }
             batchPriceAmountLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: batchPrice)
             profitValueLabel.text = StringConverter().convertCurrencyFloatToString(floatCurrency: (batchPrice - totalCost))

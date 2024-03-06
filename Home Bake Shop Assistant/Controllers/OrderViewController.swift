@@ -71,6 +71,9 @@ class OrderViewController: UIViewController {
         orderedItems = loadedOrder?.toOrderedItem?.allObjects as! [OrderedItem]
         orderedItems = orderedItems.sorted {$0.toRecipe!.name! < $1.toRecipe!.name!}
         loadLabelData()
+        DispatchQueue.main.async {
+            self.orderTableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

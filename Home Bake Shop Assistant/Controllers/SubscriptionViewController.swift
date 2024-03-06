@@ -120,7 +120,7 @@ class SubscriptionViewController: UIViewController {
             }
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
-        } else if promoCodeTextField.text == "1000" {
+        } else if promoCodeTextField.text == "Fg240zP83Dq" {
             let mySub:[Subscription]
             let request: NSFetchRequest<Subscription> = Subscription.fetchRequest()
             do {

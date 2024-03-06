@@ -108,6 +108,7 @@ class QuickAddViewController: UIViewController, UITextFieldDelegate {
     }
     
     func ableToConvert() -> Bool {
+        standardUnit = UnitsOfMeasurement().convertStringToUnits(string: (selectedIngredient?.baseUnit)!)
         if standardUnit == .Whole && selectedMeasuredUnit != .Whole {
             return false
         } else if selectedMeasuredUnit == .Whole && standardUnit != .Whole {
@@ -150,6 +151,8 @@ class QuickAddViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addButtonPressed(_ sender: BrettButton) {
+        costCurrencyField.resignFirstResponder()
+        amountAddedTextField.resignFirstResponder()
         errorLabel.isHidden = true
         if selectedIngredient == nil {
             errorLabel.isHidden = false
@@ -184,8 +187,6 @@ class QuickAddViewController: UIViewController, UITextFieldDelegate {
             selectedMeasuredUnit = nil
             setupUnitsButtons()
             costCurrencyField.text = ""
-            costCurrencyField.resignFirstResponder()
-            amountAddedTextField.resignFirstResponder()
         }
         
     }

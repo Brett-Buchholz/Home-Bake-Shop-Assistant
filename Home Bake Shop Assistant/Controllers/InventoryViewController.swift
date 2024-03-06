@@ -197,8 +197,8 @@ extension InventoryViewController: UITableViewDataSource {
         let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: K.ingredientReuseIdentifier, for: indexPath) as! IngredientTableViewCell
         cell.ingredientLabel.text = inventoryList[indexPath.row].ingredientName
         cell.unitsLabel.text = inventoryList[indexPath.row].baseUnit
-        cell.onHandLabel.text = "\(inventoryList[indexPath.row].amountOnHand)"
-        cell.neededLabel.text = "\(inventoryList[indexPath.row].amountNeeded)"
+        cell.onHandLabel.text = StringConverter().convertInventoryFloatToString(inventoryFloat: inventoryList[indexPath.row].amountOnHand)
+        cell.neededLabel.text = StringConverter().convertInventoryFloatToString(inventoryFloat: inventoryList[indexPath.row].amountNeeded)
         inventoryList = inventoryList.sorted {$0.ingredientName! < $1.ingredientName!}
         
         return cell

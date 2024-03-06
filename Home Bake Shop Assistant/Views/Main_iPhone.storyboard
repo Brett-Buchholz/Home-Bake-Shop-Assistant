@@ -686,7 +686,7 @@ Ingredient</string>
                                                                         </constraints>
                                                                         <color key="textColor" name="BakeShopMaroon"/>
                                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -710,7 +710,7 @@ Ingredient</string>
                                                                         </constraints>
                                                                         <color key="textColor" name="BakeShopMaroon"/>
                                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -734,7 +734,7 @@ Ingredient</string>
                                                                         </constraints>
                                                                         <color key="textColor" name="BakeShopMaroon"/>
                                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -1726,7 +1726,7 @@ Ingredient</string>
                                                         </constraints>
                                                         <color key="textColor" name="BakeShopBrown"/>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DwW-Gh-cz2" userLabel="Units Popup Button">
                                                         <rect key="frame" x="241.33333333333337" y="65" width="100" height="40"/>
@@ -1753,7 +1753,7 @@ Ingredient</string>
                                                         </constraints>
                                                         <color key="textColor" name="BakeShopBrown"/>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Acm-G1-Kxq" userLabel="Add Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="109.66666666666669" y="195" width="158" height="40"/>
@@ -2016,7 +2016,7 @@ Ingredient</string>
                                                         </constraints>
                                                         <color key="textColor" name="BakeShopBrown"/>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2075,7 +2075,7 @@ Ingredient</string>
                                                         </constraints>
                                                         <color key="textColor" name="BakeShopBrown"/>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measured In:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqX-sE-1fz" userLabel="Measured Units Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="75" y="200" width="127.33333333333331" height="40"/>
@@ -2286,7 +2286,7 @@ Ingredient</string>
                                                         <state key="normal" title="Inventory">
                                                             <color key="titleColor" systemColor="systemPinkColor"/>
                                                         </state>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Receipes">
+                                                        <buttonConfiguration key="configuration" style="filled" title="Recipes">
                                                             <fontDescription key="titleFontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
                                                             <color key="baseForegroundColor" name="BakeShopPink"/>
                                                         </buttonConfiguration>
@@ -3744,7 +3744,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         </constraints>
                                                         <color key="textColor" name="BakeShopBlack"/>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT3-Aa-HEA" userLabel="Blank Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="300" y="0.0" width="77" height="50"/>
@@ -5471,7 +5471,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                                             <constraint firstAttribute="height" constant="35" id="oU6-wI-Sml"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="20"/>
-                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                                 <constraints>
@@ -6805,13 +6805,13 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Item Ordered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ez1-xH-x56">
-                                                        <rect key="frame" x="70.000000000000014" y="0.0" width="247.33333333333337" height="26.666666666666668"/>
+                                                        <rect key="frame" x="70" y="0.0" width="281" height="26.666666666666668"/>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="24"/>
                                                         <color key="textColor" name="BakeShopBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eal-al-vYj">
-                                                        <rect key="frame" x="317.33333333333331" y="0.0" width="125" height="26.666666666666668"/>
+                                                        <rect key="frame" x="351" y="0.0" width="53.333333333333314" height="26.666666666666668"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="xe7-3r-lBe"/>
                                                         </constraints>
@@ -6820,7 +6820,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmx-0l-OSC">
-                                                        <rect key="frame" x="442.33333333333331" y="0.0" width="86.999999999999943" height="26.666666666666668"/>
+                                                        <rect key="frame" x="404.33333333333331" y="0.0" width="124.99999999999994" height="26.666666666666668"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="1lM-J4-JBl"/>
                                                         </constraints>
@@ -7700,10 +7700,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
         <segue reference="jar-Wd-99n"/>
         <segue reference="BdF-wJ-BdA"/>
         <segue reference="epI-yy-3oA"/>
-        <segue reference="IUn-9c-rrp"/>
-        <segue reference="erh-mH-c27"/>
+        <segue reference="4Fb-zp-dOa"/>
+        <segue reference="A0v-hx-Y5g"/>
         <segue reference="yVd-TI-Ayy"/>
-        <segue reference="ioK-dj-aXh"/>
+        <segue reference="Y4O-J0-rVw"/>
         <segue reference="N4a-Wx-lxo"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -7714,9 +7714,9 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
         <image name="flour-5290444" width="1994" height="3000"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="muffins-1329679" width="4828" height="3219"/>
-        <image name="plus.app" catalog="system" width="32" height="32"/>
+        <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="plus.rectangle" catalog="system" width="128" height="93"/>
-        <image name="plus.square" catalog="system" width="32" height="32"/>
+        <image name="plus.square" catalog="system" width="128" height="114"/>
         <image name="recipe-5570289" width="4526" height="2546"/>
         <image name="spoon-2918612" width="6000" height="4000"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
