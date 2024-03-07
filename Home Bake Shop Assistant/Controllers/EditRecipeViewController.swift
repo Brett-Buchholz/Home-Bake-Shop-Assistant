@@ -26,6 +26,7 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var directionsView: UIView!
     @IBOutlet weak var addNewView: UIView!
     @IBOutlet weak var batchSizeTextField: UITextField!
+    @IBOutlet weak var batchPriceTextField: CurrencyField!
     @IBOutlet weak var priceDozenCurrencyField: CurrencyField!
     @IBOutlet weak var priceHalfDozenCurrencyField: CurrencyField!
     @IBOutlet weak var priceSingleCurrencyField: CurrencyField!
@@ -74,10 +75,12 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
             recipeNameTextField.text = loadedRecipe!.name
             directionsTextView.text = loadedRecipe!.directions
             batchSizeTextField.text = "\(loadedRecipe!.batchSize)"
+            batchPriceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe!.batchPrice)
             priceSingleCurrencyField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe!.priceSingle)
             priceHalfDozenCurrencyField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe!.priceHalfDozen)
             priceDozenCurrencyField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: loadedRecipe!.priceDozen)
         } else {
+            batchPriceTextField.text = ""
             priceSingleCurrencyField.text = ""
             priceHalfDozenCurrencyField.text = ""
             priceDozenCurrencyField.text = ""
@@ -385,6 +388,11 @@ class EditRecipeViewController: UIViewController, UITextFieldDelegate {
             newRecipe!.directions = directionsTextView.text
             let intBatchSize = Int16(batchSizeTextField.text!)!
             newRecipe!.batchSize = intBatchSize
+            if batchPriceTextField.text == "" {
+                newRecipe!.batchPrice = Float(0.00)
+            } else {
+                newRecipe!.batchPrice = StringConverter().convertCurrencyStringToFloat(stringCurrency: batchPriceTextField.text!)
+            }
             if priceDozenCurrencyField.text == "" {
                 newRecipe!.priceDozen = Float(0.00)
             } else {

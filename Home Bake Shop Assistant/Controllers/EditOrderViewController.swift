@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import SwipeCellKit
 
-class EditOrderViewController: UIViewController {
+class EditOrderViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var topBackgroundView: UIView!
     
@@ -81,6 +81,8 @@ class EditOrderViewController: UIViewController {
         orderTableView.dataSource = self
         orderTableView.delegate = self
         orderTableView.register(UINib(nibName: K.orderCellNibName, bundle: nil), forCellReuseIdentifier: K.orderReuseIdentifier)
+        otherTextField.delegate = self
+        quantityTextField.delegate = self
         
         loadCustomerList()
         createOrderNumber()
@@ -102,6 +104,12 @@ class EditOrderViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkAvailability()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet)
     }
     
     func checkAvailability() {
@@ -219,6 +227,9 @@ class EditOrderViewController: UIViewController {
         var chirren: [UIMenuElement] = []
         let closure = { (action: UIAction) in
             //print(action)
+            self.selectedItemOrdered = nil
+            self.otherTextField.text = ""
+            self.priceTextField.text = ""
         }
         chirren.append(UIAction(title: "", handler: closure))
         for recipe in recipeList {
@@ -230,6 +241,9 @@ class EditOrderViewController: UIViewController {
                     self.priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.selectedItemOrdered!.priceHalfDozen)
                 } else if self.batchSizeSegmentedControl.selectedSegmentIndex == 2 {
                     self.priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.selectedItemOrdered!.priceSingle)
+                } else if self.batchSizeSegmentedControl.selectedSegmentIndex == 3 {
+                    self.otherTextField.text = "\(self.selectedItemOrdered!.batchSize)"
+                    self.priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: self.selectedItemOrdered!.batchPrice)
                 }
             })
         }
@@ -374,6 +388,10 @@ class EditOrderViewController: UIViewController {
             }
         case 3:
             otherTextField.isHidden = false
+            if selectedItemOrdered != nil {
+                otherTextField.text = "\(selectedItemOrdered!.batchSize)"
+                priceTextField.text = StringConverter().convertCurrencyFloatToString(floatCurrency: selectedItemOrdered!.batchPrice)
+            }
         default:
             batchSize = 12
             if selectedItemOrdered != nil {

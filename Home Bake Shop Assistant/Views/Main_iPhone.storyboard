@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nJt-Wr-84J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nJt-Wr-84J">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -105,22 +105,37 @@
                                                 <color key="textColor" name="BakeShopMaroon"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="tIb-0e-dhE" userLabel="Batch Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="40" width="391.66666666666669" height="40"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Batch Size Of: 12, Batch Price: $15.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="ztc-FV-Xqi" userLabel="Batch Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="40" width="377" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="IEO-bp-Oac"/>
+                                                    <constraint firstAttribute="height" constant="30" id="rw5-Qd-5nD"/>
                                                 </constraints>
-                                                <string key="text">Batch Size Of: 12     Price per:
-Dozen $15.00, Half Dozen $10:00, Single $0.00</string>
                                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
                                                 <color key="textColor" name="BakeShopMaroon"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price per: Dozen $15.00, Half Dozen $10:00, Single $0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="tIb-0e-dhE" userLabel="Price Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="70" width="385" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="IEO-bp-Oac"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
+                                                <color key="textColor" name="BakeShopMaroon"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1CA-Ej-blV">
-                                                <rect key="frame" x="8" y="80" width="377" height="440"/>
+                                                <rect key="frame" x="8" y="100" width="377" height="420"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96C-3w-dLO" userLabel="Ingredients View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="377" height="215"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="377" height="205"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqs-i8-12a" userLabel="Ingredients Label">
                                                                 <rect key="frame" x="5" y="0.0" width="134" height="31.333333333333332"/>
@@ -129,7 +144,7 @@ Dozen $15.00, Half Dozen $10:00, Single $0.00</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9fN-Sv-w9N" userLabel="Ingredients Table View">
-                                                                <rect key="frame" x="25" y="31.333333333333314" width="327" height="183.66666666666666"/>
+                                                                <rect key="frame" x="25" y="31.333333333333314" width="327" height="173.66666666666666"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </tableView>
                                                         </subviews>
@@ -145,10 +160,10 @@ Dozen $15.00, Half Dozen $10:00, Single $0.00</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJg-Pp-gmc" userLabel="Directions View">
-                                                        <rect key="frame" x="0.0" y="225" width="377" height="215"/>
+                                                        <rect key="frame" x="0.0" y="215" width="377" height="205"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jn7-Qr-0X3" userLabel="Directions Text View">
-                                                                <rect key="frame" x="25" y="31.333333333333371" width="327" height="183.66666666666666"/>
+                                                                <rect key="frame" x="25" y="31.333333333333371" width="327" height="173.66666666666666"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <color key="textColor" name="BakeShopMaroon"/>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="18"/>
@@ -211,19 +226,22 @@ Dozen $15.00, Half Dozen $10:00, Single $0.00</string>
                                             <constraint firstItem="aDJ-d3-Wfk" firstAttribute="leading" secondItem="0J7-XP-UBF" secondAttribute="leading" id="2vh-k2-MzS"/>
                                             <constraint firstItem="1CA-Ej-blV" firstAttribute="trailing" secondItem="0J7-XP-UBF" secondAttribute="trailingMargin" id="427-eJ-lNi"/>
                                             <constraint firstItem="GNP-Lz-h0I" firstAttribute="trailing" secondItem="QNu-fu-wRs" secondAttribute="leading" constant="-5" id="5xJ-Ge-Qno"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tIb-0e-dhE" secondAttribute="trailingMargin" id="9fm-QY-C2s"/>
+                                            <constraint firstItem="tIb-0e-dhE" firstAttribute="trailingMargin" secondItem="0J7-XP-UBF" secondAttribute="trailingMargin" id="9fm-QY-C2s"/>
                                             <constraint firstItem="GNP-Lz-h0I" firstAttribute="top" secondItem="1CA-Ej-blV" secondAttribute="bottom" id="Aba-UP-im4"/>
+                                            <constraint firstItem="ztc-FV-Xqi" firstAttribute="leading" secondItem="0J7-XP-UBF" secondAttribute="leadingMargin" id="Dyd-bC-cZi"/>
                                             <constraint firstItem="GNP-Lz-h0I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0J7-XP-UBF" secondAttribute="leading" constant="20" symbolic="YES" id="Gdq-v8-u9C"/>
                                             <constraint firstItem="aDJ-d3-Wfk" firstAttribute="trailing" secondItem="0J7-XP-UBF" secondAttribute="trailing" id="HMq-Vk-mKK"/>
+                                            <constraint firstItem="ztc-FV-Xqi" firstAttribute="trailing" secondItem="0J7-XP-UBF" secondAttribute="trailingMargin" id="IbZ-xH-nrc"/>
                                             <constraint firstItem="aDJ-d3-Wfk" firstAttribute="top" secondItem="0J7-XP-UBF" secondAttribute="top" id="JjG-4C-RPU"/>
                                             <constraint firstItem="tIb-0e-dhE" firstAttribute="bottom" secondItem="1CA-Ej-blV" secondAttribute="top" id="OGQ-yL-NQp"/>
                                             <constraint firstItem="tIb-0e-dhE" firstAttribute="leading" secondItem="0J7-XP-UBF" secondAttribute="leadingMargin" id="ONG-C7-STM"/>
                                             <constraint firstAttribute="height" constant="600" id="R3p-QV-BGO"/>
                                             <constraint firstItem="QNu-fu-wRs" firstAttribute="bottom" secondItem="0J7-XP-UBF" secondAttribute="bottomMargin" id="Vyy-jZ-mro"/>
                                             <constraint firstItem="GNP-Lz-h0I" firstAttribute="bottom" secondItem="0J7-XP-UBF" secondAttribute="bottomMargin" id="Wo3-ya-fuP"/>
-                                            <constraint firstItem="tIb-0e-dhE" firstAttribute="top" secondItem="aDJ-d3-Wfk" secondAttribute="bottom" id="YDr-wi-hZr"/>
+                                            <constraint firstItem="tIb-0e-dhE" firstAttribute="top" secondItem="ztc-FV-Xqi" secondAttribute="bottom" id="YDr-wi-hZr"/>
                                             <constraint firstItem="QNu-fu-wRs" firstAttribute="trailing" secondItem="0J7-XP-UBF" secondAttribute="trailingMargin" id="fQV-FO-Aaq"/>
-                                            <constraint firstItem="1CA-Ej-blV" firstAttribute="top" secondItem="0J7-XP-UBF" secondAttribute="top" constant="80" id="lKl-4c-cTg"/>
+                                            <constraint firstItem="1CA-Ej-blV" firstAttribute="top" secondItem="0J7-XP-UBF" secondAttribute="top" constant="100" id="lKl-4c-cTg"/>
+                                            <constraint firstItem="ztc-FV-Xqi" firstAttribute="top" secondItem="aDJ-d3-Wfk" secondAttribute="bottom" id="nU7-7w-Mzq"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -252,10 +270,11 @@ Dozen $15.00, Half Dozen $10:00, Single $0.00</string>
                     </view>
                     <navigationItem key="navigationItem" id="89Z-DF-cRv"/>
                     <connections>
-                        <outlet property="batchLabel" destination="tIb-0e-dhE" id="mxo-2q-oJ4"/>
+                        <outlet property="batchLabel" destination="ztc-FV-Xqi" id="KcE-OQ-7zC"/>
                         <outlet property="deleteRecipeButton" destination="GNP-Lz-h0I" id="U8b-yR-joM"/>
                         <outlet property="directionsTextView" destination="jn7-Qr-0X3" id="I4k-0R-n4S"/>
                         <outlet property="editRecipeButton" destination="QNu-fu-wRs" id="LtW-Hg-Xdr"/>
+                        <outlet property="priceLabel" destination="tIb-0e-dhE" id="mxo-2q-oJ4"/>
                         <outlet property="recipeIngredientsTableView" destination="9fN-Sv-w9N" id="wRe-t9-6av"/>
                         <outlet property="recipeNameLabel" destination="aDJ-d3-Wfk" id="gux-p8-M5B"/>
                         <outlet property="stackView" destination="1CA-Ej-blV" id="OSt-5t-0RM"/>
@@ -631,7 +650,7 @@ Ingredient</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nXN-Go-7vG" userLabel="Batch Size Stack View">
-                                                        <rect key="frame" x="8" y="50" width="209.66666666666666" height="35"/>
+                                                        <rect key="frame" x="8" y="50" width="377.33333333333331" height="35"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Makes A Batch Size Of:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYB-sD-xT2" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="154.66666666666666" height="35"/>
@@ -652,19 +671,48 @@ Ingredient</string>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18e-wr-VJZ" userLabel="Blank Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                                <rect key="frame" x="214.66666666666666" y="0.0" width="10" height="35"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="10" id="EIT-MC-38Z"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="ar6-kQ-K7v"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="16"/>
+                                                                <color key="textColor" name="BakeShopMaroon"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Batch Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyG-XT-ztz" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                                <rect key="frame" x="229.66666666666666" y="0.0" width="78.666666666666657" height="35"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="35" id="vVk-Bf-fPl"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="16"/>
+                                                                <color key="textColor" name="BakeShopMaroon"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bX8-an-fmn" userLabel="Batch Price Text Field" customClass="CurrencyField" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                                <rect key="frame" x="313.33333333333331" y="0.0" width="64" height="35"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="921-KA-1yr"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="rnZ-eF-SgX"/>
+                                                                </constraints>
+                                                                <color key="textColor" name="BakeShopMaroon"/>
+                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="16"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            </textField>
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price for:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="QoR-fF-Ciu" userLabel="Price for:" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="227.66666666666663" y="50" width="60" height="40"/>
+                                                        <rect key="frame" x="5" y="85" width="60" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="m5N-gl-hq0"/>
+                                                            <constraint firstAttribute="height" constant="25" id="m5N-gl-hq0"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="16"/>
                                                         <color key="textColor" name="BakeShopMaroon"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="MjA-XM-OEo" userLabel="Price Stack View">
-                                                        <rect key="frame" x="8" y="90" width="377" height="35"/>
+                                                        <rect key="frame" x="8" y="110" width="377" height="35"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4qH-6e-hDf" userLabel="Dozen Stack View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="100.66666666666667" height="35"/>
@@ -744,7 +792,7 @@ Ingredient</string>
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SN-hl-Iz9" userLabel="Ingredients View">
-                                                        <rect key="frame" x="8" y="130" width="377" height="220"/>
+                                                        <rect key="frame" x="8" y="150" width="377" height="200"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pY-7f-PJV" userLabel="Ingredients Label">
                                                                 <rect key="frame" x="5" y="0.0" width="114.66666666666667" height="40"/>
@@ -756,7 +804,7 @@ Ingredient</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="858-IU-z0O" userLabel="Ingredients Table View">
-                                                                <rect key="frame" x="25" y="40" width="327" height="180"/>
+                                                                <rect key="frame" x="25" y="40" width="327" height="160"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </tableView>
                                                         </subviews>
@@ -782,13 +830,13 @@ Ingredient</string>
                                                     <constraint firstAttribute="height" constant="350" id="KzV-Tr-ixS"/>
                                                     <constraint firstItem="MjA-XM-OEo" firstAttribute="leading" secondItem="S0f-LZ-BTL" secondAttribute="leadingMargin" id="RIC-Pt-uho"/>
                                                     <constraint firstItem="vh0-Dp-dlf" firstAttribute="trailing" secondItem="S0f-LZ-BTL" secondAttribute="trailingMargin" id="Tuh-sp-Nlt"/>
-                                                    <constraint firstItem="MjA-XM-OEo" firstAttribute="top" secondItem="nXN-Go-7vG" secondAttribute="bottom" constant="5" id="YY1-Xl-sks"/>
-                                                    <constraint firstItem="QoR-fF-Ciu" firstAttribute="leading" secondItem="nXN-Go-7vG" secondAttribute="trailing" constant="10" id="lCU-tQ-ECF"/>
+                                                    <constraint firstItem="MjA-XM-OEo" firstAttribute="top" secondItem="QoR-fF-Ciu" secondAttribute="bottom" id="YY1-Xl-sks"/>
+                                                    <constraint firstItem="QoR-fF-Ciu" firstAttribute="leading" secondItem="S0f-LZ-BTL" secondAttribute="leading" constant="5" id="lCU-tQ-ECF"/>
                                                     <constraint firstItem="vh0-Dp-dlf" firstAttribute="top" secondItem="S0f-LZ-BTL" secondAttribute="top" constant="5" id="p2D-i3-AEr"/>
                                                     <constraint firstItem="6SN-hl-Iz9" firstAttribute="leading" secondItem="S0f-LZ-BTL" secondAttribute="leadingMargin" id="p7w-hg-7AN"/>
                                                     <constraint firstItem="MjA-XM-OEo" firstAttribute="trailing" secondItem="S0f-LZ-BTL" secondAttribute="trailingMargin" id="rfo-1o-e1q"/>
                                                     <constraint firstItem="vh0-Dp-dlf" firstAttribute="leading" secondItem="S0f-LZ-BTL" secondAttribute="leadingMargin" id="w4D-1H-ZBI"/>
-                                                    <constraint firstItem="QoR-fF-Ciu" firstAttribute="top" secondItem="vh0-Dp-dlf" secondAttribute="bottom" constant="5" id="z4j-7z-1gc"/>
+                                                    <constraint firstItem="QoR-fF-Ciu" firstAttribute="top" secondItem="nXN-Go-7vG" secondAttribute="bottom" id="z4j-7z-1gc"/>
                                                     <constraint firstItem="nXN-Go-7vG" firstAttribute="top" secondItem="vh0-Dp-dlf" secondAttribute="bottom" constant="5" id="zYS-5q-TaT"/>
                                                 </constraints>
                                             </view>
@@ -1120,6 +1168,7 @@ Ingredient</string>
                     <connections>
                         <outlet property="addButton" destination="3bx-jh-9Us" id="6xa-94-OQ3"/>
                         <outlet property="addNewView" destination="6q0-CE-y9c" id="ka0-cX-vcC"/>
+                        <outlet property="batchPriceTextField" destination="bX8-an-fmn" id="F1g-ne-WZC"/>
                         <outlet property="batchSizeTextField" destination="ZRN-j4-seh" id="2Tn-A0-05b"/>
                         <outlet property="directionsTextView" destination="BQL-QK-9NK" id="M8g-Af-jG9"/>
                         <outlet property="directionsView" destination="pGM-cp-1Ry" id="Vzj-5X-y81"/>
@@ -2486,7 +2535,7 @@ Ingredient</string>
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1t1-cj-yIT" userLabel="Inner Scroll View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1400"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Getting Started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zA-DE-DWw" userLabel="Title Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                 <rect key="frame" x="66.666666666666657" y="0.0" width="259.66666666666674" height="49.666666666666664"/>
@@ -2609,7 +2658,7 @@ Ingredient</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEL-8L-Dho" userLabel="Step 2 View">
-                                                <rect key="frame" x="25" y="291.66666666666669" width="343" height="362.00000000000006"/>
+                                                <rect key="frame" x="25" y="291.66666666666663" width="343" height="483.66666666666663"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 2: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcI-82-7gN" userLabel="Step 2 Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="67.333333333333329" height="40"/>
@@ -2670,10 +2719,10 @@ Ingredient</string>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOi-vd-raI" userLabel="Step 2 Details Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="45" width="343" height="317"/>
+                                                        <rect key="frame" x="0.0" y="45.000000000000028" width="343" height="438.66666666666674"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <string key="text">Step 2a: Add the list of ingredients you will use in your recipes. For the standard unit, choose the unit of measurement most likely to be used by that ingredient in a recipe.
-Step 2b: Once an ingredient is created, add how much is on hand and the cost of the item. This can be done for each individual ingredient by tapping on the ingredient and updating its information or you can use the "Quick Add" Button to update multipe ingredients.</string>
+                                                        <mutableString key="text">Step 2a: Add the list of ingredients you will use in your recipes. For the standard unit, choose the unit of measurement most likely to be used by that ingredient in a recipe. Name your ingredients the way you would call a single unit of that ingredient.  Ex. Egg (1 whole egg, not eggs), Flour (1 cup of flour), Chocolate Chips (1 cup of Chocolate Chips).
+Step 2b: Once an ingredient is created, add how much is on hand and the cost of the item. This can be done for each individual ingredient by tapping on the ingredient and updating its information or you can use the "Quick Add" Button to update multipe ingredients.</mutableString>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
                                                         <color key="textColor" name="BakeShopPink"/>
                                                         <nil key="highlightedColor"/>
@@ -2706,7 +2755,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQQ-af-0aV" userLabel="Step 3 View">
-                                                <rect key="frame" x="25" y="678.66666666666663" width="343" height="191.33333333333337"/>
+                                                <rect key="frame" x="25" y="800.33333333333337" width="343" height="191.33333333333337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 3: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVo-m4-r1N" userLabel="Step 3 Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="67.333333333333329" height="40"/>
@@ -2802,7 +2851,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRC-ay-HYx" userLabel="Step 4 View">
-                                                <rect key="frame" x="25" y="895" width="343" height="69.666666666666629"/>
+                                                <rect key="frame" x="25" y="1016.6666666666666" width="343" height="69.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 4: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFm-a8-EGH" userLabel="Step 4 Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="67.333333333333329" height="40"/>
@@ -2863,7 +2912,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your customers." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCX-u5-daa" userLabel="Step 4 Details Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="45" width="343" height="24.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="45.000000000000114" width="343" height="24.666666666666671"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
                                                         <color key="textColor" name="BakeShopPink"/>
@@ -2897,7 +2946,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xG2-hs-Z8O" userLabel="Step 5 View">
-                                                <rect key="frame" x="25" y="989.66666666666663" width="343" height="264.33333333333337"/>
+                                                <rect key="frame" x="25" y="1111.3333333333333" width="343" height="264.33333333333326"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 5: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98d-FA-N3A" userLabel="Step 5 Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="67.333333333333329" height="40"/>
@@ -2958,7 +3007,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7h-vb-7g5" userLabel="Step 5 Details Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="45.000000000000128" width="343" height="219.33333333333337"/>
+                                                        <rect key="frame" x="0.0" y="45.000000000000014" width="343" height="219.33333333333337"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <string key="text">Now that you have recipes and customers, you are able to create an order. From the list of orders placed, you can tap on an order to see the details or you can swipe left on an order to mark it as completed. Marking an order as complete removes the recipe ingredients from inventory on hand.</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
@@ -2996,7 +3045,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                         <constraints>
                                             <constraint firstItem="uEL-8L-Dho" firstAttribute="leading" secondItem="1t1-cj-yIT" secondAttribute="leading" constant="25" id="0ho-QH-k7b"/>
                                             <constraint firstItem="XQQ-af-0aV" firstAttribute="top" secondItem="uEL-8L-Dho" secondAttribute="bottom" constant="25" id="2mQ-pp-dCr"/>
-                                            <constraint firstAttribute="height" constant="1300" id="BNa-hS-dwO"/>
+                                            <constraint firstAttribute="height" constant="1400" id="BNa-hS-dwO"/>
                                             <constraint firstItem="uRC-ay-HYx" firstAttribute="top" secondItem="XQQ-af-0aV" secondAttribute="bottom" constant="25" id="D71-jP-zAd"/>
                                             <constraint firstAttribute="trailing" secondItem="XQQ-af-0aV" secondAttribute="trailing" constant="25" id="E2N-FP-I0k"/>
                                             <constraint firstItem="uEL-8L-Dho" firstAttribute="trailing" secondItem="1t1-cj-yIT" secondAttribute="trailing" constant="-25" id="SHA-6j-yjO"/>
@@ -5415,14 +5464,14 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                                             <action selector="batchSegmentedControlChanged:" destination="45h-y4-fx2" eventType="valueChanged" id="5rp-td-nrG"/>
                                                                         </connections>
                                                                     </segmentedControl>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ys-tQ-U3l" userLabel="Other Text Field">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ys-tQ-U3l" userLabel="Other Text Field">
                                                                         <rect key="frame" x="317" y="0.0" width="50" height="35"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="50" id="4AU-lG-0jA"/>
                                                                             <constraint firstAttribute="height" constant="35" id="JdO-2t-r8C"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="20"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -7601,7 +7650,7 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                         <rect key="frame" x="0.0" y="0.0" width="377" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total Cost Of Ingredients:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="bXw-zK-iu0" userLabel="Totals Ingredient Name Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="227" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="6h0-jt-Xpt"/>
                                                                 </constraints>
@@ -7610,9 +7659,9 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="mjm-H4-5pI" userLabel="Total Ingredient Value Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                                <rect key="frame" x="227" y="0.0" width="150" height="50"/>
+                                                                <rect key="frame" x="302" y="0.0" width="75" height="50"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="PHI-Ci-TPd"/>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="PHI-Ci-TPd"/>
                                                                     <constraint firstAttribute="height" constant="50" id="RI2-8u-9f6"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="18"/>
@@ -7698,13 +7747,13 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="jar-Wd-99n"/>
-        <segue reference="BdF-wJ-BdA"/>
+        <segue reference="mIg-Md-BFY"/>
         <segue reference="epI-yy-3oA"/>
-        <segue reference="4Fb-zp-dOa"/>
-        <segue reference="A0v-hx-Y5g"/>
+        <segue reference="vi3-Sf-aEx"/>
+        <segue reference="8av-3p-0tr"/>
         <segue reference="yVd-TI-Ayy"/>
-        <segue reference="Y4O-J0-rVw"/>
-        <segue reference="N4a-Wx-lxo"/>
+        <segue reference="zBM-aF-o2b"/>
+        <segue reference="DsJ-lw-drz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="cookie-756601" width="4160" height="2800"/>

@@ -1,4 +1,5 @@
 {
+  "originHash" : "147621398e1b24047351d8a5734901c19843c317681c5b4169bda917a3a9fd3c",
   "pins" : [
     {
       "identity" : "iqkeyboardmanager",
@@ -19,5 +20,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
