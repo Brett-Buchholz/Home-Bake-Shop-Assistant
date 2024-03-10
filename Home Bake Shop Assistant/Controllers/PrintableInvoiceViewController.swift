@@ -85,14 +85,38 @@ class PrintableInvoiceViewController: UIViewController, PDFViewDelegate {
     
     func loadLabelData() {
         loadCompanyInfo()
-        companyNameLabel.text = loadedCompany[0].name
-        companyAddressLabel.text = loadedCompany[0].address
-        companyCityStateZipLabel.text = "\(loadedCompany[0].city ?? ""), \(loadedCompany[0].state ?? "") \(loadedCompany[0].zipCode ?? "")"
+        if loadedCompany == [] {
+            companyNameLabel.text = "Company Name"
+            companyAddressLabel.text = " "
+            companyCityStateZipLabel.text = " "
+        } else {
+            companyNameLabel.text = loadedCompany[0].name
+            companyAddressLabel.text = loadedCompany[0].address
+            companyCityStateZipLabel.text = "\(loadedCompany[0].city ?? ""), \(loadedCompany[0].state ?? "") \(loadedCompany[0].zipCode ?? "")"
+        }
         
         let customer = loadedOrder?.toCustomer
         customerNameLabel.text = "\(customer!.firstName ?? "unknown") \(customer!.lastName ?? "unknown")"
-        customerAddressLabel.text = customer?.customerAddress
-        customerCityStateZipLabel.text = "\(customer?.customerCity ?? ""), \(customer?.customerState ?? "") \(customer?.customerZipCode ?? "")"
+        if customer?.customerAddress == "" {
+            customerAddressLabel.text = " "
+        } else {
+            customerAddressLabel.text = customer?.customerAddress
+        }
+        let custCity = customer?.customerCity ?? ""
+        let custState = customer?.customerState ?? ""
+        let custZip = customer?.customerZipCode ?? ""
+        if custCity == "" && custState == "" && custZip == "" {
+            customerCityStateZipLabel.text = " "
+        } else if custCity == "" {
+            customerCityStateZipLabel.text = "\(custCity) \(custState) \(custZip)"
+        } else {
+            customerCityStateZipLabel.text = "\(custCity), \(custState) \(custZip)"
+        }
+        if customer?.customerPhone == "" {
+            customerPhoneLabel.text = " "
+        } else {
+            customerPhoneLabel.text = customer?.customerPhone
+        }
         
         let date = loadedOrder?.orderDate
         let dateFormatter = DateFormatter()

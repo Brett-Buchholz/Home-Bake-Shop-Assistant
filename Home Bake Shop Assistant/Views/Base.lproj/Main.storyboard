@@ -2675,8 +2675,8 @@ Ingredient</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hc5-Jh-RJP" userLabel="Step 2 Details Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="55" width="720" height="425.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <mutableString key="text">Step 2a: Add the list of ingredients you will use in your recipes. For the standard unit, choose the unit of measurement most likely to be used by that ingredient in a recipe. Name your ingredients the way you would call a single unit of that ingredient.  Ex. Egg (1 whole egg, not eggs), Flour (1 cup of flour), Chocolate Chips (1 cup of Chocolate Chips).
-Step 2b: Once an ingredient is created, add how much is on hand and the cost of the item. This can be done for each individual ingredient by tapping on the ingredient and updating its information or you can use the "Quick Add" Button to update multipe ingredients.</mutableString>
+                                                        <string key="text">Step 2a: Add the list of ingredients you will use in your recipes. For the standard unit, choose the unit of measurement most likely to be used by that ingredient in a recipe. Name your ingredients the way you would call a single unit of that ingredient.  Ex. Egg (1 whole egg, not eggs), Flour (1 cup of flour), Chocolate Chips (1 cup of Chocolate Chips).
+Step 2b: Once an ingredient is created, add how much is on hand and the cost of the item. This can be done for each individual ingredient by tapping on the ingredient and updating its information or you can use the "Quick Add" Button to update multipe ingredients.</string>
                                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
                                                         <color key="textColor" name="BakeShopPink"/>
                                                         <nil key="highlightedColor"/>
@@ -3462,13 +3462,31 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Dc-QD-Vsc" userLabel="Promo Stack View">
-                                        <rect key="frame" x="100" y="310" width="620" height="121"/>
+                                        <rect key="frame" x="100" y="310" width="620" height="128.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have received a promo code, you can enter it here:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIM-iE-qa5" userLabel="Promo Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="620" height="71"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIM-iE-qa5" userLabel="Promo Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="620" height="128.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
-                                                <color key="textColor" name="BakeShopChocolate"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment>
+                                                        <string key="content">Annual Subscription
+</string>
+                                                        <attributes>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <font key="NSFont" size="32" name="TimesNewRomanPS-BoldMT"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment>
+                                                        <string key="content">An annual subscription removes the limits placed on Recipes, Orders and Customers. Subscribed users gain full access to all features.</string>
+                                                        <attributes>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <font key="NSFont" size="28" name="TimesNewRomanPSMT"/>
+                                                            <font key="NSOriginalFont" size="30" name="TimesNewRomanPSMT"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
@@ -3488,68 +3506,10 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0i-JC-HTB" userLabel="Code Stack View">
-                                                <rect key="frame" x="0.0" y="71" width="620" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Promo Code:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSY-w0-pf8" userLabel="Promo Code Label" customClass="PaddingLabel" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="1ov-T0-0wu"/>
-                                                            <constraint firstAttribute="height" constant="50" id="igZ-6e-kSb"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
-                                                        <color key="textColor" name="BakeShopChocolate"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
-                                                                <real key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
-                                                                <real key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingTop">
-                                                                <real key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingBottom">
-                                                                <real key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="15"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l9z-XG-TjH" userLabel="Promo Code Text Field">
-                                                        <rect key="frame" x="200" y="0.0" width="220" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="KPG-xd-wnh"/>
-                                                        </constraints>
-                                                        <color key="textColor" name="BakeShopChocolate"/>
-                                                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiv-rO-C2v" userLabel="Apply Code Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
-                                                        <rect key="frame" x="420" y="0.0" width="200" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="Yij-cv-9Wh"/>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="tEM-gZ-cFx"/>
-                                                        </constraints>
-                                                        <color key="tintColor" name="BakeShopChocolate"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Apply Code">
-                                                            <fontDescription key="titleFontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="32"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="applyCodePressed:" destination="Y0e-9O-ycr" eventType="touchUpInside" id="cgq-Nc-7EJ"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="4DX-kM-RVO" userLabel="Button Stack View">
-                                        <rect key="frame" x="100" y="481" width="620" height="75"/>
+                                        <rect key="frame" x="100" y="488.5" width="620" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUT-II-x0h" userLabel="Subscribe Button" customClass="BrettButton" customModule="Home_Bake_Shop_Assistant" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="260" height="75"/>
@@ -3621,10 +3581,8 @@ Step 2b: Once an ingredient is created, add how much is on hand and the cost of 
                     </view>
                     <navigationItem key="navigationItem" id="Tr1-wH-qgG"/>
                     <connections>
-                        <outlet property="applyCodeButton" destination="oiv-rO-C2v" id="GER-Bl-F8p"/>
                         <outlet property="dateLabel" destination="Ch0-o9-pcS" id="pks-iZ-u3X"/>
                         <outlet property="dateStackView" destination="6t5-zo-7dd" id="smX-Uy-gMr"/>
-                        <outlet property="promoCodeTextField" destination="l9z-XG-TjH" id="K4h-yb-yGW"/>
                         <outlet property="promoStackView" destination="6Dc-QD-Vsc" id="6E7-dd-pEN"/>
                         <outlet property="renewLabel" destination="Uwj-7i-hrp" id="fqA-wa-bvZ"/>
                         <outlet property="restoreButton" destination="y4J-ov-cid" id="cuC-dn-0Hp"/>

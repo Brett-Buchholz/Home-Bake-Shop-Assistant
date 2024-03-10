@@ -36,7 +36,6 @@ class AvailabilityManager {
                 }
             } else {
                 K.needsSubscription = mySub[0].needsSubscription
-                print("Needs subscription: \(K.needsSubscription)")
             }
         } catch {
             print("Error loading Recipe: \(error)")

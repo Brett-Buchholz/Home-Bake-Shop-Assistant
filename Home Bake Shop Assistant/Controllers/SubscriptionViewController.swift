@@ -13,8 +13,6 @@ class SubscriptionViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: PaddingLabel!
     @IBOutlet weak var promoStackView: UIStackView!
-    @IBOutlet weak var promoCodeTextField: UITextField!
-    @IBOutlet weak var applyCodeButton: BrettButton!
     @IBOutlet weak var subscribeButton: BrettButton!
     @IBOutlet weak var restoreButton: BrettButton!
     @IBOutlet weak var subscriptionStackView: UIStackView!
@@ -31,17 +29,16 @@ class SubscriptionViewController: UIViewController {
         AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 2.0, view: titleLabel)
         AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 2.0, view: promoStackView)
         AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 2.0, view: subscriptionStackView)
-        //AddBorders().addRightBorder(with: K.bakeShopChocolate, andWidth: 2.0, view: subscriptionStackView)
-        //AddBorders().addTopBorder(with: K.bakeShopChocolate, andWidth: 2.0, view: subscriptionStackView)
-        applyCodeButton.tintColor = K.bakeShopChocolate
         restoreButton.tintColor = K.bakeShopChocolate
         setupSubscribeButton()
+        createTOSButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.tintColor = .systemBackground
+        
         setSubscriptionInfo()
     }
     
@@ -52,7 +49,8 @@ class SubscriptionViewController: UIViewController {
     }
     
     func setupSubscribeButton() {
-        let title = "Subscribe\n($19.99 Annually)"
+        let subscriptionPrice = K.skm.subscriptions[0].displayPrice
+        let title = "Subscribe\n(\(subscriptionPrice) Annually)"
         var font: UIFont = K.fontTNR32!
         if K.interfaceMode == .phone {
             font = K.fontTNR18!
@@ -66,6 +64,26 @@ class SubscriptionViewController: UIViewController {
         let attributedString = NSAttributedString(string: title, attributes: myAttributes as [NSAttributedString.Key : Any])
         subscribeButton.setAttributedTitle(attributedString, for: .normal)
         subscribeButton.tintColor = K.bakeShopChocolate
+    }
+    
+    func createTOSButton() {
+        let button = UIButton(type: .system)
+        button.backgroundColor = K.systemBackground
+        button.setTitle("Terms of Service", for: .normal)
+        if K.interfaceMode == .pad {
+            button.frame = CGRectMake(100, 100, 165, 50)
+            button.titleLabel?.font = UIFont(name: "Times New Roman", size: 22)
+        } else {
+            button.frame = CGRectMake(100, 100, 90, 35)
+            button.titleLabel?.font = UIFont(name: "Times New Roman", size: 12)
+        }
+        button.setTitleColor(K.bakeShopChocolate, for: .normal)
+        AddBorders().addAllBorders(with: K.bakeShopChocolate, andWidth: 2.0, view: button)
+        button.layer.cornerRadius = 15
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        //button.addTarget(self, action: "Action:", forControlEvents: UIControlEvents.TouchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
     }
     
     func restore() async -> Bool {
@@ -96,57 +114,11 @@ class SubscriptionViewController: UIViewController {
         }
     }
     
-    @IBAction func applyCodePressed(_ sender: BrettButton) {
-        if promoCodeTextField.text == "A25z398yY2W" {
-            let mySub:[Subscription]
-            let request: NSFetchRequest<Subscription> = Subscription.fetchRequest()
-            do {
-                mySub = try K.context.fetch(request)
-                mySub[0].needsSubscription = false
-                do {
-                    try K.context.save()
-                } catch {
-                    print("Error saving Subscription Need: \(error)")
-                }
-            } catch {
-                print("Error loading Recipe: \(error)")
-            }
-            AvailabilityManager().needsSubscriptionCheck()
-            promoCodeTextField.text = ""
-            promoCodeTextField.resignFirstResponder()
-            let alert = UIAlertController(title: "", message: "Code Successfully Entered! You will no longer require a subscription for full access", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
-                //Dismiss
-            }
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
-        } else if promoCodeTextField.text == "Fg240zP83Dq" {
-            let mySub:[Subscription]
-            let request: NSFetchRequest<Subscription> = Subscription.fetchRequest()
-            do {
-                mySub = try K.context.fetch(request)
-                mySub[0].needsSubscription = true
-                do {
-                    try K.context.save()
-                } catch {
-                    print("Error saving Subscription Need: \(error)")
-                }
-            } catch {
-                print("Error loading Recipe: \(error)")
-            }
-            AvailabilityManager().needsSubscriptionCheck()
-            promoCodeTextField.text = ""
-            promoCodeTextField.resignFirstResponder()
-            print("Needs Subscription set to true")
+    @objc func buttonAction(sender: UIButton!) {
+        if let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") {
+          UIApplication.shared.open(url)
         } else {
-            promoCodeTextField.text = ""
-            promoCodeTextField.resignFirstResponder()
-            let alert = UIAlertController(title: "", message: "There are no offers matching that code", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Dismiss", style: .default) { action in
-                //Dismiss
-            }
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+          print("url is not correct")
         }
     }
     

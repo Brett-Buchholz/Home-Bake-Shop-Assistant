@@ -100,9 +100,26 @@ class OrderViewController: UIViewController {
         
         let customer = loadedOrder?.toCustomer
         customerNameLabel.text = "\(customer!.firstName ?? "unknown") \(customer!.lastName ?? "unknown")"
-        customerAddressLabel.text = customer?.customerAddress
-        customerCityStateZipLabel.text = "\(customer?.customerCity ?? ""), \(customer?.customerState ?? "") \(customer?.customerZipCode ?? "")"
-        customerPhoneLabel.text = customer?.customerPhone
+        if customer?.customerAddress == "" {
+            customerAddressLabel.text = " "
+        } else {
+            customerAddressLabel.text = customer?.customerAddress
+        }
+        let custCity = customer?.customerCity ?? ""
+        let custState = customer?.customerState ?? ""
+        let custZip = customer?.customerZipCode ?? ""
+        if custCity == "" && custState == "" && custZip == "" {
+            customerCityStateZipLabel.text = " "
+        } else if custCity == "" {
+            customerCityStateZipLabel.text = "\(custCity) \(custState) \(custZip)"
+        } else {
+            customerCityStateZipLabel.text = "\(custCity), \(custState) \(custZip)"
+        }
+        if customer?.customerPhone == "" {
+            customerPhoneLabel.text = " "
+        } else {
+            customerPhoneLabel.text = customer?.customerPhone
+        }
         
         let date = loadedOrder?.orderDate
         let dateFormatter = DateFormatter()
