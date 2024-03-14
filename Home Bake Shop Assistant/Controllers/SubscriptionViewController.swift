@@ -38,7 +38,6 @@ class SubscriptionViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.tintColor = .systemBackground
-        
         setSubscriptionInfo()
     }
     
@@ -49,7 +48,12 @@ class SubscriptionViewController: UIViewController {
     }
     
     func setupSubscribeButton() {
-        let subscriptionPrice = K.skm.subscriptions[0].displayPrice
+        var subscriptionPrice = ""
+        if K.skm.subscriptions == [] {
+            subscriptionPrice = "$19.99"
+        } else {
+            subscriptionPrice = K.skm.subscriptions[0].displayPrice
+        }
         let title = "Subscribe\n(\(subscriptionPrice) Annually)"
         var font: UIFont = K.fontTNR32!
         if K.interfaceMode == .phone {
@@ -91,24 +95,29 @@ class SubscriptionViewController: UIViewController {
     }
     
     func setSubscriptionInfo() {
-        let product = K.skm.subscriptions[0]
-        Task {
-            await K.skm.getSubscriptionStatus(product: product)
+        if K.skm.subscriptions == [] {
+            statusLabel.text = "Could not retrieve subscription information"
             dateStackView.isHidden = true
-            
-            statusLabel.text = K.skm.subscriptionGroupStatus?.localizedDescription ?? "Not subscribed"
-            
-            if K.skm.subscriptionGroupStatus == .subscribed {
-                dateStackView.isHidden = false
-                let date = K.skm.subscriptionGroupInfo?.renewalDate
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MM-dd-yyyy"
-                let stringDate = dateFormatter.string(from: date!)
-                dateLabel.text = stringDate
-                if K.skm.subscriptionGroupInfo?.willAutoRenew == true {
-                    renewLabel.text = "Will renew on: "
-                } else {
-                    renewLabel.text = "Will expire on: "
+        } else {
+            let product = K.skm.subscriptions[0]
+            Task {
+                await K.skm.getSubscriptionStatus(product: product)
+                dateStackView.isHidden = true
+                
+                statusLabel.text = K.skm.subscriptionGroupStatus?.localizedDescription ?? "Not subscribed"
+                
+                if K.skm.subscriptionGroupStatus == .subscribed {
+                    dateStackView.isHidden = false
+                    let date = K.skm.subscriptionGroupInfo?.renewalDate
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MM-dd-yyyy"
+                    let stringDate = dateFormatter.string(from: date!)
+                    dateLabel.text = stringDate
+                    if K.skm.subscriptionGroupInfo?.willAutoRenew == true {
+                        renewLabel.text = "Will renew on: "
+                    } else {
+                        renewLabel.text = "Will expire on: "
+                    }
                 }
             }
         }
@@ -123,14 +132,18 @@ class SubscriptionViewController: UIViewController {
     }
     
     @IBAction func subscribeButtonPressed(_ sender: BrettButton) {
-        let product = K.skm.subscriptions[0]
-        if AppStore.canMakePayments == true {
-            Task {
-                try? await K.skm.purchase(product)
-                setSubscriptionInfo()
-            }
+        if K.skm.subscriptions == [] {
+            print("Could not retrieve subscriptions")
         } else {
-            print("User can't make payment")
+            let product = K.skm.subscriptions[0]
+            if AppStore.canMakePayments == true {
+                Task {
+                    try? await K.skm.purchase(product)
+                    setSubscriptionInfo()
+                }
+            } else {
+                print("User can't make payment")
+            }
         }
     }
     
